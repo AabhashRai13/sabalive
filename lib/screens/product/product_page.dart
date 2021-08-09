@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/models/product.dart';
 
@@ -35,7 +34,7 @@ class _ProductPageState extends State<ProductPage> {
         height: 80,
         width: width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+              color: Colors.teal[700],
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -56,17 +55,14 @@ class _ProductPageState extends State<ProductPage> {
     );
 
     return Scaffold(
-      backgroundColor: yellow,
+      backgroundColor: lightgreen,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(color: darkGrey),
         actions: <Widget>[
           IconButton(
-            icon: new SvgPicture.asset(
-              'assets/icons/search_icon.svg',
-              fit: BoxFit.scaleDown,
-            ),
+            icon: Icon(Icons.search, color: darkGrey,),
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => SearchPage())),
           )
@@ -113,7 +109,7 @@ class _ProductPageState extends State<ProductPage> {
                         width: 90,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(253, 192, 84, 1),
+                          color: Colors.teal[700],
                           borderRadius: BorderRadius.circular(4.0),
                           border:
                               Border.all(color: Color(0xFFFFFFFF), width: 0.5),
@@ -151,15 +147,7 @@ class _ProductPageState extends State<ProductPage> {
             child: Container(
               padding: EdgeInsets.only(
                   top: 8.0, bottom: bottomPadding != 20 ? 20 : bottomPadding),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                    Color.fromRGBO(255, 255, 255, 0),
-                    Color.fromRGBO(253, 192, 84, 0.5),
-                    Color.fromRGBO(253, 192, 84, 1),
-                  ],
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter)),
+            
               width: width,
               height: 120,
               child: Center(child: viewProductButton),

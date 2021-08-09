@@ -13,9 +13,8 @@ class AuthBackground extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if (image != null)
-      canvas.drawImage(image, new Offset(0.0, 0.0), new Paint());
     canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height),
-        Paint()..color = transparentYellow);
+        Paint()..color = lightgreen);
   }
 
   @override
@@ -32,9 +31,9 @@ class MainBackground extends CustomPainter {
     double height = size.height;
     double width = size.width;
     canvas.drawRect(
-        Rect.fromLTRB(0, 0, width, height), Paint()..color = Colors.white);
-    canvas.drawRect(Rect.fromLTRB(width - (width / 3), 0, width, height),
-        Paint()..color = transparentYellow);
+        Rect.fromLTRB(0, 0, width, height), Paint()..color = Colors.white
+    );
+    //
   }
 
   @override

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/category/category_list_page.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
-
 import '../../app_properties.dart';
 import '../../custom_background.dart';
 import '../notifications_page.dart';
@@ -67,7 +65,8 @@ class _MainPageState extends State<MainPage>
           IconButton(
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
-              icon: SvgPicture.asset('assets/icons/search_icon.svg'))
+              icon: Icon(Icons.search)
+          )
         ],
       ),
     );

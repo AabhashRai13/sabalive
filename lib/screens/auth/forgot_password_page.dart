@@ -35,7 +35,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Widget title = Text(
       'Forgot your Password?',
       style: TextStyle(
-          color: Colors.white,
+          color: Colors.teal[600],
           fontSize: 34.0,
           fontWeight: FontWeight.bold,
           shadows: [
@@ -52,7 +52,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         child: Text(
           'Enter your registered mobile number to get the OTP',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.teal[600],
             fontSize: 16.0,
           ),
         ));
@@ -76,14 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(236, 60, 3, 1),
-                    Color.fromRGBO(234, 60, 3, 1),
-                    Color.fromRGBO(216, 78, 16, 1),
-                  ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter),
+             color: Colors.teal[600],
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -140,7 +133,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               "Didn't receive the OPT? ",
               style: TextStyle(
                 fontStyle: FontStyle.italic,
-                color: Color.fromRGBO(255, 255, 255, 0.5),
+                color: Colors.teal[600],
                 fontSize: 14.0,
               ),
             ),
@@ -149,7 +142,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: Text(
                 'Resend again',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.teal[600],
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0,
                 ),
@@ -164,7 +157,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             image: DecorationImage(
                 image: AssetImage('assets/background.jpg'), fit: BoxFit.cover)),
         child: Container(
-          decoration: BoxDecoration(color: transparentYellow),
+          decoration: BoxDecoration(color: lightgreen),
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,

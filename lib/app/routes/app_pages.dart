@@ -21,5 +21,6 @@ class AppPages {
       name: _Paths.SPLASHSCREEN,
       page: () => SplashScreen(),
     ),
+   
   ];
 }

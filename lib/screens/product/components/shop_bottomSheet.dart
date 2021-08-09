@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
 
-import '../../../app_properties.dart';
 import 'shop_product.dart';
 
 class ShopBottomSheet extends StatefulWidget {
@@ -43,7 +43,7 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
                     fontStyle: FontStyle.normal,
                     fontSize: 20.0))),
         decoration: BoxDecoration(
-            gradient: mainButton,
+                color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),

@@ -19,7 +19,7 @@ class RatingDialog extends StatelessWidget {
         height: 60,
         width: width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+            color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),

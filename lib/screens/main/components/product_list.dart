@@ -38,7 +38,7 @@ class ProductList extends StatelessWidget {
               print(
                   "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
             }
-            Color activeColor = mediumYellow;
+            Color activeColor = mediumgreen;
             Color color = Colors.grey[300];
             double size = 10.0;
             double space = 5.0;
@@ -117,7 +117,7 @@ class ProductCard extends StatelessWidget {
             width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(24)),
-              color: mediumYellow,
+              color: mediumgreen,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,

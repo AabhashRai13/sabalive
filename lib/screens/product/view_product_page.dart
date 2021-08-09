@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sabalive/models/product.dart';
 
 import '../../app_properties.dart';
@@ -73,17 +72,15 @@ class _ViewProductPageState extends State<ViewProductPage> {
 
     return Scaffold(
         key: _scaffoldKey,
-        backgroundColor: yellow,
+        backgroundColor: lightgreen,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           iconTheme: IconThemeData(color: darkGrey),
           actions: <Widget>[
             IconButton(
-              icon: new SvgPicture.asset(
-                'assets/icons/search_icon.svg',
-                fit: BoxFit.scaleDown,
-              ),
+              icon:
+              Icon(Icons.search),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
             )
@@ -133,10 +130,10 @@ class _ViewProductPageState extends State<ViewProductPage> {
                       constraints:
                           const BoxConstraints(minWidth: 45, minHeight: 45),
                       child: Icon(Icons.favorite,
-                          color: Color.fromRGBO(255, 137, 147, 1)),
+                          color: Colors.red),
                       elevation: 0.0,
                       shape: CircleBorder(),
-                      fillColor: Color.fromRGBO(255, 255, 255, 0.4),
+                      fillColor: mainButtonColor,
                     ),
                   ]),
                 ),

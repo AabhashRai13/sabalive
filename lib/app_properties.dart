@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
-const Color yellow = Color(0xffFDC054);
-const Color mediumYellow = Color(0xffFDB846);
-const Color darkYellow = Color(0xffE99E22);
-const Color transparentYellow = Color.fromRGBO(253, 184, 70, 0.7);
-const Color darkGrey = Color(0xff202020);
+const Color darkgreen = Color.fromRGBO(62, 180, 137, 0.4);
+const Color mediumgreen = Color.fromRGBO(62, 180, 137, 0.7);
+const Color green = Color.fromRGBO(62, 180, 137, 0.5);
+const Color lightgreen = Color.fromRGBO(62, 180, 137, 1);
 
-const LinearGradient mainButton = LinearGradient(colors: [
-  Color.fromRGBO(236, 60, 3, 1),
-  Color.fromRGBO(234, 60, 3, 1),
-  Color.fromRGBO(216, 78, 16, 1),
-], begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter);
+const Color darkGrey = Color(0xff202020);
+const Color mainButtonColor = Color.fromRGBO(0, 137, 123, 0.6);
 
 const List<BoxShadow> shadow = [
   BoxShadow(color: Colors.black12, offset: Offset(0, 3), blurRadius: 6)

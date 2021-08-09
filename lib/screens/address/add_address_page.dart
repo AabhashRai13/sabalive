@@ -14,7 +14,7 @@ class AddAddressPage extends StatelessWidget {
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -98,7 +98,7 @@ class AddAddressPage extends StatelessWidget {
                               ))),
                       Card(
                           margin: EdgeInsets.symmetric(vertical: 8.0),
-                          color: yellow,
+                          color: darkgreen,
                           elevation: 3,
                           child: SizedBox(
                               height: 80,
@@ -129,7 +129,7 @@ class AddAddressPage extends StatelessWidget {
                               ))),
                       Card(
                           margin: EdgeInsets.symmetric(vertical: 8.0),
-                          color: yellow,
+                          color: darkgreen,
                           elevation: 3,
                           child: SizedBox(
                               height: 80,

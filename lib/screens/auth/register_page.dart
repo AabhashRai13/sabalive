@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-              gradient: mainButton,
+              color: Colors.teal[600],
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -157,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: transparentYellow,
+              color: lightgreen,
             ),
           ),
           Padding(

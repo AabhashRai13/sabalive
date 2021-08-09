@@ -121,7 +121,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(45)),
-                                border: Border.all(color: yellow, width: 1.5)),
+                                border: Border.all(color: darkgreen, width: 1.5)),
                             child: openOptions.value < 300
                                 ? Container()
                                 : Align(
@@ -280,7 +280,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                   Flexible(
                     child: Container(
                       height: 232,
-                      color: Color(0xffFAF1E2),
+                      color: lightgreen,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -305,7 +305,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text('Dicount Voucher',
+                                child: Text('Discount Voucher',
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16.0,
@@ -343,11 +343,11 @@ class YellowDollarButton extends CustomPainter {
     double width = size.width;
 
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2,
-        Paint()..color = Color.fromRGBO(253, 184, 70, 0.2));
+        Paint()..color = Color.fromRGBO(62, 180, 137, 0.5));
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2 - 4,
-        Paint()..color = Color.fromRGBO(253, 184, 70, 0.5));
+        Paint()..color = Color.fromRGBO(62, 180, 137, 1));
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2 - 12,
-        Paint()..color = Color.fromRGBO(253, 184, 70, 1));
+        Paint()..color = Color.fromRGBO(0, 137, 123, 0.6));
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2 - 16,
         Paint()..color = Color.fromRGBO(255, 255, 255, 0.1));
   }

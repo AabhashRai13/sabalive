@@ -6,7 +6,7 @@ import 'package:sabalive/screens/product/product_page.dart';
 import '../../../app_properties.dart';
 
 class RecommendedList extends StatelessWidget {
-  List<Product> products = [
+  final List<Product> products = [
     Product('assets/bag_1.png', 'Bag', 'Beautiful bag', 2.33),
     Product('assets/cap_5.png', 'Cap', 'Cap with beautiful design', 10),
     Product('assets/jeans_1.png', 'Jeans', 'Jeans for you', 20),
@@ -32,7 +32,7 @@ class RecommendedList extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.only(left: 16.0, right: 8.0),
                   width: 4,
-                  color: mediumYellow,
+                  color: mediumgreen,
                 ),
               ),
               Center(

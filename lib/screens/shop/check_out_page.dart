@@ -34,7 +34,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+                color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -62,7 +62,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         iconTheme: IconThemeData(color: darkGrey),
         actions: <Widget>[
           IconButton(
-            icon: Image.asset('assets/icons/denied_wallet.png'),
+            icon: Icon(Icons.payment),
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
           )
@@ -84,7 +84,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 32.0),
                   height: 48.0,
-                  color: yellow,
+                  color: lightgreen,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[

@@ -47,7 +47,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
     Widget title = Text(
       'Confirm your OTP',
       style: TextStyle(
-          color: Colors.white,
+          color: Colors.teal[600],
           fontSize: 34.0,
           fontWeight: FontWeight.bold,
           shadows: [
@@ -64,7 +64,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         child: Text(
           'Please wait, we are confirming your OTP',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.teal[600],
             fontSize: 16.0,
           ),
         ));
@@ -86,14 +86,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(236, 60, 3, 1),
-                    Color.fromRGBO(234, 60, 3, 1),
-                    Color.fromRGBO(216, 78, 16, 1),
-                  ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter),
+              color: Colors.teal[600],
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -113,7 +106,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
           "Resend again after ",
           style: TextStyle(
             fontStyle: FontStyle.italic,
-            color: Color.fromRGBO(255, 255, 255, 0.5),
+            color: Colors.teal[600],
             fontSize: 14.0,
           ),
         ),
@@ -122,7 +115,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
           child: Text(
             '0:39',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.teal[600],
               fontWeight: FontWeight.bold,
               fontSize: 14.0,
             ),
@@ -138,7 +131,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
             image: DecorationImage(
                 image: AssetImage('assets/background.jpg'), fit: BoxFit.cover)),
         child: Container(
-          decoration: BoxDecoration(color: transparentYellow),
+          decoration: BoxDecoration(color: lightgreen),
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,
@@ -169,13 +162,13 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
                             pinTextAnimatedSwitcherDuration:
                                 Duration(milliseconds: 500),
                             wrapAlignment: WrapAlignment.center,
-                            hasTextBorderColor: Colors.transparent,
+                            hasTextBorderColor: Colors.teal[600],
                             highlightPinBoxColor: Colors.white,
                             autofocus: true,
                             pinBoxHeight: 60,
                             pinBoxWidth: 60,
                             pinBoxRadius: 5,
-                            defaultBorderColor: Colors.transparent,
+                            defaultBorderColor: Colors.teal[600],
                             pinBoxColor: Color.fromRGBO(255, 255, 255, 0.8),
                             maxLength: 4,
                           ),

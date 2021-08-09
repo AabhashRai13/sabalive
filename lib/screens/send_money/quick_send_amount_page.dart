@@ -19,7 +19,7 @@ class QuickSendAmountPage extends StatelessWidget {
         width: width / 1.5,
         // width: width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+            color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -77,7 +77,7 @@ class QuickSendAmountPage extends StatelessWidget {
                               height: MediaQuery.of(context).size.height / 2.3,
                               padding: const EdgeInsets.all(16.0),
                               width: double.infinity,
-                              color: yellow,
+                              color: darkgreen,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

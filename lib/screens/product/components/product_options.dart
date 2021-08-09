@@ -51,8 +51,7 @@ class ProductOption extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,
                       decoration: BoxDecoration(
-                          color: Colors.red,
-                          gradient: mainButton,
+                          color: mainButtonColor,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                               bottomLeft: Radius.circular(10.0))),
@@ -77,8 +76,7 @@ class ProductOption extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,
                       decoration: BoxDecoration(
-                          color: Colors.red,
-                          gradient: mainButton,
+                          color: mainButtonColor,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                               bottomLeft: Radius.circular(10.0))),

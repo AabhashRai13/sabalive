@@ -60,14 +60,8 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(236, 60, 3, 1),
-                    Color.fromRGBO(234, 60, 3, 1),
-                    Color.fromRGBO(216, 78, 16, 1),
-                  ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter),
+            color: Colors.teal[600],
+             
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -158,7 +152,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: transparentYellow,
+              color: lightgreen,
             ),
           ),
           Padding(
