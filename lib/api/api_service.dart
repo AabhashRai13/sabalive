@@ -11,8 +11,8 @@ class ApiService {
 
   static Future<List<User>> getUsers({int nrUsers = 1}) async {
     try {
-      var response = await http
-          .get(url(nrUsers), headers: {"Content-Type": "application/json"});
+      var response = await http.get(Uri.parse(url(nrUsers)),
+          headers: {"Content-Type": "application/json"});
 
       if (response.statusCode == 200) {
         Map data = json.decode(response.body);
