@@ -7,15 +7,15 @@ import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/token.dart';
+import 'package:sabalive/screens/auth/welcome_back_page.dart';
 import 'package:sabalive/screens/main/main_page.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class LoginPageController extends BaseController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
-  final TextEditingController secondPasswordController =
-      TextEditingController();
-  final TextEditingController firstPasswordController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
   TextEditingController loginNameController = TextEditingController();
   TextEditingController registerNameController = TextEditingController();
   var busy = "".obs;
@@ -33,10 +33,9 @@ class LoginPageController extends BaseController {
   }
 
   void loginUser(Map map) async {
-    String from = Get.arguments["from"];
     setState(ViewState.Busy);
     token = await apiAuthProvider.loginUser(map);
-
+    print("acces token ${token.access}");
     if (token == null) {
       Fluttertoast.showToast(
           msg: "Check your credentials",
@@ -57,12 +56,8 @@ class LoginPageController extends BaseController {
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
 
-      if (from == "prescription_page") {
-        Get.back();
-        Get.back();
-      } else {
-        Get.offAll(() => MainPage());
-      }
+      Get.offAll(() => MainPage());
+
       setState(ViewState.Retrieved);
     }
   }
@@ -83,7 +78,7 @@ class LoginPageController extends BaseController {
       Get.snackbar("An error occurred", "Check your credentials",
           colorText: Colors.white, backgroundColor: Colors.blue[300]);
     } else {
-      //  Get.off(() => LoginPageView());
+      Get.off(() => WelcomeBackPage());
       loginNameController.clear();
       emailController.clear();
     }
@@ -94,8 +89,7 @@ class LoginPageController extends BaseController {
     Map map = {
       "username": registerNameController.text.trim(),
       "email": emailController.text.trim(),
-      "password": firstPasswordController.text.trim(),
-      "password2": secondPasswordController.text.trim()
+      "password": passwordController.text.trim(),
     };
     registerUser(map);
   }
@@ -105,8 +99,7 @@ class LoginPageController extends BaseController {
     super.onClose();
     loginNameController.clear();
     emailController.clear();
-    firstPasswordController.clear();
-    secondPasswordController.clear();
+    passwordController.clear();
     registerNameController.clear();
     loginPasswordController.clear();
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/controllers/login_controllers.dart';
 
 import '../../app_properties.dart';
 import 'register_page.dart';
@@ -9,10 +11,8 @@ class WelcomeBackPage extends StatefulWidget {
 }
 
 class _WelcomeBackPageState extends State<WelcomeBackPage> {
-  TextEditingController email =
-      TextEditingController(text: 'example@email.com');
-
-  TextEditingController password = TextEditingController(text: '12345678');
+  final LoginPageController loginPageController =
+      Get.put(LoginPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => RegisterPage()));
+          loginPageController.mapInputsLogin();
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
@@ -99,14 +98,14 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: email,
+                    controller: loginPageController.loginNameController,
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: password,
+                    controller: loginPageController.loginPasswordController,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -115,6 +114,36 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             ),
           ),
           loginButton,
+        ],
+      ),
+    );
+
+    Widget registerUser = Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Create your account',
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
+              color: Color.fromRGBO(255, 255, 255, 0.5),
+              fontSize: 14.0,
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(() => RegisterPage());
+            },
+            child: Text(
+              'Regiter Now',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 14.0,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -173,6 +202,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                 Spacer(flex: 2),
                 loginForm,
                 Spacer(flex: 2),
+                registerUser,
                 forgotPassword
               ],
             ),
