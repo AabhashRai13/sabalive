@@ -8,7 +8,7 @@ class RatingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
+    
     Widget payNow = InkWell(
       onTap: () async {
         Navigator.of(context).pop();
@@ -38,7 +38,7 @@ class RatingDialog extends StatelessWidget {
         ),
       ),
     );
-
+    
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Container(
@@ -56,7 +56,7 @@ class RatingDialog extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                     style:
-                        TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
+                    TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
                     children: [
                       TextSpan(
                         text: 'You rated ',
@@ -72,7 +72,7 @@ class RatingDialog extends StatelessWidget {
             RatingBar(
 //                      borderColor: Color(0xffFF8993),
 //                      fillColor: Color(0xffFF8993),
-
+              
               itemSize: 32,
               allowHalfRating: false,
               initialRating: 1,
@@ -81,7 +81,7 @@ class RatingDialog extends StatelessWidget {
 //              setState(() {
 //                rating = value;
 //              });
-
+                
                 print(value);
               },
               ratingWidget: RatingWidget(

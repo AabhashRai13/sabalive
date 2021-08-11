@@ -4,7 +4,7 @@ import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_na
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navigationbar_controller/bottom_navbar_controller.dart';
 
 class BottomAppBarContainer extends StatelessWidget {
-BottomNavBarController _bottomNavBarController= Get.put(BottomNavBarController());
+final BottomNavBarController _bottomNavBarController= Get.put(BottomNavBarController());
 final TabController controller;
 
   BottomAppBarContainer({Key key,

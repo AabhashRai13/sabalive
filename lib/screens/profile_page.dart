@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding:
-                EdgeInsets.only(left: 16.0, right: 16.0, top: kToolbarHeight),
+            EdgeInsets.only(left: 16.0, right: 16.0, top: kToolbarHeight),
             child: Column(
               children: <Widget>[
                 CircleAvatar(

@@ -12,7 +12,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   Animation<double> opacity;
   AnimationController controller;
-
+  
   @override
   void initState() {
     super.initState();
@@ -26,18 +26,18 @@ class _SplashScreenState extends State<SplashScreen>
       navigationPage();
     });
   }
-
+  
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
-
+  
   void navigationPage() {
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
   }
-
+  
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(

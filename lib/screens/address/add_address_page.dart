@@ -33,7 +33,7 @@ color: mainButtonColor,
         ),
       ),
     );
-
+    
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -53,7 +53,7 @@ color: mainButtonColor,
         builder: (_, viewportConstraints) => SingleChildScrollView(
           child: ConstrainedBox(
             constraints:
-                BoxConstraints(minHeight: viewportConstraints.maxHeight),
+            BoxConstraints(minHeight: viewportConstraints.maxHeight),
             child: Container(
               padding: EdgeInsets.only(
                   left: 16.0,

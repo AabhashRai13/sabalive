@@ -7,16 +7,16 @@ class AuthBackground extends CustomPainter {
   AuthBackground({
     this.image,
   });
-
+  
   ui.Image image;
-
+  
   @override
   void paint(Canvas canvas, Size size) {
     if (image != null)
     canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height),
         Paint()..color = lightgreen);
   }
-
+  
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
@@ -25,7 +25,7 @@ class AuthBackground extends CustomPainter {
 
 class MainBackground extends CustomPainter {
   MainBackground();
-
+  
   @override
   void paint(Canvas canvas, Size size) {
     double height = size.height;
@@ -35,7 +35,7 @@ class MainBackground extends CustomPainter {
     );
     //
   }
-
+  
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;

@@ -16,7 +16,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
   TextEditingController otp3 = TextEditingController(text: '3');
   TextEditingController otp4 = TextEditingController(text: '4');
   TextEditingController otp5 = TextEditingController(text: '5');
-
+  
   Widget otpBox(TextEditingController otpController) {
     return Container(
       height: 48,
@@ -41,7 +41,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
       ),
     );
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget title = Text(
@@ -58,7 +58,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
             )
           ]),
     );
-
+    
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
@@ -68,7 +68,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
             fontSize: 16.0,
           ),
         ));
-
+    
     Widget verifyButton = Center(
       child: InkWell(
         onTap: () {
@@ -98,7 +98,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         ),
       ),
     );
-
+    
     Widget resendText = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -123,7 +123,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         ),
       ],
     );
-
+    
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
       child: Container(
@@ -158,9 +158,9 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
                             highlightAnimation: true,
                             highlightAnimationBeginColor: Colors.white,
                             highlightAnimationEndColor:
-                                Theme.of(context).primaryColor,
+                            Theme.of(context).primaryColor,
                             pinTextAnimatedSwitcherDuration:
-                                Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             wrapAlignment: WrapAlignment.center,
                             hasTextBorderColor: Colors.teal[600],
                             highlightPinBoxColor: Colors.white,

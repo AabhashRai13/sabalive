@@ -3,12 +3,12 @@ import 'package:sabalive/models/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-
+  
   ProductCard(
-    this.product, {
-    Key key,
-  }) : super(key: key);
-
+      this.product, {
+        Key key,
+      }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return InkWell(

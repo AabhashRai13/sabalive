@@ -20,9 +20,9 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
     'Japan',
     'France',
   ];
-
+  
   String currentCountry = '';
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

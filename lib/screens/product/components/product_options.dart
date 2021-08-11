@@ -10,7 +10,7 @@ class ProductOption extends StatelessWidget {
   final Product product;
   const ProductOption(this.scaffoldKey, {Key key, this.product})
       : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(

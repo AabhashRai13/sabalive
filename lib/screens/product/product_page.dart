@@ -8,28 +8,28 @@ import 'view_product_page.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
-
+  
   ProductPage({Key key, this.product}) : super(key: key);
-
+  
   @override
   _ProductPageState createState() => _ProductPageState(product);
 }
 
 class _ProductPageState extends State<ProductPage> {
   final Product product;
-
+  
   _ProductPageState(this.product);
-
+  
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
-
+    
     Widget viewProductButton = InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => ViewProductPage(
-                product: product,
-              ))),
+            product: product,
+          ))),
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -53,7 +53,7 @@ class _ProductPageState extends State<ProductPage> {
         ),
       ),
     );
-
+    
     return Scaffold(
       backgroundColor: lightgreen,
       appBar: AppBar(
@@ -112,7 +112,7 @@ class _ProductPageState extends State<ProductPage> {
                           color: Colors.teal[700],
                           borderRadius: BorderRadius.circular(4.0),
                           border:
-                              Border.all(color: Color(0xFFFFFFFF), width: 0.5),
+                          Border.all(color: Color(0xFFFFFFFF), width: 0.5),
                         ),
                         child: Center(
                           child: new Text("Details",
@@ -131,7 +131,7 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 Padding(
                     padding:
-                        EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
+                    EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
                     child: new Text(product.description,
                         style: const TextStyle(
                             color: const Color(0xfefefefe),

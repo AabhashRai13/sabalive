@@ -19,7 +19,7 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
     Product('assets/headphones_3.png',
         'Boat roackerz 300 On-Ear Bluetooth Headphones', 'description', 58.3)
   ];
-
+  
   @override
   Widget build(BuildContext context) {
     Widget confirmButton = InkWell(
@@ -54,7 +54,7 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
             borderRadius: BorderRadius.circular(9.0)),
       ),
     );
-
+    
     return Container(
         decoration: BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -96,9 +96,9 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
                         index == 4
                             ? SizedBox()
                             : Container(
-                                width: 2,
-                                height: 200,
-                                color: Color.fromRGBO(100, 100, 100, 0.1))
+                            width: 2,
+                            height: 200,
+                            color: Color.fromRGBO(100, 100, 100, 0.1))
                       ],
                     );
                   }),

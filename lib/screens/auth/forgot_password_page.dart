@@ -12,10 +12,10 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   TextEditingController phoneNumber = TextEditingController(text: '46834683');
-
+  
   GlobalKey prefixKey = GlobalKey();
   double prefixWidth = 0;
-
+  
   Widget prefix() {
     return Container(
         key: prefixKey,
@@ -23,13 +23,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         margin: EdgeInsets.only(right: 4.0),
         decoration: BoxDecoration(
             border:
-                Border(bottom: BorderSide(color: Colors.black, width: 0.5))),
+            Border(bottom: BorderSide(color: Colors.black, width: 0.5))),
         child: CountryCodePicker(
           initialSelection: 'GT',
           favorite: ['+1', 'US'],
         ));
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget title = Text(
@@ -46,7 +46,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             )
           ]),
     );
-
+    
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
@@ -56,7 +56,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             fontSize: 16.0,
           ),
         ));
-
+    
     Widget sendButton = Positioned(
       left: MediaQuery.of(context).size.width / 4,
       bottom: 40,
@@ -88,7 +88,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ),
       ),
     );
-
+    
     Widget phoneForm = Container(
       height: 210,
       child: Stack(
@@ -123,7 +123,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ],
       ),
     );
-
+    
     Widget resendAgainText = Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Row(

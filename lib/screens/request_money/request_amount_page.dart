@@ -6,9 +6,9 @@ import '../../app_properties.dart';
 
 class RequestAmountPage extends StatelessWidget {
   final User user;
-
+  
   RequestAmountPage(this.user);
-
+  
   @override
   Widget build(BuildContext context) {
     Widget viewProductButton = InkWell(
@@ -37,7 +37,7 @@ class RequestAmountPage extends StatelessWidget {
         ),
       ),
     );
-
+    
     Widget qrCode = InkWell(
       onTap: () => Navigator.of(context)
           .push(MaterialPageRoute(builder: (_) => ReceivePaymentPage(user))),
@@ -65,7 +65,7 @@ class RequestAmountPage extends StatelessWidget {
         ),
       ),
     );
-
+    
     return Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -85,7 +85,7 @@ class RequestAmountPage extends StatelessWidget {
             physics: ClampingScrollPhysics(),
             child: ConstrainedBox(
               constraints:
-                  BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Column(
@@ -108,7 +108,7 @@ class RequestAmountPage extends StatelessWidget {
                                 CircleAvatar(
                                   maxRadius: 24,
                                   backgroundImage:
-                                      NetworkImage(user.picture.thumbnail),
+                                  NetworkImage(user.picture.thumbnail),
                                 ),
                                 SizedBox(width: 16.0),
                                 Column(
@@ -148,7 +148,7 @@ class RequestAmountPage extends StatelessWidget {
                                         color: Colors.white30, fontSize: 48),
                                     enabledBorder: const UnderlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.white),
+                                      const BorderSide(color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -164,124 +164,124 @@ class RequestAmountPage extends StatelessWidget {
                     ),
                     Flexible(
                         child: ListView(
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('24th December 2018',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text('Received'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '\$ ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.0),
+                          children: <Widget>[
+                            ListTile(
+                              title: Text('24th December 2018',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Text('Received'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '\$ ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.0),
+                                  ),
+                                  Text(
+                                    '90.00',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '90.00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ListTile(
+                              title: Text('24th December 2018',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Text('Received'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '\$ ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.0),
+                                  ),
+                                  Text(
+                                    '90.00',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        ListTile(
-                          title: Text('24th December 2018',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text('Received'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '\$ ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.0),
+                            ),
+                            ListTile(
+                              title: Text('24th December 2018',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Text('Received'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '\$ ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.0),
+                                  ),
+                                  Text(
+                                    '90.00',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '90.00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ListTile(
+                              title: Text('24th December 2018',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Text('Received'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '\$ ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.0),
+                                  ),
+                                  Text(
+                                    '90.00',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        ListTile(
-                          title: Text('24th December 2018',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text('Received'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '\$ ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.0),
+                            ),
+                            ListTile(
+                              title: Text('24th December 2018',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: Text('Received'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '\$ ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.0),
+                                  ),
+                                  Text(
+                                    '90.00',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '90.00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        ListTile(
-                          title: Text('24th December 2018',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text('Received'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '\$ ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.0),
-                              ),
-                              Text(
-                                '90.00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        ListTile(
-                          title: Text('24th December 2018',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text('Received'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '\$ ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.0),
-                              ),
-                              Text(
-                                '90.00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )),
+                            )
+                          ],
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Row(

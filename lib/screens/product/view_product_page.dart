@@ -10,22 +10,22 @@ import 'components/rating_bottomSheet.dart';
 
 class ViewProductPage extends StatefulWidget {
   final Product product;
-
+  
   ViewProductPage({Key key, this.product}) : super(key: key);
-
+  
   @override
   _ViewProductPageState createState() => _ViewProductPageState(product);
 }
 
 class _ViewProductPageState extends State<ViewProductPage> {
   final Product product;
-
+  
   _ViewProductPageState(this.product);
-
+  
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  
   int active;
-
+  
   ///list of product colors
   List<Widget> colors() {
     List<Widget> list = [];
@@ -56,7 +56,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
     }
     return list;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget description = Padding(
@@ -69,7 +69,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
         style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.6)),
       ),
     );
-
+    
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: lightgreen,
@@ -128,7 +128,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
                         );
                       },
                       constraints:
-                          const BoxConstraints(minWidth: 45, minHeight: 45),
+                      const BoxConstraints(minWidth: 45, minHeight: 45),
                       child: Icon(Icons.favorite,
                           color: Colors.red),
                       elevation: 0.0,
