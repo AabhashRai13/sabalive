@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/login_controllers.dart';
+import 'package:sabalive/screens/auth/forgot_password_page.dart';
 
 import '../../app_properties.dart';
 import 'register_page.dart';
@@ -31,7 +32,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             )
           ]),
     );
-    
+
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
@@ -41,7 +42,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             fontSize: 16.0,
           ),
         ));
-    
+
     Widget loginButton = Positioned(
       left: MediaQuery.of(context).size.width / 4,
       bottom: 40,
@@ -63,8 +64,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-            color: Colors.teal[600],
-             
+              color: Colors.teal[600],
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -76,7 +76,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
         ),
       ),
     );
-    
+
     Widget loginForm = Container(
       height: 280,
       child: Form(
@@ -138,7 +138,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
         ),
       ),
     );
-    
+
     Widget registerUser = Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
@@ -168,7 +168,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
         ],
       ),
     );
-    
+
     Widget forgotPassword = Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
@@ -183,7 +183,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => ForgotPasswordPage());
+            },
             child: Text(
               'Reset password',
               style: TextStyle(
@@ -196,7 +198,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
         ],
       ),
     );
-    
+
     return Scaffold(
       body: Stack(
         children: <Widget>[

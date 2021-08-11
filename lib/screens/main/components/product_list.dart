@@ -8,17 +8,17 @@ import '../../../app_properties.dart';
 
 class ProductList extends StatelessWidget {
   List<Product> products;
-  
+
   final SwiperController swiperController = SwiperController();
-  
+
   ProductList({Key key, this.products}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     double cardHeight = MediaQuery.of(context).size.height / 2.7;
     double cardWidth = MediaQuery.of(context).size.width / 1.8;
     if (products == null) products = [];
-    
+
     return SizedBox(
       height: cardHeight,
       child: Swiper(
@@ -42,7 +42,7 @@ class ProductList extends StatelessWidget {
             Color color = Colors.grey[300];
             double size = 10.0;
             double space = 5.0;
-            
+
             if (config.indicatorLayout != PageIndicatorLayout.NONE &&
                 config.layout == SwiperLayout.DEFAULT) {
               return new PageIndicator(
@@ -55,12 +55,12 @@ class ProductList extends StatelessWidget {
                 space: space,
               );
             }
-            
+
             List<Widget> dots = [];
-            
+
             int itemCount = config.itemCount;
             int activeIndex = config.activeIndex;
-            
+
             for (int i = 0; i < itemCount; ++i) {
               bool active = i == activeIndex;
               dots.add(Container(
@@ -78,7 +78,7 @@ class ProductList extends StatelessWidget {
                 ),
               ));
             }
-            
+
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Align(
@@ -100,10 +100,10 @@ class ProductCard extends StatelessWidget {
   final Product product;
   final double height;
   final double width;
-  
+
   const ProductCard({Key key, this.product, this.height, this.width})
       : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -137,7 +137,7 @@ class ProductCard extends StatelessWidget {
                           child: Text(
                             product.name ?? '',
                             style:
-                            TextStyle(color: Colors.white, fontSize: 16.0),
+                                TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
                         )),
                     Align(

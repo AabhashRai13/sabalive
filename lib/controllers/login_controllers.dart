@@ -7,14 +7,13 @@ import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/token.dart';
-import 'package:sabalive/screens/auth/welcome_back_page.dart';
 import 'package:sabalive/screens/main/main_page.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class LoginPageController extends BaseController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
-  
+
   final TextEditingController passwordController = TextEditingController();
   TextEditingController loginNameController = TextEditingController();
   TextEditingController registerNameController = TextEditingController();
@@ -24,14 +23,14 @@ class LoginPageController extends BaseController {
   RegistrationResponse registrationResponse;
   ApiProvider apiAuthProvider = ApiProvider();
   final SharedPreferencesManager sharedPreferencesManager =
-  locator<SharedPreferencesManager>();
+      locator<SharedPreferencesManager>();
   final formKey = GlobalKey<FormState>();
   bool autovalidate = false;
-  
+
   void updateState() {
     autovalidate = true;
   }
-  
+
   void loginUser(Map map) async {
     setState(ViewState.Busy);
     token = await apiAuthProvider.loginUser(map);
@@ -52,16 +51,16 @@ class LoginPageController extends BaseController {
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyRefreshToken, token.refresh);
       print("refresh token ${token.refresh}");
-      
+
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
-      
+
       Get.offAll(() => MainPage());
-      
+
       setState(ViewState.Retrieved);
     }
   }
-  
+
   void mapInputsLogin() {
     Map map = {
       "username": loginNameController.text.trim(),
@@ -69,31 +68,7 @@ class LoginPageController extends BaseController {
     };
     loginUser(map);
   }
-  
-  void registerUser(Map map) async {
-    setState(ViewState.Busy);
-    
-    registrationResponse = await apiAuthProvider.registerUser(map);
-    if (registrationResponse == null) {
-      Get.snackbar("An error occurred", "Check your credentials",
-          colorText: Colors.white, backgroundColor: Colors.blue[300]);
-    } else {
-      Get.off(() => WelcomeBackPage());
-      loginNameController.clear();
-      emailController.clear();
-    }
-    setState(ViewState.Retrieved);
-  }
-  
-  void mapInputsRegister() {
-    Map map = {
-      "username": registerNameController.text.trim(),
-      "email": emailController.text.trim(),
-      "password": passwordController.text.trim(),
-    };
-    registerUser(map);
-  }
-  
+
   @override
   void onClose() {
     super.onClose();

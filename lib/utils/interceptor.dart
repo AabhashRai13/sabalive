@@ -3,12 +3,9 @@ import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class DioLoggingInterceptors extends InterceptorsWrapper {
-  final Dio _dio;
-
-  DioLoggingInterceptors(this._dio);
   final SharedPreferencesManager _sharedPreferencesManager =
-      locator<SharedPreferencesManager>();
-
+  locator<SharedPreferencesManager>();
+  
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
@@ -25,7 +22,7 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     }
     print(
         "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
-
+    
     if (options.headers.containsKey('requirestoken')) {
       options.headers.remove('requirestoken');
       print(
@@ -36,7 +33,7 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     }
     return super.onRequest(options, handler);
   }
-
+  
   @override
   onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
