@@ -20,9 +20,9 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
     'Japan',
     'France',
   ];
-
+  
   String currentCountry = '';
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,23 +60,23 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
                 child: ListView(
                   children: languages
                       .map((l) => ListTile(
-                            onTap: () {
-                              setState(() {
-                                currentCountry = l;
-                              });
-                            },
-                            title: Text(
-                              l,
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            trailing: l == currentCountry
-                                ? Icon(
-                                    Icons.check_circle,
-                                    color: yellow,
-                                    size: 16,
-                                  )
-                                : SizedBox(),
-                          ))
+                    onTap: () {
+                      setState(() {
+                        currentCountry = l;
+                      });
+                    },
+                    title: Text(
+                      l,
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    trailing: l == currentCountry
+                        ? Icon(
+                      Icons.check_circle,
+                      color: darkgreen,
+                      size: 16,
+                    )
+                        : SizedBox(),
+                  ))
                       .toList(),
                 ),
               ),

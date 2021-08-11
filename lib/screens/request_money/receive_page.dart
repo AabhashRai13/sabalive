@@ -7,13 +7,13 @@ import '../../app_properties.dart';
 
 class ReceivePaymentPage extends StatelessWidget {
   final User user;
-
+  
   ReceivePaymentPage(this.user);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: yellow,
+      backgroundColor: darkgreen,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.black,
@@ -77,7 +77,7 @@ class ReceivePaymentPage extends StatelessWidget {
                                 CircleAvatar(
                                   maxRadius: 24,
                                   backgroundImage:
-                                      NetworkImage(user.picture.thumbnail),
+                                  NetworkImage(user.picture.thumbnail),
                                 ),
                                 SizedBox(width: 16.0),
                                 Column(
@@ -150,7 +150,7 @@ class TicketPainter extends CustomPainter {
     path.lineTo(width, 0);
     canvas.drawPath(path, Paint()..color = Colors.white);
   }
-
+  
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
