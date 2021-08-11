@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding:
-                EdgeInsets.only(left: 16.0, right: 16.0, top: kToolbarHeight),
+            EdgeInsets.only(left: 16.0, right: 16.0, top: kToolbarHeight),
             child: Column(
               children: <Widget>[
                 CircleAvatar(
@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                            color: transparentYellow,
+                            color: lightgreen,
                             blurRadius: 4,
                             spreadRadius: 1,
                             offset: Offset(0, 1))
@@ -56,7 +56,7 @@ class ProfilePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
-                              icon: Image.asset('assets/icons/wallet.png'),
+                              icon: Icon(Icons.wallet_giftcard),
                               onPressed: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                       builder: (_) => WalletPage())),
@@ -71,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
-                              icon: Image.asset('assets/icons/truck.png'),
+                              icon: Icon(Icons.local_shipping),
                               onPressed: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                       builder: (_) => TrackingPage())),
@@ -86,7 +86,7 @@ class ProfilePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
-                              icon: Image.asset('assets/icons/card.png'),
+                              icon: Icon(Icons.payment),
                               onPressed: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                       builder: (_) => PaymentPage())),
@@ -101,7 +101,7 @@ class ProfilePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
-                              icon: Image.asset('assets/icons/contact_us.png'),
+                              icon: Icon(Icons.help),
                               onPressed: () {},
                             ),
                             Text(
@@ -123,7 +123,7 @@ class ProfilePage extends StatelessWidget {
                     width: 30,
                     height: 30,
                   ),
-                  trailing: Icon(Icons.chevron_right, color: yellow),
+                  trailing: Icon(Icons.chevron_right, color: darkgreen),
                   onTap: () => Navigator.of(context)
                       .push(MaterialPageRoute(builder: (_) => SettingsPage())),
                 ),
@@ -134,7 +134,7 @@ class ProfilePage extends StatelessWidget {
                   leading: Image.asset('assets/icons/support.png'),
                   trailing: Icon(
                     Icons.chevron_right,
-                    color: yellow,
+                    color: darkgreen,
                   ),
                 ),
                 Divider(),
@@ -142,7 +142,7 @@ class ProfilePage extends StatelessWidget {
                   title: Text('FAQ'),
                   subtitle: Text('Questions and Answer'),
                   leading: Image.asset('assets/icons/faq.png'),
-                  trailing: Icon(Icons.chevron_right, color: yellow),
+                  trailing: Icon(Icons.chevron_right, color: darkgreen),
                   onTap: () => Navigator.of(context)
                       .push(MaterialPageRoute(builder: (_) => FaqPage())),
                 ),

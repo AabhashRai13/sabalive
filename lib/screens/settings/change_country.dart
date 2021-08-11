@@ -20,9 +20,9 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
     'Japan',
     'France',
   ];
-
+  
   String currentCountry = '';
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +72,7 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
                             trailing: l == currentCountry
                                 ? Icon(
                                     Icons.check_circle,
-                                    color: yellow,
+                                    color: darkgreen,
                                     size: 16,
                                   )
                                 : SizedBox(),

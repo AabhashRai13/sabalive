@@ -14,7 +14,7 @@ import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart
 class LoginPageController extends BaseController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
-
+  
   final TextEditingController passwordController = TextEditingController();
   TextEditingController loginNameController = TextEditingController();
   TextEditingController registerNameController = TextEditingController();
@@ -24,14 +24,14 @@ class LoginPageController extends BaseController {
   RegistrationResponse registrationResponse;
   ApiProvider apiAuthProvider = ApiProvider();
   final SharedPreferencesManager sharedPreferencesManager =
-      locator<SharedPreferencesManager>();
+  locator<SharedPreferencesManager>();
   final formKey = GlobalKey<FormState>();
   bool autovalidate = false;
-
+  
   void updateState() {
     autovalidate = true;
   }
-
+  
   void loginUser(Map map) async {
     setState(ViewState.Busy);
     token = await apiAuthProvider.loginUser(map);
@@ -52,16 +52,16 @@ class LoginPageController extends BaseController {
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyRefreshToken, token.refresh);
       print("refresh token ${token.refresh}");
-
+      
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
-
+      
       Get.offAll(() => MainPage());
-
+      
       setState(ViewState.Retrieved);
     }
   }
-
+  
   void mapInputsLogin() {
     Map map = {
       "username": loginNameController.text.trim(),
@@ -69,10 +69,10 @@ class LoginPageController extends BaseController {
     };
     loginUser(map);
   }
-
+  
   void registerUser(Map map) async {
     setState(ViewState.Busy);
-
+    
     registrationResponse = await apiAuthProvider.registerUser(map);
     if (registrationResponse == null) {
       Get.snackbar("An error occurred", "Check your credentials",
@@ -84,7 +84,7 @@ class LoginPageController extends BaseController {
     }
     setState(ViewState.Retrieved);
   }
-
+  
   void mapInputsRegister() {
     Map map = {
       "username": registerNameController.text.trim(),
@@ -93,7 +93,7 @@ class LoginPageController extends BaseController {
     };
     registerUser(map);
   }
-
+  
   @override
   void onClose() {
     super.onClose();

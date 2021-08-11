@@ -6,9 +6,9 @@ import '../../app_properties.dart';
 
 class QuickSendAmountPage extends StatelessWidget {
   final User user;
-
+  
   QuickSendAmountPage(this.user);
-
+  
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -19,7 +19,7 @@ class QuickSendAmountPage extends StatelessWidget {
         width: width / 1.5,
         // width: width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+            color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -38,7 +38,7 @@ class QuickSendAmountPage extends StatelessWidget {
         ),
       ),
     );
-
+    
     return Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -77,16 +77,16 @@ class QuickSendAmountPage extends StatelessWidget {
                               height: MediaQuery.of(context).size.height / 2.3,
                               padding: const EdgeInsets.all(16.0),
                               width: double.infinity,
-                              color: yellow,
+                              color: darkgreen,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: <Widget>[
                                         CircleAvatar(
                                           maxRadius: 24,
@@ -96,7 +96,7 @@ class QuickSendAmountPage extends StatelessWidget {
                                         SizedBox(width: 16.0),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
                                               user.name.first +
@@ -135,7 +135,7 @@ class QuickSendAmountPage extends StatelessWidget {
                                                 color: Colors.white30,
                                                 fontSize: 48),
                                             enabledBorder:
-                                                const UnderlineInputBorder(
+                                            const UnderlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.white),
                                             ),
@@ -153,30 +153,30 @@ class QuickSendAmountPage extends StatelessWidget {
                             ),
                             Flexible(
                                 child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: <Widget>[
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Image.asset('assets/icons/5 usd.png'),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Image.asset('assets/icons/10 usd.png'),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Image.asset('assets/icons/10 usd.png'),
-                                ),
-                              ],
-                            )),
+                                  scrollDirection: Axis.horizontal,
+                                  children: <Widget>[
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Image.asset('assets/icons/5 usd.png'),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Image.asset('assets/icons/10 usd.png'),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Image.asset('assets/icons/10 usd.png'),
+                                    ),
+                                  ],
+                                )),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Expanded(child: payNow),
                                 ],

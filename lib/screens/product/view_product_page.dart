@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sabalive/models/product.dart';
 
 import '../../app_properties.dart';
@@ -11,22 +10,22 @@ import 'components/rating_bottomSheet.dart';
 
 class ViewProductPage extends StatefulWidget {
   final Product product;
-
+  
   ViewProductPage({Key key, this.product}) : super(key: key);
-
+  
   @override
   _ViewProductPageState createState() => _ViewProductPageState(product);
 }
 
 class _ViewProductPageState extends State<ViewProductPage> {
   final Product product;
-
+  
   _ViewProductPageState(this.product);
-
+  
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  
   int active;
-
+  
   ///list of product colors
   List<Widget> colors() {
     List<Widget> list = [];
@@ -57,7 +56,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
     }
     return list;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget description = Padding(
@@ -70,20 +69,18 @@ class _ViewProductPageState extends State<ViewProductPage> {
         style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.6)),
       ),
     );
-
+    
     return Scaffold(
         key: _scaffoldKey,
-        backgroundColor: yellow,
+        backgroundColor: lightgreen,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           iconTheme: IconThemeData(color: darkGrey),
           actions: <Widget>[
             IconButton(
-              icon: new SvgPicture.asset(
-                'assets/icons/search_icon.svg',
-                fit: BoxFit.scaleDown,
-              ),
+              icon:
+              Icon(Icons.search),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
             )
@@ -131,12 +128,12 @@ class _ViewProductPageState extends State<ViewProductPage> {
                         );
                       },
                       constraints:
-                          const BoxConstraints(minWidth: 45, minHeight: 45),
+                      const BoxConstraints(minWidth: 45, minHeight: 45),
                       child: Icon(Icons.favorite,
-                          color: Color.fromRGBO(255, 137, 147, 1)),
+                          color: Colors.red),
                       elevation: 0.0,
                       shape: CircleBorder(),
-                      fillColor: Color.fromRGBO(255, 255, 255, 0.4),
+                      fillColor: mainButtonColor,
                     ),
                   ]),
                 ),

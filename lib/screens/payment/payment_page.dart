@@ -56,7 +56,7 @@ class _PaymentPageState extends State<PaymentPage> {
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
+            color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),

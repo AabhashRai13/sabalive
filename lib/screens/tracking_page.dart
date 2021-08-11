@@ -27,9 +27,9 @@ class _TrackingPageState extends State<TrackingPage> {
       isHere: false,
     ),
   ];
-
+  
   String selectedProduct = 'Boat Headphones Bass boost 100v';
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,36 +110,36 @@ class _TrackingPageState extends State<TrackingPage> {
                         ),
                         child: Theme(
                           data: ThemeData(
-                              primaryColor: yellow, fontFamily: 'Montserrat'),
+                              primaryColor: darkgreen, fontFamily: 'Montserrat'),
                           child: Stepper(
 //                          physics: NeverScrollableScrollPhysics(),
                             steps: [
                               ...locations
                                   .map(
                                     (location) => Step(
-                                      isActive:
-                                          location.isHere || location.passed,
-                                      title: Text(location.city),
-                                      subtitle: Text(location.getDate()),
-                                      content: Align(
-                                        child: Image.asset(
-                                            'assets/icons/truck.png'),
-                                        alignment: Alignment.centerLeft,
-                                      ),
-                                      state: location.passed
-                                          ? StepState.complete
-                                          : location.isHere
-                                              ? StepState.editing
-                                              : StepState.indexed,
-                                    ),
-                                  )
+                                  isActive:
+                                  location.isHere || location.passed,
+                                  title: Text(location.city),
+                                  subtitle: Text(location.getDate()),
+                                  content: Align(
+                                    child: Image.asset(
+                                        'assets/icons/truck.png'),
+                                    alignment: Alignment.centerLeft,
+                                  ),
+                                  state: location.passed
+                                      ? StepState.complete
+                                      : location.isHere
+                                      ? StepState.editing
+                                      : StepState.indexed,
+                                ),
+                              )
                                   .toList()
                             ],
                             currentStep: locations.indexOf(
                                 locations.firstWhere((loc) => loc.isHere)),
                             controlsBuilder: (BuildContext context,
                                 {VoidCallback onStepContinue,
-                                VoidCallback onStepCancel}) {
+                                  VoidCallback onStepCancel}) {
                               return Container();
                             },
                           ),
@@ -161,10 +161,10 @@ class Location {
   bool showHour;
   bool isHere;
   bool passed;
-
+  
   Location(this.city, this.date,
       {this.showHour = false, this.isHere = false, this.passed = false});
-
+  
   String getDate() {
     if (showHour) {
       return DateFormat("K:mm aaa, d MMMM y").format(date);

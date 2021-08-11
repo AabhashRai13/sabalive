@@ -5,7 +5,7 @@ import 'category_card.dart';
 import 'recommended_list.dart';
 
 class TabView extends StatelessWidget {
-  List<Category> categories = [
+  final List<Category> categories = [
     Category(
       Color(0xffFCE183),
       Color(0xffF68D7F),

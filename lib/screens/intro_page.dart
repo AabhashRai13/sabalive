@@ -11,7 +11,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   PageController controller = PageController();
   int pageIndex = 0;
-
+  
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -19,7 +19,8 @@ class _IntroPageState extends State<IntroPage> {
 //      width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.grey[100],
-            image: DecorationImage(image: AssetImage('assets/background.png'))),
+            image: DecorationImage(image: AssetImage('assets/background.png'))
+        ),
         child: Stack(
           children: <Widget>[
             PageView(
@@ -141,7 +142,7 @@ class _IntroPageState extends State<IntroPage> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.black, width: 2),
-                              color: pageIndex == 0 ? yellow : Colors.white),
+                              color: pageIndex == 0 ? darkgreen : Colors.white),
                         ),
                         Container(
                           margin: EdgeInsets.all(8.0),
@@ -150,7 +151,7 @@ class _IntroPageState extends State<IntroPage> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.black, width: 2),
-                              color: pageIndex == 1 ? yellow : Colors.white),
+                              color: pageIndex == 1 ? darkgreen : Colors.white),
                         ),
                         Container(
                           margin: EdgeInsets.all(8.0),
@@ -159,7 +160,7 @@ class _IntroPageState extends State<IntroPage> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.black, width: 2),
-                              color: pageIndex == 2 ? yellow : Colors.white),
+                              color: pageIndex == 2 ? darkgreen : Colors.white),
                         )
                       ],
                     ),
@@ -186,36 +187,36 @@ class _IntroPageState extends State<IntroPage> {
                         ),
                         pageIndex != 2
                             ? MaterialButton(
-                                splashColor: Colors.transparent,
-                                child: Text(
-                                  'NEXT',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                onPressed: () {
-                                  if (!(controller.page == 2.0))
-                                    controller.nextPage(
-                                        duration: Duration(milliseconds: 200),
-                                        curve: Curves.linear);
-                                },
-                              )
+                          splashColor: Colors.transparent,
+                          child: Text(
+                            'NEXT',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          onPressed: () {
+                            if (!(controller.page == 2.0))
+                              controller.nextPage(
+                                  duration: Duration(milliseconds: 200),
+                                  curve: Curves.linear);
+                          },
+                        )
                             : MaterialButton(
-                                splashColor: Colors.transparent,
-                                child: Text(
-                                  'FINISH',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                          builder: (context) => MainPage()));
-                                },
-                              )
+                          splashColor: Colors.transparent,
+                          child: Text(
+                            'FINISH',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => MainPage()));
+                          },
+                        )
                       ],
                     ),
                   ],

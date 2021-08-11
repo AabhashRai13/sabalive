@@ -12,8 +12,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final LoginPageController _loginPageController =
-      Get.put(LoginPageController());
-
+  Get.put(LoginPageController());
+  
   @override
   Widget build(BuildContext context) {
     Widget title = Text(
@@ -30,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
             )
           ]),
     );
-
+    
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
             fontSize: 16.0,
           ),
         ));
-
+    
     Widget registerButton = Positioned(
       left: MediaQuery.of(context).size.width / 4,
       bottom: 40,
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
           decoration: BoxDecoration(
-              gradient: mainButton,
+              color: Colors.teal[600],
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -72,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-
+    
     Widget registerForm = Container(
       height: 300,
       child: Stack(
@@ -92,14 +92,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: _loginPageController.emailController,
+                    controller:  _loginPageController.emailController,
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: _loginPageController.passwordController,
+                    controller:  _loginPageController.passwordController,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: _loginPageController.loginNameController,
+                    controller:  _loginPageController.loginNameController,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -119,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
       ),
     );
-
+    
     Widget socialRegister = Column(
       children: <Widget>[
         Text(
@@ -143,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
         )
       ],
     );
-
+    
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -155,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: transparentYellow,
+              color: lightgreen,
             ),
           ),
           Padding(

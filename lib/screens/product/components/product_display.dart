@@ -6,7 +6,7 @@ import '../../../app_properties.dart';
 
 class ProductDisplay extends StatelessWidget {
   final Product product;
-
+  
   const ProductDisplay({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -34,21 +34,21 @@ class ProductDisplay extends StatelessWidget {
                   alignment: Alignment(1, 0),
                   child: RichText(
                       text: TextSpan(children: [
-                    TextSpan(
-                        text: '\$ ${product.price}',
-                        style: const TextStyle(
-                            color: const Color(0xFFFFFFFF),
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Montserrat",
-                            fontSize: 36.0)),
-                    TextSpan(
-                        text: '.58',
-                        style: const TextStyle(
-                            color: const Color(0xFFFFFFFF),
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Montserrat",
-                            fontSize: 18.0))
-                  ])),
+                        TextSpan(
+                            text: '\$ ${product.price}',
+                            style: const TextStyle(
+                                color: const Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Montserrat",
+                                fontSize: 36.0)),
+                        TextSpan(
+                            text: '.58',
+                            style: const TextStyle(
+                                color: const Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Montserrat",
+                                fontSize: 18.0))
+                      ])),
                 ))),
         Align(
           alignment: Alignment(-1, 0),
@@ -87,10 +87,10 @@ class ProductDisplay extends StatelessWidget {
                 .push(MaterialPageRoute(builder: (_) => RatingPage())),
             constraints: const BoxConstraints(minWidth: 45, minHeight: 45),
             child:
-                Icon(Icons.favorite, color: Color.fromRGBO(255, 137, 147, 1)),
+                Icon(Icons.favorite, color: Colors.red),
             elevation: 0.0,
             shape: CircleBorder(),
-            fillColor: Color.fromRGBO(255, 255, 255, 0.4),
+            fillColor: Colors.teal[700],
           ),
         )
       ],

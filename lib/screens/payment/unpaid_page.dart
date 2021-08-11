@@ -20,14 +20,7 @@ class _UnpaidPageState extends State<UnpaidPage> {
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
         decoration: BoxDecoration(
-            gradient: mainButton,
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.16),
-                offset: Offset(0, 5),
-                blurRadius: 10.0,
-              )
-            ],
+            color: mainButtonColor,
             borderRadius: BorderRadius.circular(9.0)),
         child: Center(
           child: Text("Pay Now",
