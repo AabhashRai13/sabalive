@@ -13,11 +13,12 @@ class WelcomeBackPage extends StatefulWidget {
 class _WelcomeBackPageState extends State<WelcomeBackPage> {
   final LoginPageController loginPageController =
   Get.put(LoginPageController());
-  
+  GlobalKey<FormState> _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     Widget welcomeBack = Text(
-      'Welcome Back Roberto,',
+      'Welcome ,',
       style: TextStyle(
           color: Colors.white,
           fontSize: 34.0,
@@ -46,6 +47,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
+          if(_key.currentState.validate()){
+            _key.currentState.save();
+          }
           loginPageController.mapInputsLogin();
         },
         child: Container(
@@ -74,41 +78,64 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     );
     
     Widget loginForm = Container(
-      height: 240,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: 160,
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(left: 32.0, right: 12.0),
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 0.8),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10))),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextField(
-                    controller: loginPageController.loginNameController,
-                    style: TextStyle(fontSize: 16.0),
+      height: 280,
+      child: Form(
+        key: _key,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: 160,
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(left: 32.0, right: 12.0),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 0.8),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          hintText: "Username"
+                      ),
+                      validator: (String value){
+                        if(value.isEmpty){
+                          return 'Username is Required';
+                        }
+                        return null;
+                      },
+                      controller: loginPageController.loginNameController,
+                      style: TextStyle(fontSize: 16.0),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextField(
-                    controller: loginPageController.loginPasswordController,
-                    style: TextStyle(fontSize: 16.0),
-                    obscureText: true,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
+                          hintText: "Password"
+                      ),
+                      validator: (String value){
+                        if(value.isEmpty){
+                          return 'Password is Required';
+                        }
+                        return null;
+                      },
+                      controller: loginPageController.loginPasswordController,
+                      style: TextStyle(fontSize: 16.0),
+                      obscureText: true,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          loginButton,
-        ],
+            loginButton,
+          ],
+        ),
       ),
     );
     
@@ -173,12 +200,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/background.jpg'),
-                    fit: BoxFit.cover)),
-          ),
+          
           Container(
             decoration: BoxDecoration(
               color: lightgreen,

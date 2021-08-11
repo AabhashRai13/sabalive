@@ -149,12 +149,6 @@ class _RegisterPageState extends State<RegisterPage> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/background.jpg'),
-                    fit: BoxFit.cover)),
-          ),
-          Container(
-            decoration: BoxDecoration(
               color: lightgreen,
             ),
           ),

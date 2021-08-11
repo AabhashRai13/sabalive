@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sabalive/screens/main/main_page.dart';
 
 import '../app_properties.dart';
-import 'auth/welcome_back_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
   
   void navigationPage() {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
   }
   
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Expanded(
                   child: Opacity(
                       opacity: opacity.value,
-                      child: new Image.asset('assets/logo.png')),
+                      child: new Image.asset('assets/SabaLive.png')),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
