@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/controllers/login_controllers.dart';
+import 'package:sabalive/controllers/controllers/registration_controller_controller.dart';
 
 import '../../app_properties.dart';
-import 'forgot_password_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -11,9 +10,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final LoginPageController _loginPageController =
-  Get.put(LoginPageController());
-  
+  final RegistrationControllerController _registrationControllerController =
+      Get.put(RegistrationControllerController());
+
   @override
   Widget build(BuildContext context) {
     Widget title = Text(
@@ -30,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
             )
           ]),
     );
-    
+
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
@@ -40,14 +39,13 @@ class _RegisterPageState extends State<RegisterPage> {
             fontSize: 16.0,
           ),
         ));
-    
+
     Widget registerButton = Positioned(
       left: MediaQuery.of(context).size.width / 4,
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+          _registrationControllerController.mapRegisterInfo();
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
@@ -72,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-    
+
     Widget registerForm = Container(
       height: 300,
       child: Stack(
@@ -92,14 +90,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller:  _loginPageController.emailController,
+                    controller:
+                        _registrationControllerController.emailController,
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller:  _loginPageController.passwordController,
+                    controller:
+                        _registrationControllerController.nameController,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -107,7 +107,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller:  _loginPageController.loginNameController,
+                    controller:
+                        _registrationControllerController.passwordController,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -119,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
       ),
     );
-    
+
     Widget socialRegister = Column(
       children: <Widget>[
         Text(
@@ -143,7 +144,7 @@ class _RegisterPageState extends State<RegisterPage> {
         )
       ],
     );
-    
+
     return Scaffold(
       body: Stack(
         children: <Widget>[

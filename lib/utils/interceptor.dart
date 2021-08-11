@@ -3,9 +3,6 @@ import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class DioLoggingInterceptors extends InterceptorsWrapper {
-  final Dio _dio;
-
-  DioLoggingInterceptors(this._dio);
   final SharedPreferencesManager _sharedPreferencesManager =
       locator<SharedPreferencesManager>();
 

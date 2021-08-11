@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:sabalive/app/modules/home/bindings/home_binding.dart';
-import 'package:sabalive/app/modules/home/views/home_view.dart';
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_binding/bottom_navbar_binding.dart';
 import 'package:sabalive/screens/main/main_page.dart';
 import 'package:sabalive/screens/splash_page.dart';
@@ -15,16 +13,12 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
-    GetPage(
       name: _Paths.SPLASHSCREEN,
       page: () => SplashScreen(),
     ),
-   GetPage(name: _Paths.MAINPAGE,
-       page: ()=> MainPage(),
-   binding: BottomNavBarBinding()),
+    GetPage(
+        name: _Paths.MAINPAGE,
+        page: () => MainPage(),
+        binding: BottomNavBarBinding()),
   ];
 }

@@ -24,6 +24,9 @@ dependencies:
   shared_preferences:
   get_it: ^ 3.0.3
   fluttertoast: ^8.0.3
+  image_picker: ^0.8.3+2
+  flutter_image_compress: ^0.6.5+1
+  path_provider:
 
 dev_dependencies:
   effective_dart: 1.3.2
