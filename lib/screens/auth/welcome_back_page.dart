@@ -200,32 +200,34 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     );
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          
-          Container(
-            decoration: BoxDecoration(
-              color: lightgreen,
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            
+            Container(
+              decoration: BoxDecoration(
+                color: lightgreen,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 28.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Spacer(flex: 3),
-                welcomeBack,
-                Spacer(),
-                subTitle,
-                Spacer(flex: 2),
-                loginForm,
-                Spacer(flex: 2),
-                registerUser,
-                forgotPassword
-              ],
-            ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Spacer(flex: 3),
+                  welcomeBack,
+                  Spacer(),
+                  subTitle,
+                  Spacer(flex: 2),
+                  loginForm,
+                  Spacer(flex: 2),
+                  registerUser,
+                  forgotPassword
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
