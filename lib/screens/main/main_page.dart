@@ -3,15 +3,12 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/category/category_list_page.dart';
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_views/bottom_appbar_container.dart';
+import 'package:sabalive/screens/main/components/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
 import '../../app_properties.dart';
 import '../../custom_background.dart';
-import '../notifications_page.dart';
 import '../profile_page.dart';
-import '../search_page.dart';
-import 'components/product_list.dart';
-import 'components/tab_view.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -23,19 +20,19 @@ String selectedTimeline = 'Weekly featured';
 
 List<Product> products = [
   Product(
-      'assets/headphones_2.png',
-      'Skullcandy headset L325',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
+      'assets/whitechicken.png',
+     'Chicken',
+     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
       102.99),
   Product(
-      'assets/headphones_3.png',
-      'Skullcandy headset X25',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-      55.99),
+     'assets/fish.png',
+     'Fish',
+     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
+     55.99),
   Product(
-      'assets/headphones.png',
-      'Blackzy PRO hedphones M003',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
+      'assets/buff.png',
+      'Buffalo Red Meat',
+     'Lorem ipsum dolor sit amet, consectetur adipiscing elitw, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
       152.99),
 ];
 
@@ -54,23 +51,7 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
-    Widget appBar = Container(
-      height: kToolbarHeight + MediaQuery.of(context).padding.top,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
-              icon: Icon(Icons.notifications)),
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
-              icon: Icon(Icons.search)
-          )
-        ],
-      ),
-    );
+    
 
     Widget topHeader = Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 4.0),
@@ -192,6 +173,17 @@ class _MainPageState extends State<MainPage>
       controller: tabController,
     );
     
+    List<Widget> _screens=[
+      HomePage(
+          topHeader: topHeader,
+          tabBar: tabBar,
+          tabController: tabController
+      ),
+      CategoryListPage(),
+      CheckOutPage(),
+      ProfilePage()
+    ];
+    
     return Scaffold(
       drawer: drawer(),
       bottomNavigationBar: BottomAppBarContainer(controller: bottomTabController,),
@@ -201,38 +193,7 @@ class _MainPageState extends State<MainPage>
         child: TabBarView(
           controller: bottomTabController,
           physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            SafeArea(
-              child: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  // These are the slivers that show up in the "outer" scroll view.
-                  return <Widget>[
-                    SliverToBoxAdapter(
-                      child: appBar,
-                    ),
-                    SliverToBoxAdapter(
-                      child: topHeader,
-                    ),
-                    SliverToBoxAdapter(
-                      child: ProductList(
-                        products: products,
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: tabBar,
-                    )
-                  ];
-                },
-                body: TabView(
-                  tabController: tabController,
-                ),
-              ),
-            ),
-            CategoryListPage(),
-            CheckOutPage(),
-            ProfilePage()
-          ],
+          children: _screens
         ),
       ),
     );

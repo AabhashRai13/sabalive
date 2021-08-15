@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 const Color darkgreen = Color.fromRGBO(62, 180, 137, 0.4);
 const Color mediumgreen = Color.fromRGBO(62, 180, 137, 0.7);
 const Color green = Color.fromRGBO(62, 180, 137, 0.5);
-const Color lightgreen = Color.fromRGBO(62, 180, 137, 1);
+const Color lightgreen = Color.fromRGBO(225, 225, 225, 0.8);
 
-const Color darkGrey = Color(0xff202020);
+const Color darkGrey = Color(0x73000000);
 const Color mainButtonColor = Color.fromRGBO(0, 137, 123, 0.6);
 
 const List<BoxShadow> shadow = [
