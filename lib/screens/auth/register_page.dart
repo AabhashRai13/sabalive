@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/controllers/controllers/registration_controller_controller.dart';
+import 'package:sabalive/controllers/registration_controller_controller.dart';
 import 'package:sabalive/screens/auth/widgets/registration_textfield.dart';
 
 import '../../app_properties.dart';
@@ -256,25 +256,23 @@ class _RegisterPageState extends State<RegisterPage> {
         },
         child: GetBuilder<RegistrationControllerController>(
           builder: (_registrationControllerController) => Container(
-            padding: EdgeInsets.all(15),
-            child: Stack(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.white,
-                  backgroundImage: _registrationControllerController.image == null
-                      ? AssetImage("assets/SabaLive.png")
-                      : FileImage(_registrationControllerController.image),
-  
-                ),
-                Positioned(
-                  bottom: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                        child: Icon(Icons.edit)))
-              ],
-            )
-          ),
+              padding: EdgeInsets.all(15),
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white,
+                    backgroundImage: _registrationControllerController.image ==
+                            null
+                        ? AssetImage("assets/SabaLive.png")
+                        : FileImage(_registrationControllerController.image),
+                  ),
+                  Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: CircleAvatar(child: Icon(Icons.edit)))
+                ],
+              )),
         ),
       ),
     );
