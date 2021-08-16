@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/controllers/controllers/forgot_password_controller_controller.dart';
+import 'package:sabalive/controllers/forgot_password_controller_controller.dart';
 
 import '../../app_properties.dart';
 

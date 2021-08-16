@@ -6,9 +6,9 @@ import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_na
 import 'package:sabalive/screens/main/components/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
+import 'package:sabalive/screens/special_offers/special_offers.dart';
 import '../../app_properties.dart';
 import '../../custom_background.dart';
-import '../profile_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -181,7 +181,7 @@ class _MainPageState extends State<MainPage>
       ),
       CategoryListPage(),
       CheckOutPage(),
-      ProfilePage()
+      SpecialOffers(),
     ];
     
     return Scaffold(

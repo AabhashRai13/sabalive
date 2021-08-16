@@ -12,13 +12,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sabalive/models/registration_model.dart';
-import '../../../../base model/base_model.dart';
+import '../../../base model/base_model.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart' as dio;
 
-import '../../../../constants/enum.dart';
+import '../../../constants/enum.dart';
 
 class RegistrationControllerController extends BaseController {
   File image;

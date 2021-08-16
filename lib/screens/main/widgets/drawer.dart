@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/screens/about_us/about_us.dart';
+import 'package:sabalive/screens/about_us/contact_us.dart';
 import 'package:sabalive/screens/auth/register_page.dart';
 import 'package:sabalive/screens/auth/welcome_back_page.dart';
+import 'package:sabalive/screens/blogs/blogs.dart';
+import 'package:sabalive/screens/profile_page.dart';
 
 Widget drawer(){
   return SafeArea(
@@ -12,11 +15,19 @@ Widget drawer(){
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: lightgreen
+            GestureDetector(
+            onTap: (){
+              Get.to(ProfilePage());
+            },
+              child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: lightgreen
+                ),
+                  
+                  child: CircleAvatar(
+                    child: Text("Profile"),
+                  )
               ),
-                child: Text("Drawer Header")
             ),
             
             ListTile(
@@ -34,14 +45,24 @@ Widget drawer(){
                 Get.to(RegisterPage());
               },
             ),
+           
             Divider(),
-        ListTile(
+            ListTile(
+              leading: new Icon(Icons.chat),
+              title: const Text("Blogs"),
+              onTap: (){
+                Get.to(Blogs());
+              },
+            ),
+            Divider(),
+            ListTile(
   leading: new Icon(Icons.call),
           title: const Text("Contact Us"),
           onTap: (){
+    Get.to(ContactUs());
           },
         ),
-  
+           
             Divider(),
             ListTile(
               leading: new Icon(Icons.group),

@@ -18,16 +18,16 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
   AnimationController animController;
   Animation<double> openOptions;
-  
+
   List<User> users = [];
-  
+
   getUsers() async {
     var temp = await ApiService.getUsers(nrUsers: 5);
     setState(() {
       users = temp;
     });
   }
-  
+
   @override
   void initState() {
     animController =
@@ -36,7 +36,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
     getUsers();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -121,30 +121,31 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(45)),
-                                border: Border.all(color: darkgreen, width: 1.5)),
+                                border:
+                                    Border.all(color: darkgreen, width: 1.5)),
                             child: openOptions.value < 300
                                 ? Container()
                                 : Align(
-                              alignment: Alignment(0, 0),
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  InkWell(
-                                      onTap: () => Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                          builder: (_) =>
-                                              SendPage())),
-                                      child: Text('Pay')),
-                                  InkWell(
-                                      onTap: () => Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                          builder: (_) =>
-                                              RequestPage())),
-                                      child: Text('Request')),
-                                ],
-                              ),
-                            ),
+                                    alignment: Alignment(0, 0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        SendPage())),
+                                            child: Text('Pay')),
+                                        InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        RequestPage())),
+                                            child: Text('Request')),
+                                      ],
+                                    ),
+                                  ),
                           ),
                         ),
                         Center(
@@ -185,94 +186,94 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                   ),
                   Flexible(
                       child: Center(
-                        child: users.length == 0
-                            ? CupertinoActivityIndicator()
-                            : Container(
-                          height: 150,
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.black,
-                                          ),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: Icon(Icons.add),
+                    child: users.length == 0
+                        ? CupertinoActivityIndicator()
+                        : Container(
+                            height: 150,
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Icon(Icons.add),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ...users
-                                    .map((user) => InkWell(
-                                  onTap: () => Navigator.of(context)
-                                      .push(MaterialPageRoute(
-                                      builder: (_) =>
-                                          RequestAmountPage(
-                                              user))),
-                                  child: Container(
-                                      width: 100,
-                                      height: 200,
-                                      margin: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.all(
-                                              Radius.circular(
-                                                  5))),
-                                      child: Column(
-                                        mainAxisSize:
-                                        MainAxisSize.min,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          CircleAvatar(
-                                            maxRadius: 24,
-                                            backgroundImage:
-                                            NetworkImage(user
-                                                .picture
-                                                .thumbnail),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets
-                                                .fromLTRB(
-                                                4.0, 16.0, 4.0, 0.0),
-                                            child: Text(
-                                                user.name.first +
-                                                    ' ' +
-                                                    user.name.last,
-                                                textAlign:
-                                                TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
+                                  ...users
+                                      .map((user) => InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        RequestAmountPage(
+                                                            user))),
+                                            child: Container(
+                                                width: 100,
+                                                height: 200,
+                                                margin: const EdgeInsets.only(
+                                                    left: 8.0, right: 8.0),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    CircleAvatar(
+                                                      maxRadius: 24,
+                                                      backgroundImage:
+                                                          NetworkImage(user
+                                                              .picture
+                                                              .thumbnail),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          4.0, 16.0, 4.0, 0.0),
+                                                      child: Text(
+                                                          user.name.first +
+                                                              ' ' +
+                                                              user.name.last,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontSize: 14.0,
+                                                          )),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 8.0),
+                                                      child: Text(
+                                                        user.phone,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 10),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 )),
-                                          ),
-                                          Padding(
-                                            padding:
-                                            const EdgeInsets.only(
-                                                top: 8.0),
-                                            child: Text(
-                                              user.phone,
-                                              textAlign:
-                                              TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 10),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ))
-                                    .toList(),
-                              ]),
-                        ),
-                      )),
+                                          ))
+                                      .toList(),
+                                ]),
+                          ),
+                  )),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text('Hot Deals'),
@@ -292,7 +293,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
+                                  BorderRadius.all(Radius.circular(10))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -313,7 +314,7 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
                               ),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 8.0),
+                                    const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Text('10% off on any pizzahut products',
                                     style: TextStyle(
                                       color: Colors.grey,
@@ -341,7 +342,7 @@ class YellowDollarButton extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     double height = size.height;
     double width = size.width;
-    
+
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2,
         Paint()..color = Color.fromRGBO(62, 180, 137, 0.5));
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2 - 4,
@@ -351,7 +352,7 @@ class YellowDollarButton extends CustomPainter {
     canvas.drawCircle(Offset(width / 2, height / 2), height / 2 - 16,
         Paint()..color = Color.fromRGBO(255, 255, 255, 0.1));
   }
-  
+
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
