@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage>
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 4.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[edi
+          children: <Widget>[
             Flexible(
               child: InkWell(
                 onTap: () {
