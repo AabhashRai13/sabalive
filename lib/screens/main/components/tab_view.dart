@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sabalive/models/category.dart';
 
 import 'category_card.dart';
-import 'recommended_list.dart';
 
 class TabView extends StatelessWidget {
   final List<Category> categories = [
@@ -72,7 +71,6 @@ class TabView extends StatelessWidget {
                 SizedBox(
                   height: 16.0,
                 ),
-                Flexible(child: RecommendedList()),
               ],
             ),
           ),
@@ -80,25 +78,21 @@ class TabView extends StatelessWidget {
             SizedBox(
               height: 16.0,
             ),
-            Flexible(child: RecommendedList())
           ]),
           Column(children: <Widget>[
             SizedBox(
               height: 16.0,
             ),
-            Flexible(child: RecommendedList())
           ]),
           Column(children: <Widget>[
             SizedBox(
               height: 16.0,
             ),
-            Flexible(child: RecommendedList())
           ]),
           Column(children: <Widget>[
             SizedBox(
               height: 16.0,
             ),
-            Flexible(child: RecommendedList())
           ]),
         ]);
   }

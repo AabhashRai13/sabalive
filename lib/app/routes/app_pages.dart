@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:sabalive/screens/about_us/about_us.dart';
 
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_binding/bottom_navbar_binding.dart';
 import 'package:sabalive/screens/main/main_page.dart';
+
 import 'package:sabalive/screens/splash_page.dart';
+import 'package:sabalive/screens/store_selector.dart';
 
 part 'app_routes.dart';
 
@@ -19,6 +22,15 @@ class AppPages {
     GetPage(
         name: _Paths.MAINPAGE,
         page: () => MainPage(),
-        binding: BottomNavBarBinding()),
+        binding: BottomNavBarBinding()
+    ),
+    GetPage(
+        name: _Paths.STORESELECTOR,
+        page: () => StoreSelector(),
+        ),
+    GetPage(name: _Paths.ABOUTUS,
+        page: ()=> AboutUs()
+    )
+   
   ];
 }
