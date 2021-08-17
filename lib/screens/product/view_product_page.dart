@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/models/product.dart';
+import 'package:sabalive/screens/product/components/product_options.dart';
 
 import '../../app_properties.dart';
 import '../search_page.dart';
-import 'components/color_list.dart';
 import 'components/more_products.dart';
-import 'components/product_options.dart';
-import 'components/rating_bottomSheet.dart';
 
 class ViewProductPage extends StatefulWidget {
   final Product product;
@@ -26,36 +24,6 @@ class _ViewProductPageState extends State<ViewProductPage> {
   
   int active;
   
-  ///list of product colors
-  List<Widget> colors() {
-    List<Widget> list = [];
-    for (int i = 0; i < 5; i++) {
-      list.add(
-        InkWell(
-          onTap: () {
-            setState(() {
-              active = i;
-            });
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-            child: Transform.scale(
-              scale: active == i ? 1.2 : 1,
-              child: Card(
-                elevation: 3,
-                color: Colors.primaries[i],
-                child: SizedBox(
-                  height: 32,
-                  width: 32,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-    return list;
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -86,7 +54,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
             )
           ],
           title: Text(
-            'Headphones',
+            product.name,
             style: const TextStyle(
                 color: darkGrey,
                 fontWeight: FontWeight.w500,
@@ -104,39 +72,6 @@ class _ViewProductPageState extends State<ViewProductPage> {
                   product: product,
                 ),
                 description,
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Flexible(
-                      child: ColorList([
-                        Colors.red,
-                        Colors.blue,
-                        Colors.purple,
-                        Colors.green,
-                        Colors.yellow
-                      ]),
-                    ),
-                    RawMaterialButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return RatingBottomSheet();
-                          },
-                          //elevation: 0,
-                          //backgroundColor: Colors.transparent
-                        );
-                      },
-                      constraints:
-                      const BoxConstraints(minWidth: 45, minHeight: 45),
-                      child: Icon(Icons.favorite,
-                          color: Colors.red),
-                      elevation: 0.0,
-                      shape: CircleBorder(),
-                      fillColor: mainButtonColor,
-                    ),
-                  ]),
-                ),
                 MoreProducts()
               ],
             ),

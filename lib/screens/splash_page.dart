@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/screens/main/main_page.dart';
+import 'package:sabalive/screens/store_selector.dart';
 
 import '../app_properties.dart';
 
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
   
   void navigationPage() {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => StoreSelector()));
   }
   
   Widget build(BuildContext context) {
@@ -54,19 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
                       opacity: opacity.value,
                       child: new Image.asset('assets/SabaLive.png')),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(text: 'Powered by '),
-                          TextSpan(
-                              text: 'int2.io',
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
-                  ),
-                )
+             
               ],
             ),
           ),

@@ -7,11 +7,16 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const MAINPAGE = _Paths.MAINPAGE;
-  
+  static const STORESELECTOR = _Paths.STORESELECTOR;
+  static const ABOUTUS = _Paths.ABOUTUS;
+  static const SPECIALOFFERS = _Paths.SPECIALOFFERS;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const SPLASHSCREEN = '/splashscreen';
  static const MAINPAGE ="/mainpage";
+ static const STORESELECTOR = "/storselector";
+ static const ABOUTUS = "/aboutus";
+ static const SPECIALOFFERS = "/specialoffers";
 }
