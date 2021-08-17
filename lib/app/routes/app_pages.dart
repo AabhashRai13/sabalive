@@ -3,6 +3,8 @@ import 'package:sabalive/screens/about_us/about_us.dart';
 
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_binding/bottom_navbar_binding.dart';
 import 'package:sabalive/screens/main/main_page.dart';
+import 'package:sabalive/screens/product/product_page.dart';
+import 'package:sabalive/screens/special_offers/special_offers.dart';
 
 import 'package:sabalive/screens/splash_page.dart';
 import 'package:sabalive/screens/store_selector.dart';
@@ -30,7 +32,11 @@ class AppPages {
         ),
     GetPage(name: _Paths.ABOUTUS,
         page: ()=> AboutUs()
+    ),
+    GetPage(name: _Paths.SPECIALOFFERS,
+        page:()=> SpecialOffers()),
+    GetPage(name: _Paths.PRODUCTPAGE,
+        page: ()=> ProductPage()
     )
-   
   ];
 }

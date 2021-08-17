@@ -10,6 +10,7 @@ abstract class Routes {
   static const STORESELECTOR = _Paths.STORESELECTOR;
   static const ABOUTUS = _Paths.ABOUTUS;
   static const SPECIALOFFERS = _Paths.SPECIALOFFERS;
+  static const PRODUCTPAGE= _Paths.PRODUCTPAGE;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
  static const STORESELECTOR = "/storselector";
  static const ABOUTUS = "/aboutus";
  static const SPECIALOFFERS = "/specialoffers";
+ static const PRODUCTPAGE = "/productpage";
 }
