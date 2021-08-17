@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:get/get.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/product/product_page.dart';
 
@@ -107,8 +108,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => ProductPage(product: product))),
+      onTap: () => Get.to(ProductPage(product: product)),
       child: Stack(
         children: <Widget>[
           Container(
