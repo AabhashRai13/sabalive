@@ -12,85 +12,89 @@ class ProductList extends StatelessWidget {
 
   final SwiperController swiperController = SwiperController();
 
-  ProductList({Key key, this.products}) : super(key: key);
+  ProductList({Key key,
+    @required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height / 2.7;
+    double cardHeight = MediaQuery.of(context).size.height / 4;
     double cardWidth = MediaQuery.of(context).size.width / 1.8;
     if (products == null) products = [];
 
-    return SizedBox(
-      height: cardHeight,
-      child: Swiper(
-        itemCount: products.length,
-        itemBuilder: (_, index) {
-          return ProductCard(
-              height: cardHeight, width: cardWidth, product: products[index]);
-        },
-        scale: 0.8,
-        controller: swiperController,
-        viewportFraction: 0.6,
-        loop: false,
-        fade: 0.5,
-        pagination: SwiperCustomPagination(
-          builder: (context, config) {
-            if (config.itemCount > 20) {
-              print(
-                  "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
-            }
-            Color activeColor = mediumgreen;
-            Color color = Colors.grey[300];
-            double size = 10.0;
-            double space = 5.0;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: SizedBox(
+        height: cardHeight,
+        child: Swiper(
+          itemCount: products.length,
+          itemBuilder: (_, index) {
+            return ProductCard(
+                height: cardHeight, width: cardWidth, product: products[index]);
+          },
+          scale: 0.8,
+          controller: swiperController,
+          viewportFraction: 0.6,
+          loop: false,
+          fade: 0.5,
+          pagination: SwiperCustomPagination(
+            builder: (context, config) {
+              if (config.itemCount > 20) {
+                print(
+                    "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
+              }
+              Color activeColor = mediumgreen;
+              Color color = Colors.grey[300];
+              double size = 10.0;
+              double space = 5.0;
 
-            if (config.indicatorLayout != PageIndicatorLayout.NONE &&
-                config.layout == SwiperLayout.DEFAULT) {
-              return new PageIndicator(
-                count: config.itemCount,
-                controller: config.pageController,
-                layout: config.indicatorLayout,
-                size: size,
-                activeColor: activeColor,
-                color: color,
-                space: space,
-              );
-            }
+              if (config.indicatorLayout != PageIndicatorLayout.NONE &&
+                  config.layout == SwiperLayout.DEFAULT) {
+                return new PageIndicator(
+                  count: config.itemCount,
+                  controller: config.pageController,
+                  layout: config.indicatorLayout,
+                  size: size,
+                  activeColor: activeColor,
+                  color: color,
+                  space: space,
+                );
+              }
 
-            List<Widget> dots = [];
+              List<Widget> dots = [];
 
-            int itemCount = config.itemCount;
-            int activeIndex = config.activeIndex;
+              int itemCount = config.itemCount;
+              int activeIndex = config.activeIndex;
 
-            for (int i = 0; i < itemCount; ++i) {
-              bool active = i == activeIndex;
-              dots.add(Container(
-                key: Key("pagination_$i"),
-                margin: EdgeInsets.all(space),
-                child: ClipOval(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: active ? activeColor : color,
+              for (int i = 0; i < itemCount; ++i) {
+                bool active = i == activeIndex;
+                dots.add(Container(
+                  key: Key("pagination_$i"),
+                  margin: EdgeInsets.all(space),
+                  child: ClipOval(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: active ? activeColor : color,
+                      ),
+                      width: size,
+                      height: size,
                     ),
-                    width: size,
-                    height: size,
+                  ),
+                ));
+              }
+
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: dots,
                   ),
                 ),
-              ));
-            }
-
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: dots,
-                ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -166,7 +170,7 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 30,
+            top: 10,
             left: 50,
             child: Hero(
               tag: product.image,

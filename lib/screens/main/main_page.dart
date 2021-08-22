@@ -7,6 +7,7 @@ import 'package:sabalive/screens/main/components/homepage/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/profile_page.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
+import '../../app_properties.dart';
 import '../../custom_background.dart';
 
 class MainPage extends StatefulWidget {
@@ -47,9 +48,26 @@ class _MainPageState extends State<MainPage>
   
   @override
   Widget build(BuildContext context) {
-    
+    Widget tabBar = TabBar(
+      tabs: [
+        Tab(text: 'In Demand'),
+        Tab(text: 'Red meat'),
+        Tab(text: 'White meat'),
+        Tab(text: 'Fish'),
+        Tab(text: 'Sea food'),
+      ],
+      labelStyle: TextStyle(fontSize: 16.0),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 14.0,
+      ),
+      labelColor: darkGrey,
+      unselectedLabelColor: Color.fromRGBO(0, 0, 0, 0.5),
+      isScrollable: true,
+      controller: tabController,
+    );
     List<Widget> _screens = [
-      HomePage(),
+      HomePage(tabBar: tabBar,
+      tabController: bottomTabController,),
       CategoryListPage(),
       CheckOutPage(),
       ProfilePage(),

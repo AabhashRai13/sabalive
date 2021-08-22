@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/models/product.dart';
 
-class ProductContainer extends StatelessWidget {
+class StoreContainer extends StatelessWidget {
   final Product product;
   
-  const ProductContainer({
+  const StoreContainer({
     Key key,
     @required this.product}) : super(key: key);
   
@@ -28,20 +28,16 @@ class ProductContainer extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     Container(
-                      height: 130,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18.0),
-                          // border: Border.all(
-                          //   color: Colors.black26,
-                          //   width: 1.3,
-                          // ),
-                          image: DecorationImage(
-                              image: AssetImage(product.image)
-                          )
+                        height: 120,
+                        width: 150,
+                        decoration: BoxDecoration( color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(18.0),
+                            image: DecorationImage(
+                                image: AssetImage(product.image)
+                            )
+                        ),
+                        // child: Image.asset('assets/images/deals_fries.png'),
                       ),
-                      // child: Image.asset('assets/images/deals_fries.png'),
-                    ),
                   ],
                 ),
               ),
