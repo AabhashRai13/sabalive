@@ -3,10 +3,10 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/category/category_list_page.dart';
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_views/bottom_appbar_container.dart';
-import 'package:sabalive/screens/main/components/homepage.dart';
+import 'package:sabalive/screens/main/components/homepage/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
+import 'package:sabalive/screens/profile_page.dart';
 import 'package:sabalive/screens/shop/check_out_page.dart';
-import 'package:sabalive/screens/special_offers/special_offers.dart';
 import '../../app_properties.dart';
 import '../../custom_background.dart';
 
@@ -38,14 +38,14 @@ class _MainPageState extends State<MainPage>
   SwiperController swiperController;
   TabController tabController;
   TabController bottomTabController;
-
+  
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
     bottomTabController = TabController(length: 4, vsync: this);
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget tabBar = TabBar(
@@ -65,14 +65,14 @@ class _MainPageState extends State<MainPage>
       isScrollable: true,
       controller: tabController,
     );
-
     List<Widget> _screens = [
-      HomePage(tabBar: tabBar, tabController: tabController),
+      HomePage(tabBar: tabBar,
+      tabController: bottomTabController,),
       CategoryListPage(),
       CheckOutPage(),
-      SpecialOffers(),
+      ProfilePage(),
     ];
-
+    
     return Scaffold(
       drawer: drawer(),
       bottomNavigationBar: BottomAppBarContainer(

@@ -56,6 +56,14 @@ Widget drawer(){
             ),
             Divider(),
             ListTile(
+              leading: new Icon(Icons.local_offer),
+              title: const Text("Special Offers"),
+              onTap: (){
+                Get.to(Blogs());
+              },
+            ),
+            Divider(),
+            ListTile(
   leading: new Icon(Icons.call),
           title: const Text("Contact Us"),
           onTap: (){

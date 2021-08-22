@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/screens/product/view_product_page.dart';
+import 'package:sabalive/screens/product/components/detail_page/product_detail_appbar.dart';
+import 'package:sabalive/screens/product/components/detail_page/top_rounded_container.dart';
 
-import '../search_page.dart';
-import 'components/product_display.dart';
+import 'components/detail_page/product_display.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -23,146 +23,51 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: lightgreen,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: IconThemeData(color: darkGrey),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: darkGrey,
+        backgroundColor: Color(0xFFF5F6F9),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton:Container(
+          width: width * 0.7,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: mainButtonColor,
+            border: Border.all(color: Colors.blue),),
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              "Add to Cart",
+              style: TextStyle(color: Colors.black),
             ),
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => SearchPage())),
-          )
-        ],
-        title: Text(
-          product.name,
-          style: const TextStyle(
-              color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                 SizedBox(height: 20.0,),
-                  ProductDisplay(
-                    product: product,
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: '\$ ${product.price}',
-                                  style: const TextStyle(
-                                      color: const Color(0xFFFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Montserrat",
-                                      fontSize: 36.0)),
-                              TextSpan(
-                                  text: '.58',
-                                  style: const TextStyle(
-                                      color: const Color(0xFFFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Montserrat",
-                                      fontSize: 18.0))
-                            ])),
-                        
-                            Container(
-                              decoration: BoxDecoration(
-                                color: mainButtonColor,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border.all(
-                                    color: Color(0xFFFFFFFF), width: 0.5),
-                              ),
-                              child:
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: TextButton(
-                                    onPressed: () {
-                                    
-                                    },
-                                    child: Text(
-                                      "Add to cart",
-                                      style: TextStyle(
-                                        color: const Color(0xFFFFFFFF),
-                                      ),
-                                    )),
-                              ),
-                            ),
-                      ],
+        body: CustomScrollView(
+          slivers: [
+            ProductDetailAppbar(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ProductDisplay(
+                      product: product,
                     ),
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Row(
-                      children: <Widget>[
-                        InkWell(
-                          onTap:(){
-                    Get.to(ViewProductPage(product: product,));
-                  },
-                          child: Container(
-                            width: 90,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: mainButtonColor,
-                              borderRadius: BorderRadius.circular(4.0),
-                              border: Border.all(
-                                  color: Color(0xFFFFFFFF), width: 0.5),
-                            ),
-                            child: Center(
-                              child: new Text("Details",
-                                  style: const TextStyle(
-                                      color: const Color(0xeefefefe),
-                                      fontWeight: FontWeight.w300,
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 12.0)),
-                            ),
-                          ),
-                        )
-                      ],
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-  
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
-                      child: new Text(product.description,
-                          style: const TextStyle(
-                              color: const Color(0xfefefefe),
-                              fontWeight: FontWeight.w800,
-                              fontFamily: "NunitoSans",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 16.0)))
-                ],
+                    TopRoundedContainer(
+                      product: product,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            
+            )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
