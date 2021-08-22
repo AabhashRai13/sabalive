@@ -10,7 +10,7 @@ import 'package:sabalive/utils/interceptor.dart';
 
 class ApiProvider {
   final Dio _dio = new Dio();
-  final String _baseUrl = 'https://sabalive.pythonanywhere.com/api/';
+  final String _baseUrl = 'https://dipesh779.pythonanywhere.com/api/';
 
   ApiProvider() {
     _dio.options.baseUrl = _baseUrl;

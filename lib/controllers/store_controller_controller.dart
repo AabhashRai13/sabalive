@@ -9,27 +9,15 @@ class StoreController extends BaseController {
   final List<String> storenames =
       ["Udaypur Masu Pasal", "Suman meat shop", "Dharan Pork shop"].obs;
 
-  var storeid = "".obs;
-  List dataSource = [
-    {
-      "display": "Udaypur Masu Pasal",
-      "value": "Udaypur Masu Pasal",
-    },
-    {
-      "display": "Suman meat shop",
-      "value": "Suman meat shop",
-    },
-    {
-      "display": "Dharan Pork shop",
-      "value": "Dharan Pork shop",
-    },
-  ].obs;
+  var storeName = "".obs;
+  List dataSource = [].obs;
   ApiProvider _apiProvider = ApiProvider();
   Store store;
   List stores = [].obs;
   @override
   void onInit() {
     super.onInit();
+
     fetchStores();
   }
 
@@ -37,7 +25,25 @@ class StoreController extends BaseController {
     setState(ViewState.Busy);
     store = await _apiProvider.fetchStores();
     stores.assignAll(store.data);
+    mapStores(stores);
+
     setState(ViewState.Retrieved);
+  }
+
+  mapStores(List storeList) {
+    for (int i = 0; i < storeList.length; i++) {
+      Map map =
+          {"id": storeList[i].id, "store_name": storeList[i].storeName}.obs;
+      dataSource.add(map);
+    }
+  }
+
+  setStoreName({int storeId}) {
+    for (int i = 0; i < stores.length; i++) {
+      if (stores[i].id == storeId) {
+        storeName.value = stores[i].storeName;
+      }
+    }
   }
 
   void assignStoreId({int storeId}) {

@@ -32,25 +32,6 @@ class StoreSelector extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        Get.off(() => MainPage());
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            color: Colors.teal[700],
-                            borderRadius: BorderRadius.circular(9.0)),
-                        child: new Text("Let's go",
-                            style: const TextStyle(
-                                color: const Color(0xfffefefe),
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 20.0)),
-                      ),
-                    ),
-                  )
                 ],
               )),
         ),

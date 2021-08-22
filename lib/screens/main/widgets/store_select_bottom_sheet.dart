@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/controllers/store_controller_controller.dart';
 
 class StoreSelectBottomSheet extends StatelessWidget {
@@ -29,7 +30,7 @@ class StoreSelectBottomSheet extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(_storeController.storeid.value ?? ""),
+                    Text(_storeController.storeName.value ?? ""),
                     Icon(Icons.arrow_drop_down)
                   ],
                 ),
@@ -55,14 +56,15 @@ class StoreSelectBottomSheet extends StatelessWidget {
       height: 2,
     ));
     final items = <Widget>[];
-    _storeController.storenames.forEach((stores) {
+    _storeController.stores.forEach((stores) {
       items.add(Column(
         children: <Widget>[
           new ListTile(
-              title: new Text(stores),
+              title: new Text(stores.storeName),
               onTap: () async {
                 Navigator.of(context).pop();
-                _storeController.storeid.value = stores;
+                _storeController.storeName.value = stores.storeName;
+                GlobalVariables.storeId = stores.id;
               }),
           Divider(
             height: 2,
