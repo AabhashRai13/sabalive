@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sabalive/screens/main/main_page.dart';
 
 import 'main/widgets/stores_dropdown.dart';
 

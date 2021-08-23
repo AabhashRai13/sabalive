@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/models/store_model.dart';
 import 'package:sabalive/screens/main/components/homepage/meat_carousel.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage_appbar.dart';
 import 'package:sabalive/screens/main/components/homepage/hompage_invite_banner.dart';
@@ -8,9 +9,10 @@ import 'package:sabalive/screens/main/components/homepage/stores_carousel.dart';
 import 'package:sabalive/screens/main/widgets/store_select_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
-   HomePage({Key key,
-     @required this.tabBar,
-     @required this.tabController}) : super(key: key);
+  HomePage({Key key, @required this.tabBar, @required this.tabController})
+      : super(key: key);
+
+  final HomeController _homeController = Get.put(HomeController());
 
   final List<Product> products = [
     Product(
@@ -30,8 +32,8 @@ class HomePage extends StatelessWidget {
         152.99),
   ];
 
-   final Widget tabBar;
-   final TabController tabController;
+  final Widget tabBar;
+  final TabController tabController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class HomePage extends StatelessWidget {
           HomePageAppBar(),
           SliverToBoxAdapter(
             child: Padding(
-                padding: EdgeInsets.only(left: 5.0),
+              padding: EdgeInsets.only(left: 5.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,11 +55,9 @@ class HomePage extends StatelessWidget {
                       title: "Meat",
                       subtitle: "Red and White meats",
                       productList: products),
-                  
-                  StoresCarousel(
-                      title: "Our Stores",
-                      subtitle: "Stores where you can find fresh meat",
-                      storeList: storelist)
+                  StoreWiseProduct(
+                    homeController: _homeController,
+                  )
                 ],
               ),
             ),

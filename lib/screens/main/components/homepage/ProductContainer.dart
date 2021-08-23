@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/models/product.dart';
+import 'package:sabalive/models/Store_wise_product_details.dart';
 
-class StoreContainer extends StatelessWidget {
+class StoreWiseProductContainer extends StatelessWidget {
   final Product product;
-  
-  const StoreContainer({
-    Key key,
-    @required this.product}) : super(key: key);
-  
+
+  const StoreWiseProductContainer({Key key, @required this.product})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-      
-      },
+      onTap: () {},
       child: Padding(
         padding: EdgeInsets.only(left: 8.0),
         child: Container(
@@ -28,40 +25,69 @@ class StoreContainer extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     Container(
-                        height: 120,
-                        width: 150,
-                        decoration: BoxDecoration( color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(18.0),
-                            image: DecorationImage(
-                                image: AssetImage(product.image)
-                            )
-                        ),
-                        // child: Image.asset('assets/images/deals_fries.png'),
-                      ),
+                      height: 120,
+                      width: 150,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(18.0),
+                          image: DecorationImage(
+                              image: AssetImage(product.displayImage))),
+                      // child: Image.asset('assets/images/deals_fries.png'),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: 5.0,
               ),
-              Text(
-                product.name,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                )
-              ),
+              Text(product.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  )),
               SizedBox(height: 2.5),
-              Row(
-                children: <Widget>[
-                  SizedBox(width: 3.0),
-                  Text("Rs "+
-                    product.price.toString(),
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 12.0,
-                    ),
+              Column(
+                children: [
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 3.0),
+                      Text(
+                        "Selling price",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      SizedBox(width: 3.0),
+                      Text(
+                        "Rs " + product.sellingPrice.toString(),
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 3.0),
+                      Text(
+                        "Marked price",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      SizedBox(width: 3.0),
+                      Text(
+                        "Rs " + product.markedPrice.toString(),
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

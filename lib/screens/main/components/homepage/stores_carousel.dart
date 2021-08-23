@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/models/store_model.dart';
+import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/screens/main/components/homepage/ProductContainer.dart';
-import 'package:sabalive/screens/main/components/product_list.dart';
 
-class StoresCarousel extends StatelessWidget {
-  const StoresCarousel({Key key,
-    @required this.title,
-    @required this.subtitle,
-    @required this.storeList}) : super(key: key);
-  
-  final String title;
-  final String subtitle;
-  final List<Store> storeList;
+class StoreWiseProduct extends StatelessWidget {
+  StoreWiseProduct({this.homeController});
+
+  final HomeController homeController;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,56 +14,32 @@ class StoresCarousel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 5.0),
-            child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 19.0,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                )
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 13.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black54,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                  },
-                  child: Text(
-                    'view all',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
-              ],
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            child: homeController.storeWiseProducts.data == null
+                ? Text("loading...")
+                : Text(homeController.storeWiseProducts.data.storeName,
+                    style: TextStyle(
+                      fontSize: 19.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    )),
           ),
           Container(
             height: 200.0,
-            child: storeList!= null ? ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: storeList.length,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                Store store= storeList[index];
-                return StoreContainer(
-                  product: store.products[index],
-                );
-              },
-            ): Center(
-              child: CircularProgressIndicator(),
-            ),
+            child: homeController.products.length != null
+                ? ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: homeController.products.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return StoreWiseProductContainer(
+                        product: homeController.products[index],
+                      );
+                    },
+                  )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
           )
         ],
       ),

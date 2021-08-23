@@ -4,13 +4,14 @@ import 'package:sabalive/base%20model/base_model.dart';
 import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 
-class HomeControllerController extends BaseController {
+class HomeController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   StoreWiseProducts storeWiseProducts;
   List products = [].obs;
   @override
   void onInit() {
     super.onInit();
+    fetchStoreWiseProducts();
   }
 
   void fetchStoreWiseProducts() async {
