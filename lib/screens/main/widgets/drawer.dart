@@ -80,6 +80,14 @@ Widget drawer(){
               },
             ),
             Divider(),
+            ListTile(
+              leading: new Icon(Icons.logout),
+              title: const Text("Log Out"),
+              onTap: (){
+              
+              },
+            ),
+            Divider(),
           ],
         ),
       )

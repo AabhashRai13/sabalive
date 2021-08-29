@@ -9,6 +9,7 @@ void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await setupLocator();
+    
     runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,

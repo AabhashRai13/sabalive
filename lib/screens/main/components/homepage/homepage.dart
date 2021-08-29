@@ -51,10 +51,10 @@ class HomePage extends StatelessWidget {
                     child: StoreSelectBottomSheet(),
                   ),
                   HomePageInviteBanner(),
-                  MeatCarousel(
-                      title: "Meat",
-                      subtitle: "Red and White meats",
-                      productList: products),
+                  // MeatCarousel(
+                  //     title: "Meat",
+                  //     subtitle: "Red and White meats",
+                  //     productList: products),
                   StoreWiseProduct(
                     homeController: _homeController,
                   )

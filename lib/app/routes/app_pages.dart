@@ -31,7 +31,7 @@ class AppPages {
         page: () => StoreSelector(),
         ),
     GetPage(name: _Paths.ABOUTUS,
-        page: ()=> AboutUs()
+        page: ()=> AboutUs(),
     ),
     GetPage(name: _Paths.SPECIALOFFERS,
         page:()=> SpecialOffers()),

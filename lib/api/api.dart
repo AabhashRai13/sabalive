@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
+import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
+import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/store.dart';
 import 'package:sabalive/models/token.dart';
@@ -88,7 +90,7 @@ class ApiProvider {
         'customer/store/list/',
         options: Options(
           headers: {
-            'requirestoken': true,
+            'requirestoken': false,
           },
         ),
       );
@@ -106,7 +108,7 @@ class ApiProvider {
         'customer/store/detail/${GlobalVariables.storeId}/',
         options: Options(
           headers: {
-            'requirestoken': true,
+            'requirestoken': false,
           },
         ),
       );
@@ -117,4 +119,44 @@ class ApiProvider {
       return null;
     }
   }
+  
+  Future<AboutUs> fetchAboutUsPage() async{
+    try{
+      print("check");
+    final response = await _dio.get(
+          'about-us/',
+              options: Options(
+          headers: {
+      'requirestoken': false,
+      }
+      )
+      );
+      print(response.data);
+      print("check");
+      return AboutUs.fromJson(response.data);
+    } catch(error){
+      print("Store api error $error");
+      return null;
+    }
+  }
+  
+Future<Productwisedetails> fetchProductwisedetail() async{
+  try {
+    final response = await _dio.get(
+      'customer/store/detail/${GlobalVariables.productId}/',
+      options: Options(
+        headers: {
+          'requirestoken': false,
+        },
+      ),
+    );
+    
+    return Productwisedetails.fromJson(response.data);
+  } catch (error) {
+    print("Store api error $error");
+    return null;
+  }
 }
+  
+}
+
