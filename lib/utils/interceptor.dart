@@ -4,8 +4,8 @@ import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart
 
 class DioLoggingInterceptors extends InterceptorsWrapper {
   final SharedPreferencesManager _sharedPreferencesManager =
-  locator<SharedPreferencesManager>();
-  
+      locator<SharedPreferencesManager>();
+
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
@@ -22,18 +22,18 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     }
     print(
         "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
-    
+
     if (options.headers.containsKey('requirestoken')) {
       options.headers.remove('requirestoken');
       print(
           'accessToken: ${_sharedPreferencesManager.getString(SharedPreferencesManager.keyAccessToken)}');
       String accessToken = _sharedPreferencesManager
           .getString(SharedPreferencesManager.keyAccessToken);
-      options.headers.addAll({'Authorization': 'Token $accessToken'});
+      options.headers.addAll({'Authorization': 'Bearer $accessToken'});
     }
     return super.onRequest(options, handler);
   }
-  
+
   @override
   onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
