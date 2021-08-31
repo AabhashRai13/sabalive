@@ -20,5 +20,4 @@ class HomeController extends BaseController {
     products.assignAll(storeWiseProducts.data.products);
     setState(ViewState.Retrieved);
   }
-  
 }

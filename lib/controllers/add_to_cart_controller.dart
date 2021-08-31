@@ -15,12 +15,11 @@ class AddToCartController extends BaseController {
     print(addtoCart);
     
     if(addtoCart.status== null){
-      Fluttertoast.showToast(msg: "Add to Cart Failed");
+      Fluttertoast.showToast(msg: "Add to Cart Failed",gravity: ToastGravity.CENTER);
     }else if(addtoCart.status== "success"){
-      Fluttertoast.showToast(msg: "${addtoCart.message}");
+      Fluttertoast.showToast(msg: "${addtoCart.message}",gravity: ToastGravity.CENTER);
     }else{
-      Fluttertoast.showToast(msg: "${addtoCart.message}");
-  
+      Fluttertoast.showToast(msg: "${addtoCart.message}",gravity: ToastGravity.CENTER);
     }
     print(addtoCart.message);
     update();

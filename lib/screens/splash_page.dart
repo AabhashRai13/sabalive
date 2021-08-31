@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     });
     choosestore();
     print(_isviewed);
+    return null;
   }
   
   @override

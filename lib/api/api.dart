@@ -89,11 +89,6 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/list/',
-        options: Options(
-          headers: {
-            'requirestoken': false,
-          },
-        ),
       );
 
       return Store.fromJson(response.data);
@@ -106,10 +101,10 @@ class ApiProvider {
   Future<StoreWiseProducts> fetchStoreWiseProducts() async {
     try {
       final response = await _dio.get(
-        'customer/store/detail/${GlobalVariables.storeId}/',
+        'customer/store/detail/1/',
         options: Options(
           headers: {
-            'requirestoken': false,
+            'requirestoken': true,
           },
         ),
       );
@@ -120,9 +115,9 @@ class ApiProvider {
       return null;
     }
   }
-  
-  Future<AboutUs> fetchAboutUsPage() async{
-    try{
+
+  Future<AboutUs> fetchAboutUsPage() async {
+    try {
       print("check");
     final response = await _dio.get(
           'store-2/about-us/',
@@ -135,31 +130,31 @@ class ApiProvider {
       print(response.data);
       print("check");
       return AboutUs.fromJson(response.data);
-    } catch(error){
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
+
+  Future<Productwisedetails> fetchProductwisedetail() async {
+    try {
+      final response = await _dio.get(
+        'customer/store/detail/${GlobalVariables.productId}/',
+        options: Options(
+          headers: {
+            'requirestoken': false,
+          },
+        ),
+      );
+
+      return Productwisedetails.fromJson(response.data);
+    } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
   
-Future<Productwisedetails> fetchProductwisedetail() async{
-  try {
-    final response = await _dio.get(
-      'customer/store/detail/${GlobalVariables.productId}/',
-      options: Options(
-        headers: {
-          'requirestoken': false,
-        },
-      ),
-    );
-    
-    return Productwisedetails.fromJson(response.data);
-  } catch (error) {
-    print("Store api error $error");
-    return null;
-  }
-}
-
-Future<AddToCart> fetchAddToCart() async{
+  Future<AddToCart> fetchAddToCart() async{
     try{
       final response = await _dio.get(
         'customer/store-1/product-1/add-to-cart/?quantity=2',
@@ -174,6 +169,8 @@ Future<AddToCart> fetchAddToCart() async{
       print("store api error $error");
       return null;
     }
+  }
 }
-}
+
+
 
