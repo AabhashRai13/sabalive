@@ -28,7 +28,8 @@ class AboutUsController extends BaseController {
     aboutUs = await _apiProvider.fetchAboutUsPage();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
-    return aboutUs;
+    update();
+    return null;
   }
   
   Future<Productwisedetails> fetchProductwiseDetails() async{
@@ -37,6 +38,6 @@ class AboutUsController extends BaseController {
     productwisedetails = await _apiProvider.fetchProductwisedetail();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
-    return productwisedetails;
+    return null;
   }
 }

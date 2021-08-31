@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
+import 'package:sabalive/constants/enum.dart';
+import 'package:sabalive/controllers/add_to_cart_controller.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/product/components/detail_page/product_detail_appbar.dart';
 import 'package:sabalive/screens/product/components/detail_page/top_rounded_container.dart';
@@ -18,30 +22,46 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   final Product product;
-
+  
   _ProductPageState(this.product);
+  final AddToCartController addToCartController= Get.put(AddToCartController());
 
+
+  Widget _buildLoadingWidget() {
+    return SpinKitCircle(color: Colors.blue[400]);
+  }
+  
+ Widget _buildSuccessWidget(){
+   double width = MediaQuery.of(context).size.width;
+   return Container(
+     width: width * 0.7,
+     decoration: BoxDecoration(
+       borderRadius: BorderRadius.circular(10.0),
+       color: mainButtonColor,
+       border: Border.all(color: Colors.blue),),
+     child: TextButton(
+       onPressed: () {
+         addToCartController.fetchAddToCart();
+       },
+       child: Text(
+         "Add to Cart",
+         style: TextStyle(color: Colors.black),
+       ),
+     ),
+   );
+ }
+ 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F9),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton:Container(
-          width: width * 0.7,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: mainButtonColor,
-            border: Border.all(color: Colors.blue),),
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              "Add to Cart",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ),
+        floatingActionButton: GetBuilder<AddToCartController>(
+    
+            builder: (value) => addToCartController.state== ViewState.Busy
+                ? _buildLoadingWidget()
+                : _buildSuccessWidget()),
         body: CustomScrollView(
           slivers: [
             ProductDetailAppbar(),

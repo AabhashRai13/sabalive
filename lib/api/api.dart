@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
+import 'package:sabalive/models/add_to_cart_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
@@ -124,7 +125,7 @@ class ApiProvider {
     try{
       print("check");
     final response = await _dio.get(
-          'about-us/',
+          'store-2/about-us/',
               options: Options(
           headers: {
       'requirestoken': false,
@@ -157,6 +158,22 @@ Future<Productwisedetails> fetchProductwisedetail() async{
     return null;
   }
 }
-  
+
+Future<AddToCart> fetchAddToCart() async{
+    try{
+      final response = await _dio.get(
+        'customer/store-1/product-1/add-to-cart/?quantity=2',
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+      return AddToCart.fromJson(response.data);
+    }catch(error){
+      print("store api error $error");
+      return null;
+    }
+}
 }
 

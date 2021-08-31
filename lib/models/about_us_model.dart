@@ -27,6 +27,7 @@ class AboutUs {
 
 class Data {
   Data({
+    this.id,
     this.storeName,
     this.image,
     this.state,
@@ -35,18 +36,23 @@ class Data {
     this.contact,
     this.altContact,
     this.email,
+    this.iconUrl,
   });
-  
+
+
+  int id;
   String storeName;
   String image;
-  int state;
+  dynamic state;
   int city;
   String streetAddress;
   String contact;
   dynamic altContact;
   String email;
+  String iconUrl;
   
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+    id: json["id"],
     storeName: json["store_name"],
     image: json["image"],
     state: json["state"],
@@ -55,9 +61,11 @@ class Data {
     contact: json["contact"],
     altContact: json["alt_contact"],
     email: json["email"],
+    iconUrl: json["icon_url"],
   );
   
   Map<String, dynamic> toJson() => {
+    "id": id,
     "store_name": storeName,
     "image": image,
     "state": state,
@@ -66,5 +74,6 @@ class Data {
     "contact": contact,
     "alt_contact": altContact,
     "email": email,
-  };
+    "icon_url": iconUrl,
+};
 }

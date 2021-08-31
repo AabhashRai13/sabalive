@@ -63,7 +63,7 @@ class LoginPageController extends BaseController {
 
   void mapInputsLogin() {
     Map map = {
-      "username": loginNameController.text.trim(),
+      "email": loginNameController.text.trim(),
       "password": loginPasswordController.text.trim()
     };
     loginUser(map);
