@@ -3,10 +3,12 @@ import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/main/components/product_list.dart';
 
 class MeatCarousel extends StatelessWidget {
-  const MeatCarousel({Key key,
-    @required this.title,
-    @required this.subtitle,
-    @required this.productList}) : super(key: key);
+  const MeatCarousel(
+      {Key key,
+      @required this.title,
+      @required this.subtitle,
+      @required this.productList})
+      : super(key: key);
 
   final String title;
   final String subtitle;
@@ -18,15 +20,13 @@ class MeatCarousel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 5.0),
-            child: Text(
-              title,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            child: Text(title,
                 style: TextStyle(
                   fontSize: 19.0,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
-                )
-            ),
+                )),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -43,8 +43,7 @@ class MeatCarousel extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   child: Text(
                     'view all',
                     style: TextStyle(color: Colors.black),
@@ -53,7 +52,7 @@ class MeatCarousel extends StatelessWidget {
               ],
             ),
           ),
-          ProductList(products: productList)
+          //  ProductList(products: productList)
         ],
       ),
     );

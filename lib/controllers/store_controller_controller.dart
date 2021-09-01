@@ -12,7 +12,7 @@ class StoreController extends BaseController {
   var storeName = "".obs;
   List dataSource = [].obs;
   ApiProvider _apiProvider = ApiProvider();
-  Store store;
+  Storess store;
   List stores = [].obs;
   @override
   void onInit() {

@@ -4,6 +4,7 @@ import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
+import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/store.dart';
@@ -84,13 +85,13 @@ class ApiProvider {
     }
   }
 
-  Future<Store> fetchStores() async {
+  Future<Storess> fetchStores() async {
     try {
       final response = await _dio.get(
         'customer/store/list/',
       );
 
-      return Store.fromJson(response.data);
+      return Storess.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
@@ -101,11 +102,6 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/detail/1/',
-        options: Options(
-          headers: {
-            'requirestoken': true,
-          },
-        ),
       );
 
       return StoreWiseProducts.fromJson(response.data);
@@ -143,6 +139,24 @@ class ApiProvider {
       );
 
       return Productwisedetails.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
+
+  Future<ProductDetails> fetchProductDetails({int productId}) async {
+    try {
+      final response = await _dio.get(
+        'customer/store/1/product/detail/$productId/',
+        options: Options(
+          headers: {
+            'requirestoken': false,
+          },
+        ),
+      );
+
+      return ProductDetails.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/models/product.dart';
-
+import 'package:sabalive/models/product_detail_model.dart';
 
 class TopRoundedContainer extends StatelessWidget {
   const TopRoundedContainer({
-    Key key, this.product,
-    
+    Key key,
+    this.product,
   }) : super(key: key);
-  final Product product;
-  
+  final ProductDetails product;
+
   @override
   Widget build(BuildContext context) {
-    double width= MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return AspectRatio(
       aspectRatio: 1,
       child: Container(
@@ -23,14 +22,13 @@ class TopRoundedContainer extends StatelessWidget {
             topRight: Radius.circular(40),
           ),
         ),
-        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(padding: EdgeInsets.symmetric(horizontal: 20.0,
-            vertical: 10.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Text(
-                product.name,
+                product.data.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -47,30 +45,22 @@ class TopRoundedContainer extends StatelessWidget {
                   color: Colors.teal[200],
                 ),
                 child: Center(
-                  child: IconButton(onPressed: (){
-                  
-                  },
+                  child: IconButton(
+                      onPressed: () {},
                       icon: Icon(
                         Icons.favorite,
                         color: Colors.red,
-                      )
-                  ),
+                      )),
                 ),
               ),
             ),
-  
             Padding(
-              padding: EdgeInsets.only(
-                left: width*0.06,
-                right: width*0.3
-              ),
+              padding: EdgeInsets.only(left: width * 0.06, right: width * 0.3),
               child: Text(
-                product.description,
+                product.data.description,
                 maxLines: 6,
               ),
             ),
-            
-          
           ],
         ),
       ),

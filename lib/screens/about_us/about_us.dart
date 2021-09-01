@@ -5,7 +5,7 @@ import 'package:sabalive/controllers/about_us_controller.dart';
 
 class AboutUs extends StatelessWidget {
   AboutUs({Key key}) : super(key: key);
-  AboutUsController aboutUsController = Get.put(AboutUsController());
+  final AboutUsController aboutUsController = Get.put(AboutUsController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +48,13 @@ class AboutUs extends StatelessWidget {
                 height: 2,
                 color: Colors.black,
               ),
-            ListTile(
-              title: Text("Call us (+8001111111111)"),
-              leading: Icon(Icons.call),
-              onTap: () {
-                aboutUsController.customLaunch('tel: 9860168588}');
-              },
-            ),
+              ListTile(
+                title: Text("Call us (+8001111111111)"),
+                leading: Icon(Icons.call),
+                onTap: () {
+                  aboutUsController.customLaunch('tel: 9860168588}');
+                },
+              ),
               Divider(
                 height: 2,
                 color: Colors.black,

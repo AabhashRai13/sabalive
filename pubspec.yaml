@@ -31,6 +31,7 @@ dependencies:
   stripe_payment: ^1.1.4
   firebase_core: ^1.4.0
   url_launcher:
+  flutter_spinkit: ^4.1.2
 
 dev_dependencies:
   effective_dart: 1.3.2
