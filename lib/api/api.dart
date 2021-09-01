@@ -117,11 +117,11 @@ class ApiProvider {
     }
   }
 
-  Future<AboutUs> fetchAboutUsPage() async {
+  Future<AboutUs> aboutUsPage() async {
     try {
       print("check");
     final response = await _dio.get(
-          'store-2/about-us/',
+          'store-${GlobalVariables.storeId}/about-us/',
               options: Options(
           headers: {
       'requirestoken': false,

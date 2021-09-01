@@ -11,7 +11,7 @@ class AboutUsController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchAboutUs();
+    aboutUS();
   }
 
   void customLaunch(command) async {
@@ -22,10 +22,10 @@ class AboutUsController extends BaseController {
     }
   }
   
-  Future<AboutUs> fetchAboutUs() async {
+  Future<AboutUs> aboutUS() async {
     setState(ViewState.Busy);
     print("Testing");
-    aboutUs = await _apiProvider.fetchAboutUsPage();
+    aboutUs = await _apiProvider.aboutUsPage();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
     update();
