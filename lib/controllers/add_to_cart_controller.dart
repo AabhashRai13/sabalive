@@ -7,14 +7,13 @@ class AddToCartController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   AddToCart addtoCart;
   
-  Future<AddToCart> fetchAddToCart() async {
+  Future<AddToCart> addToCart() async {
     setState(ViewState.Busy);
-    print("Testing");
-    addtoCart = await _apiProvider.fetchAddToCart();
+    addtoCart = await _apiProvider.addToCarts();
     setState(ViewState.Retrieved);
     print(addtoCart);
     
-    if(addtoCart.status== null){
+    if(addtoCart== null){
       Fluttertoast.showToast(msg: "Add to Cart Failed",gravity: ToastGravity.CENTER);
     }else if(addtoCart.status== "success"){
       Fluttertoast.showToast(msg: "${addtoCart.message}",gravity: ToastGravity.CENTER);

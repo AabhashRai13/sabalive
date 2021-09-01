@@ -4,6 +4,7 @@ import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
+import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
@@ -154,10 +155,10 @@ class ApiProvider {
     }
   }
   
-  Future<AddToCart> fetchAddToCart() async{
+  Future<AddToCart> addToCarts() async{
     try{
       final response = await _dio.get(
-        'customer/store-1/product-1/add-to-cart/?quantity=2',
+        'customer/store-${GlobalVariables.storeId}//product-${GlobalVariables.productId}//add-to-cart/?quantity=2',
         options: Options(
           headers: {
             'requirestoken': true,
@@ -167,6 +168,25 @@ class ApiProvider {
       return AddToCart.fromJson(response.data);
     }catch(error){
       print("store api error $error");
+      return null;
+    }
+  }
+
+
+  Future<ContactUs> contact(map) async {
+    try {
+      final response = await _dio.post(
+        'store-${GlobalVariables.storeId}/contact/us/',
+        data: map,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      return ContactUs.fromJson(response.data);
+    } catch (error) {
+      print("Registration error $error");
       return null;
     }
   }

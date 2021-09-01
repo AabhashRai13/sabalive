@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/login_controllers.dart';
 import 'package:sabalive/screens/auth/forgot_password_page.dart';
 
@@ -200,35 +203,39 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     );
 
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            
-            Container(
-              decoration: BoxDecoration(
-                color: lightgreen,
+      body: Obx(()=>ModalProgressHUD(
+        inAsyncCall: loginPageController.busy.value,
+        color: Colors.grey,
+        progressIndicator: SpinKitCircle(color: Colors.blue[400]),
+        child: SafeArea(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: lightgreen,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 28.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Spacer(flex: 3),
-                  welcomeBack,
-                  Spacer(),
-                  subTitle,
-                  Spacer(flex: 2),
-                  loginForm,
-                  Spacer(flex: 2),
-                  registerUser,
-                  forgotPassword
-                ],
-              ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(left: 28.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Spacer(flex: 3),
+                    welcomeBack,
+                    Spacer(),
+                    subTitle,
+                    Spacer(flex: 2),
+                    loginForm,
+                    Spacer(flex: 2),
+                    registerUser,
+                    forgotPassword
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
-      ),
+      ),)
     );
   }
 }

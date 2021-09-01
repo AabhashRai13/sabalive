@@ -20,14 +20,15 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   final Product product;
-  
+
   _ProductPageState(this.product);
-  final AddToCartController addToCartController= Get.put(AddToCartController());
- 
+
+  final AddToCartController addToCartController =
+      Get.put(AddToCartController());
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F9),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -36,10 +37,11 @@ class _ProductPageState extends State<ProductPage> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: mainButtonColor,
-            border: Border.all(color: Colors.blue),),
+            border: Border.all(color: Colors.blue),
+          ),
           child: TextButton(
             onPressed: () {
-              addToCartController.fetchAddToCart();
+              addToCartController.addToCart();
             },
             child: Text(
               "Add to Cart",
