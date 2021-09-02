@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
+import 'package:sabalive/screens/product/product_page.dart';
 
 class StoreWiseProductContainer extends StatelessWidget {
   final Product product;
@@ -10,7 +12,11 @@ class StoreWiseProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(() => ProductPage(
+          productId: product.id,
+        ));
+      },
       child: Padding(
         padding: EdgeInsets.only(left: 8.0),
         child: Container(

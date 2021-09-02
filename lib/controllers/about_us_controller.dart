@@ -25,7 +25,7 @@ class AboutUsController extends BaseController {
   Future<AboutUs> aboutUS() async {
     setState(ViewState.Busy);
     print("Testing");
-    aboutUs = await _apiProvider.aboutUsPage();
+    aboutUs = await _apiProvider.fetchAboutUsPage();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
     update();

@@ -6,6 +6,7 @@ import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
+import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/store.dart';
@@ -15,16 +16,16 @@ import 'package:sabalive/utils/interceptor.dart';
 class ApiProvider {
   final Dio _dio = new Dio();
   final String _baseUrl = 'https://dipesh779.pythonanywhere.com/api/';
-
+  
   ApiProvider() {
     _dio.options.baseUrl = _baseUrl;
     _dio.interceptors.add(DioLoggingInterceptors());
   }
-
+  
   void _printError(error, StackTrace stacktrace) {
     debugPrint('error: $error & stacktrace: $stacktrace');
   }
-
+  
   Future<Token> loginUser(map) async {
     try {
       final response = await _dio.post(
@@ -36,7 +37,7 @@ class ApiProvider {
         ),
         data: map,
       );
-
+      
       if (response.statusCode == 200) {
         return Token.fromJson(response.data);
       }
@@ -46,7 +47,7 @@ class ApiProvider {
     }
     return null;
   }
-
+  
   Future<RegistrationResponse> registerUser(map) async {
     try {
       final response = await _dio.post(
@@ -58,14 +59,14 @@ class ApiProvider {
           },
         ),
       );
-
+      
       return RegistrationResponse.fromJson(response.data);
     } catch (error) {
       print("Registration error $error");
       return null;
     }
   }
-
+  
   Future<ForgetPassword> requestPasswordChange(map) async {
     try {
       final response = await _dio.post(
@@ -78,55 +79,54 @@ class ApiProvider {
           },
         ),
       );
-
+      
       return ForgetPassword.fromJson(response.data);
     } catch (error) {
       print("Forgetpassword error $error");
       return null;
     }
   }
-
-  Future<Store> fetchStores() async {
+  
+  Future<StoreModel> fetchStores() async {
     try {
       final response = await _dio.get(
         'customer/store/list/',
       );
-
-      return Store.fromJson(response.data);
+      
+      return StoreModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-
+  
   Future<StoreWiseProducts> fetchStoreWiseProducts() async {
     try {
       final response = await _dio.get(
         'customer/store/detail/1/',
         options: Options(
           headers: {
-            'requirestoken': true,
+            'requirestoken': false,
           },
         ),
       );
-
+      
       return StoreWiseProducts.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-
-  Future<AboutUs> aboutUsPage() async {
+  
+  Future<AboutUs> fetchAboutUsPage() async {
     try {
-      print("check");
-    final response = await _dio.get(
-          'store-${GlobalVariables.storeId}/about-us/',
-              options: Options(
-          headers: {
-      'requirestoken': false,
-      }
-      )
+      final response = await _dio.get(
+          'store-2/about-us/',
+          options: Options(
+              headers: {
+                'requirestoken': false,
+              }
+          )
       );
       print(response.data);
       print("check");
@@ -136,7 +136,7 @@ class ApiProvider {
       return null;
     }
   }
-
+  
   Future<Productwisedetails> fetchProductwisedetail() async {
     try {
       final response = await _dio.get(
@@ -147,8 +147,25 @@ class ApiProvider {
           },
         ),
       );
-
       return Productwisedetails.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
+
+  Future<ProductDetails> fetchProductDetails({int productId}) async {
+    try {
+      final response = await _dio.get(
+        'customer/store/1/product/detail/$productId/',
+        options: Options(
+          headers: {
+            'requirestoken': false,
+          },
+        ),
+      );
+    
+      return ProductDetails.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
@@ -171,8 +188,8 @@ class ApiProvider {
       return null;
     }
   }
-
-
+  
+  
   Future<ContactUs> contact(map) async {
     try {
       final response = await _dio.post(
@@ -190,6 +207,7 @@ class ApiProvider {
       return null;
     }
   }
+  
 }
 
 

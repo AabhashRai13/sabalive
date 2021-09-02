@@ -53,7 +53,7 @@ class MeatCarousel extends StatelessWidget {
               ],
             ),
           ),
-          ProductList(products: productList)
+          // ProductList(products: productList)
         ],
       ),
     );

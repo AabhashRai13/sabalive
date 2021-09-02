@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/models/product.dart';
+import 'package:sabalive/models/product_detail_model.dart';
 
 
 class TopRoundedContainer extends StatelessWidget {
@@ -7,7 +7,7 @@ class TopRoundedContainer extends StatelessWidget {
     Key key, this.product,
     
   }) : super(key: key);
-  final Product product;
+  final ProductDetails product;
   
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class TopRoundedContainer extends StatelessWidget {
             Padding(padding: EdgeInsets.symmetric(horizontal: 20.0,
             vertical: 10.0),
               child: Text(
-                product.name,
+                product.data.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -65,7 +65,7 @@ class TopRoundedContainer extends StatelessWidget {
                 right: width*0.3
               ),
               child: Text(
-                product.description,
+                product.data.description,
                 maxLines: 6,
               ),
             ),
