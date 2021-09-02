@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sabalive/controllers/product_image_controller.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/models/product_detail_model.dart';
-import 'package:sabalive/screens/product/components/detail_page/small_products.dart';
 
 class ProductDisplay extends StatelessWidget {
   final ProductImageController productImageController =
@@ -29,20 +28,21 @@ class ProductDisplay extends StatelessWidget {
               aspectRatio: 1,
               child: Hero(
                   tag: product.data.displayImage,
-                  child: Image.asset(product.data.displayImage)),
+                  child: Image.network(product.data.displayImage,fit: BoxFit.contain,)),
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-                _productlist.length,
-                (index) => SmallProduct(
-                      product: _productlist[index],
-                    ))
-          ],
-        )
+        SizedBox(height: 10.0,),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     ...List.generate(
+        //         _productlist.length,
+        //         (index) => SmallProduct(
+        //               product: _productlist[index],
+        //             ))
+        //   ],
+        // )
       ],
     );
   }

@@ -6,10 +6,13 @@ import 'package:sabalive/models/add_to_cart_model.dart';
 class AddToCartController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   AddToCart addtoCart;
-  
+  int productID;
+  setProductId({int productId}) {
+    productID = productId;
+  }
   Future<AddToCart> addToCart() async {
     setState(ViewState.Busy);
-    addtoCart = await _apiProvider.addToCarts();
+    addtoCart = await _apiProvider.addToCarts(productID);
     setState(ViewState.Retrieved);
     print(addtoCart);
     

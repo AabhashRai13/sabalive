@@ -6,7 +6,7 @@ import 'package:sabalive/screens/product/product_page.dart';
 class StoreWiseProductContainer extends StatelessWidget {
   final Product product;
 
-  const StoreWiseProductContainer({Key key, @required this.product})
+   StoreWiseProductContainer({Key key, @required this.product})
       : super(key: key);
 
   @override
@@ -27,20 +27,22 @@ class StoreWiseProductContainer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 120,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(18.0),
-                          image: DecorationImage(
-                              image: AssetImage(product.displayImage))),
-                      // child: Image.asset('assets/images/deals_fries.png'),
-                    ),
-                  ],
+              Card(
+                child: Container(
+                  padding: EdgeInsets.only(left: 10,right: 10),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 120,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            image: DecorationImage(
+                                image: NetworkImage(product.displayImage),fit: BoxFit.fill)),
+                        // child: Image.asset('assets/images/deals_fries.png'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

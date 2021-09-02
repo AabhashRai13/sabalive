@@ -104,11 +104,6 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/detail/1/',
-        options: Options(
-          headers: {
-            'requirestoken': false,
-          },
-        ),
       );
       
       return StoreWiseProducts.fromJson(response.data);
@@ -172,10 +167,10 @@ class ApiProvider {
     }
   }
   
-  Future<AddToCart> addToCarts() async{
+  Future<AddToCart> addToCarts(int productId) async{
     try{
       final response = await _dio.get(
-        'customer/store-${GlobalVariables.storeId}//product-${GlobalVariables.productId}//add-to-cart/?quantity=2',
+        'customer/store-${GlobalVariables.storeId}//product-$productId//add-to-cart/?quantity=2',
         options: Options(
           headers: {
             'requirestoken': true,

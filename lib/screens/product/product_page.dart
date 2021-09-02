@@ -34,6 +34,7 @@ ProductPage({Key key, this.productId}) : super(key: key);
           ),
           child: TextButton(
             onPressed: () {
+              addToCartController.setProductId(productId: productId);
               addToCartController.addToCart();
             },
             child: Text(

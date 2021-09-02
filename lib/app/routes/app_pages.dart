@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sabalive/screens/about_us/about_us.dart';
+import 'package:sabalive/screens/intro_page.dart';
 
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_binding/bottom_navbar_binding.dart';
 import 'package:sabalive/screens/main/main_page.dart';
@@ -37,6 +38,9 @@ class AppPages {
         page:()=> SpecialOffers()),
     GetPage(name: _Paths.PRODUCTPAGE,
         page: ()=> ProductPage()
+    ),
+    GetPage(name: _Paths.INTROPAGE,
+        page: ()=> IntroPage(),
     )
   ];
 }

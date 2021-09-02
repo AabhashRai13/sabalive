@@ -37,4 +37,5 @@ class ProductDetailsController extends BaseController {
   void onClose() {
     super.onClose();
   }
+  
 }
