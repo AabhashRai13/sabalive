@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/screens/main/components/product_list.dart';
 
 class MeatCarousel extends StatelessWidget {
   const MeatCarousel(

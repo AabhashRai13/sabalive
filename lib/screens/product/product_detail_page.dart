@@ -38,7 +38,6 @@ class ProductPage extends StatelessWidget {
           ),
         ),
         body: GetBuilder<ProductDetailsController>(
-            // specify type as Controller
             init: _productDetailsController.setProductId(
                 productId: productId), // intialize with the Controller
             builder: (value) =>

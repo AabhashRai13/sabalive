@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sabalive/constants/global_variables.dart';
+import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
@@ -9,11 +10,14 @@ import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/store.dart';
 import 'package:sabalive/models/token.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 import 'package:sabalive/utils/interceptor.dart';
 
 class ApiProvider {
   final Dio _dio = new Dio();
   final String _baseUrl = 'https://dipesh779.pythonanywhere.com/api/';
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   ApiProvider() {
     _dio.options.baseUrl = _baseUrl;
@@ -99,9 +103,11 @@ class ApiProvider {
   }
 
   Future<StoreWiseProducts> fetchStoreWiseProducts() async {
+    int storeId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
-        'customer/store/detail/1/',
+        'customer/store/detail/$storeId/',
       );
 
       return StoreWiseProducts.fromJson(response.data);
@@ -122,15 +128,17 @@ class ApiProvider {
       print("check");
       return AboutUs.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("About us $error");
       return null;
     }
   }
 
   Future<Productwisedetails> fetchProductwisedetail() async {
+    int storeId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
-        'customer/store/detail/${GlobalVariables.productId}/',
+        'customer/store/detail/$storeId/',
         options: Options(
           headers: {
             'requirestoken': false,
@@ -140,25 +148,22 @@ class ApiProvider {
 
       return Productwisedetails.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("Fetch Product Wise $error");
       return null;
     }
   }
 
   Future<ProductDetails> fetchProductDetails({int productId}) async {
+    int storeId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
-        'customer/store/1/product/detail/$productId/',
-        options: Options(
-          headers: {
-            'requirestoken': false,
-          },
-        ),
+        'customer/store/$storeId/product/detail/$productId/',
       );
 
       return ProductDetails.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("product Details $error");
       return null;
     }
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
-import 'package:sabalive/screens/product/product_page.dart';
+import 'package:sabalive/screens/product/product_detail_page.dart';
 
 class StoreWiseProductContainer extends StatelessWidget {
   final Product product;

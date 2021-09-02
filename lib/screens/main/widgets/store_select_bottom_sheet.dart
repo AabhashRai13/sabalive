@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/constants/global_variables.dart';
+import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/controllers/store_controller_controller.dart';
+import 'package:sabalive/injector/injector.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class StoreSelectBottomSheet extends StatelessWidget {
   final StoreController _storeController = Get.put(StoreController());
-
+  final HomeController homeController;
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
+  StoreSelectBottomSheet({this.homeController});
   @override
   Widget build(BuildContext context) {
     return _buildEventInfo(context);
@@ -64,7 +70,10 @@ class StoreSelectBottomSheet extends StatelessWidget {
               onTap: () async {
                 Navigator.of(context).pop();
                 _storeController.storeName.value = stores.storeName;
-                GlobalVariables.storeId = stores.id;
+
+                await _sharedPreferencesManager.putInt(
+                    SharedPreferencesManager.keyStoreId, stores.id);
+                homeController.fetchStoreWiseProducts();
               }),
           Divider(
             height: 2,

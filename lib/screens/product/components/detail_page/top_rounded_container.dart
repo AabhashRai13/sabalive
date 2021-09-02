@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/models/product_detail_model.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class TopRoundedContainer extends StatelessWidget {
   const TopRoundedContainer({
@@ -56,9 +57,13 @@ class TopRoundedContainer extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: width * 0.06, right: width * 0.3),
-              child: Text(
-                product.data.description,
-                maxLines: 6,
+              child: Container(
+                height: 200,
+                child: ListView(shrinkWrap: true, children: [
+                  Html(
+                    data: product.data.description,
+                  )
+                ]),
               ),
             ),
           ],
