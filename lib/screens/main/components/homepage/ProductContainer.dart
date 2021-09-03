@@ -48,7 +48,7 @@ class StoreWiseProductContainer extends StatelessWidget {
               SizedBox(
                 height: 5.0,
               ),
-              Text(product.title,
+              Text(product.title.capitalize,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,

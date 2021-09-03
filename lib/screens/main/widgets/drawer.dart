@@ -97,7 +97,9 @@ Widget drawer(){
                   leading: new Icon(Icons.logout),
                   title: const Text("Log Out"),
                   onTap: (){
-                    sharedPreferencesManager.clearAll();
+                    sharedPreferencesManager.clearKey("accessToken");
+                    sharedPreferencesManager.clearKey("refreshToken");
+                    sharedPreferencesManager.clearKey("username");
                     Get.back();
                   },
                 ),

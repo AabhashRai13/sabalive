@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/product_image_controller.dart';
-import 'package:sabalive/models/product.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 
 class ProductDisplay extends StatelessWidget {
@@ -13,12 +12,6 @@ class ProductDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> _productlist = [
-      Product("assets/whitechicken.png", "Chicken", "Full Chicken", 125),
-      Product(
-          "assets/buffalo-chicken-wing.png", "Chicken", "Full Chicken", 125),
-      Product("assets/chicken.png", "Chicken", "Full Chicken", 125),
-    ];
     return Column(
       children: [
         Center(

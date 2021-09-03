@@ -20,7 +20,6 @@ class StoreController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-
     fetchStores();
   }
 

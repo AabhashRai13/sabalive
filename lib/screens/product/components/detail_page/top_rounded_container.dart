@@ -43,7 +43,6 @@ class TopRoundedContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return AspectRatio(
       aspectRatio: 1,
       child: Container(
@@ -61,9 +60,16 @@ class TopRoundedContainer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          product.data.title,
+                          product.data.title.capitalize,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5.0,),
+                        Text(
+                          product.data.store.storeName.capitalize,
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -144,12 +150,33 @@ class TopRoundedContainer extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: width * 0.06, right: width * 0.3),
-              child: Text(
-                product.data.description,
-                maxLines: 6,
-              ),
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Description",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    Text(
+                      product.data.description,
+                      maxLines: 6,
+                    ),
+                  ],
+                )
             ),
+  
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Return Policy",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Text(
+                    product.data.returnPolicy,
+                    maxLines: 6,
+                  ),
+                ],
+              )
+            ),
+            
           ],
         ),
       ),

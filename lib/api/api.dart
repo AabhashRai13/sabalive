@@ -4,6 +4,7 @@ import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
+import 'package:sabalive/models/cart_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/product_detail_model.dart';
@@ -207,6 +208,23 @@ class ApiProvider {
       return ContactUs.fromJson(response.data);
     } catch (error) {
       print("Registration error $error");
+      return null;
+    }
+  }
+  
+  Future<Cart> fetchCart() async{
+    try{
+      final response = await _dio.get(
+          "customer/cart-product/list/",
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+      return Cart.fromJson(response.data);
+    }catch(error){
+      print("store api error $error");
       return null;
     }
   }
