@@ -22,10 +22,18 @@ class ProductDisplay extends StatelessWidget {
     return Column(
       children: [
         Center(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.height * 0.3,
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+            ),
+            width: double.infinity,
             child: AspectRatio(
-              aspectRatio: 1,
+              aspectRatio: 2,
               child: Hero(
                   tag: product.data.displayImage,
                   child: Image.network(product.data.displayImage,fit: BoxFit.contain,)),
