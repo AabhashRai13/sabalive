@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: StoreSelectBottomSheet(),
+                    child: StoreSelectBottomSheet(homeController: _homeController,),
                   ),
                   HomePageInviteBanner(),
                   // MeatCarousel(

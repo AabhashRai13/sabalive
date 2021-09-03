@@ -1,49 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/constants/global_variables.dart';
+import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/controllers/store_controller_controller.dart';
+import 'package:sabalive/injector/injector.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class StoreSelectBottomSheet extends StatelessWidget {
   final StoreController _storeController = Get.put(StoreController());
-
+  final HomeController homeController;
+  final SharedPreferencesManager _sharedPreferencesManager =
+  locator<SharedPreferencesManager>();
+  StoreSelectBottomSheet({this.homeController});
   @override
   Widget build(BuildContext context) {
     return _buildEventInfo(context);
   }
-
+  
   Widget _buildEventInfo(BuildContext context) {
     return Obx(() => Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0, bottom: 10.0),
-              child: Text('Selected Store', textScaleFactor: 1.1),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 4.0, bottom: 10.0),
+          child: Text('Selected Store', textScaleFactor: 1.1),
+        ),
+        Container(
+          margin: EdgeInsets.only(bottom: 4),
+          height: 24,
+          child: InkWell(
+            onTap: () {
+              _settingModalBottomSheet(
+                context,
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(_storeController.storeName.value ?? ""),
+                Icon(Icons.arrow_drop_down)
+              ],
             ),
-            Container(
-              margin: EdgeInsets.only(bottom: 4),
-              height: 24,
-              child: InkWell(
-                onTap: () {
-                  _settingModalBottomSheet(
-                    context,
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(_storeController.storeName.value ?? ""),
-                    Icon(Icons.arrow_drop_down)
-                  ],
-                ),
-              ),
-            ),
-            Divider(),
-          ],
-        ));
+          ),
+        ),
+        Divider(),
+      ],
+    ));
   }
-
+  
   void _settingModalBottomSheet(
-    context,
-  ) {
+      context,
+      ) {
     var children = <Widget>[];
     children.add(Padding(
       padding: const EdgeInsets.all(8.0),
@@ -64,7 +69,10 @@ class StoreSelectBottomSheet extends StatelessWidget {
               onTap: () async {
                 Navigator.of(context).pop();
                 _storeController.storeName.value = stores.storeName;
-                GlobalVariables.storeId = stores.id;
+                
+                await _sharedPreferencesManager.putInt(
+                    SharedPreferencesManager.keyStoreId, stores.id);
+                homeController.fetchStoreWiseProducts();
               }),
           Divider(
             height: 2,

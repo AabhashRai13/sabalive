@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/screens/store_selector.dart';
 
 import '../app_properties.dart';
-import 'main/main_page.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -166,7 +166,7 @@ class _IntroPageState extends State<IntroPage> {
                     ),
                     InkWell(
                       onTap:() {
-                    Get.off(() => MainPage());
+                    Get.off(() => StoreSelector());
                       },
                       child: Container(
                         height: 60,

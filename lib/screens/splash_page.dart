@@ -53,8 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
   void navigationPage() {
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (_) =>
-    // _isviewed == true?MainPage() :
-    IntroPage()));
+    _isviewed == true?MainPage() : IntroPage()));
   }
   
   Widget build(BuildContext context) {

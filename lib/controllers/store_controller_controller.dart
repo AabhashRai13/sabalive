@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
 import 'package:sabalive/constants/enum.dart';
-import 'package:sabalive/constants/global_variables.dart';
+import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/store.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class StoreController extends BaseController {
+  final SharedPreferencesManager sharedPreferencesManager =
+  locator<SharedPreferencesManager>();
   final List<String> storenames =
       ["Udaypur Masu Pasal", "Suman meat shop", "Dharan Pork shop"].obs;
 
@@ -46,7 +49,7 @@ class StoreController extends BaseController {
     }
   }
 
-  void assignStoreId({int storeId}) {
-    GlobalVariables.storeId = storeId;
-  }
+  void assignStoreId({int storeId}) async{
+    await sharedPreferencesManager.putInt(
+        SharedPreferencesManager.keyStoreId, storeId);  }
 }
