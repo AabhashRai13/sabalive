@@ -4,6 +4,8 @@ import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
+import 'package:sabalive/models/add_to_cart_model.dart';
+import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
@@ -119,13 +121,12 @@ class ApiProvider {
 
   Future<AboutUs> fetchAboutUsPage() async {
     try {
-      print("check");
-      final response = await _dio.get('about-us/',
+      final response = await _dio.get(
+          'store-${GlobalVariables.storeId}/about-us/',
           options: Options(headers: {
             'requirestoken': false,
           }));
       print(response.data);
-      print("check");
       return AboutUs.fromJson(response.data);
     } catch (error) {
       print("About us $error");
@@ -164,6 +165,43 @@ class ApiProvider {
       return ProductDetails.fromJson(response.data);
     } catch (error) {
       print("product Details $error");
+      return null;
+    }
+  }
+
+  Future<AddToCart> addToCarts(int productId) async{
+    int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try{
+      final response = await _dio.get(
+        'customer/store-$storeId//product-$productId//add-to-cart/?quantity=2',
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+      return AddToCart.fromJson(response.data);
+    }catch(error){
+      print("store api error $error");
+      return null;
+    }
+  }
+
+  Future<ContactUs> contact(map) async {
+    try {
+      final response = await _dio.post(
+        'store-${GlobalVariables.storeId}/contact/us/',
+        data: map,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      return ContactUs.fromJson(response.data);
+    } catch (error) {
+      print("Registration error $error");
       return null;
     }
   }

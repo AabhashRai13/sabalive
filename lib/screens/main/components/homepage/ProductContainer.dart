@@ -37,7 +37,7 @@ class StoreWiseProductContainer extends StatelessWidget {
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(18.0),
                           image: DecorationImage(
-                              image: AssetImage(product.displayImage))),
+                              image: NetworkImage(product.displayImage),fit: BoxFit.fill)),
                       // child: Image.asset('assets/images/deals_fries.png'),
                     ),
                   ],

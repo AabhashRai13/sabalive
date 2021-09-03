@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/injector/injector.dart';
+import 'package:sabalive/screens/intro_page.dart';
 import 'package:sabalive/screens/main/main_page.dart';
-import 'package:sabalive/screens/store_selector.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 import '../app_properties.dart';
@@ -21,11 +21,11 @@ class _SplashScreenState extends State<SplashScreen>
     final SharedPreferencesManager sharedPreferencesManager =
     locator<SharedPreferencesManager>();
     _isviewed = SharedPreferencesManager().getBool("choosestore");
-  if(_isviewed==null){
-    await sharedPreferencesManager.putBool(
-        SharedPreferencesManager.choosestore, true);
-  }
-  return _isviewed;
+    if(_isviewed==null){
+      await sharedPreferencesManager.putBool(
+          SharedPreferencesManager.choosestore, true);
+    }
+    return _isviewed;
   }
   @override
   Future<void> initState(){
@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     });
     choosestore();
     print(_isviewed);
+    return null;
   }
   
   @override
@@ -51,7 +52,8 @@ class _SplashScreenState extends State<SplashScreen>
   
   void navigationPage() {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => _isviewed == true?MainPage() :StoreSelector()));
+        .pushReplacement(MaterialPageRoute(builder: (_) =>
+    _isviewed == true?MainPage() : IntroPage()));
   }
   
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen>
                       opacity: opacity.value,
                       child: new Image.asset('assets/SabaLive.png')),
                 ),
-             
+              
               ],
             ),
           ),

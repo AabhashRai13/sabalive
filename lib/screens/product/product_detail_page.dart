@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/constants/enum.dart';
+import 'package:sabalive/controllers/add_to_cart_controller.dart';
 import 'package:sabalive/controllers/product_detail_controller.dart';
 import 'package:sabalive/screens/product/components/detail_page/product_detail_appbar.dart';
 import 'package:sabalive/screens/product/components/detail_page/top_rounded_container.dart';
@@ -13,6 +14,8 @@ class ProductPage extends StatelessWidget {
   final int productId;
   final ProductDetailsController _productDetailsController =
       Get.put(ProductDetailsController());
+  final AddToCartController addToCartController =
+  Get.put(AddToCartController());
   ProductPage({Key key, this.productId}) : super(key: key);
 
   @override
@@ -30,7 +33,10 @@ class ProductPage extends StatelessWidget {
             border: Border.all(color: Colors.blue),
           ),
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              addToCartController.setProductId(productId: productId);
+              addToCartController.addToCart();
+            },
             child: Text(
               "Add to Cart",
               style: TextStyle(color: Colors.black),

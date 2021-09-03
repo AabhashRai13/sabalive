@@ -32,6 +32,8 @@ class ProductDisplay extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 10.0,),
+  
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

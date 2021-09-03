@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/screens/store_selector.dart';
 
 import '../app_properties.dart';
-import 'main/main_page.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -19,8 +20,7 @@ class _IntroPageState extends State<IntroPage> {
 //      width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.grey[100],
-            image: DecorationImage(image: AssetImage('assets/background.png'))
-        ),
+            image: DecorationImage(image: AssetImage('assets/background.png'))),
         child: Stack(
           children: <Widget>[
             PageView(
@@ -45,19 +45,19 @@ class _IntroPageState extends State<IntroPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'Get Any Thing Online',
+                        'Get Your Meat Online',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 16.0),
                       child: Text(
-                        'You can buy anything ranging from digital products to hardware within few clicks.',
+                        'You can buy any types of Fresh Meat from different shops.',
                         textAlign: TextAlign.right,
-                        style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                        style: TextStyle(color: Colors.grey, fontSize: 14.0),
                       ),
                     ),
                   ],
@@ -79,16 +79,16 @@ class _IntroPageState extends State<IntroPage> {
                         'Shipping to anywhere ',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 16.0),
                       child: Text(
-                        'We will ship to anywhere in the world, With 30 day 100% money back policy.',
+                        'We will ship to anywhere in the world, .',
                         textAlign: TextAlign.right,
-                        style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                        style: TextStyle(color: Colors.grey, fontSize: 14.0),
                       ),
                     ),
                   ],
@@ -110,7 +110,7 @@ class _IntroPageState extends State<IntroPage> {
                         'On-time delivery',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                     Padding(
@@ -119,7 +119,7 @@ class _IntroPageState extends State<IntroPage> {
                       child: Text(
                         'You can track your product with our powerful tracking service.',
                         textAlign: TextAlign.right,
-                        style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                        style: TextStyle(color: Colors.grey, fontSize: 14.0),
                       ),
                     ),
                   ],
@@ -164,61 +164,23 @@ class _IntroPageState extends State<IntroPage> {
                         )
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Opacity(
-                          opacity: pageIndex != 2 ? 1.0 : 0.0,
-                          child: MaterialButton(
-                            splashColor: Colors.transparent,
-                            child: Text(
-                              'SKIP',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => MainPage()));
-                            },
-                          ),
+                    InkWell(
+                      onTap:() {
+                        Get.off(() => StoreSelector());
+                      },
+                      child: Container(
+                        height: 60,
+                        margin:
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 10.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(20.0)
                         ),
-                        pageIndex != 2
-                            ? MaterialButton(
-                          splashColor: Colors.transparent,
-                          child: Text(
-                            'NEXT',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                          onPressed: () {
-                            if (!(controller.page == 2.0))
-                              controller.nextPage(
-                                  duration: Duration(milliseconds: 200),
-                                  curve: Curves.linear);
-                          },
-                        )
-                            : MaterialButton(
-                          splashColor: Colors.transparent,
-                          child: Text(
-                            'FINISH',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => MainPage()));
-                          },
-                        )
-                      ],
-                    ),
+                        child: Center(child: Text("Get Started",style: TextStyle(
+                            fontSize: 22,fontWeight: FontWeight.bold
+                        ),)),
+                      ),
+                    )
                   ],
                 ),
               ),
