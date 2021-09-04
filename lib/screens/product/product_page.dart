@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/add_to_cart_controller.dart';
-import 'package:sabalive/controllers/counter_controller.dart';
 import 'package:sabalive/controllers/product_detail_controller.dart';
 import 'package:sabalive/screens/product/components/detail_page/product_detail_appbar.dart';
 import 'package:sabalive/screens/product/components/detail_page/top_rounded_container.dart';
@@ -19,78 +17,11 @@ Get.put(ProductDetailsController());
 ProductPage({Key key, this.productId}) : super(key: key);
   final AddToCartController addToCartController =
       Get.put(AddToCartController());
-final CounterController counterController=Get.put(CounterController());
   
-  Widget floatingButton(){
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            height: 50,
-            width: Get.width/2,
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(color: Colors.blue),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      counterController.decrement();
-                    },
-                    child: Icon(Icons.remove),
-                  ),
-                  Obx(
-                        () => Text(
-                      '${counterController.count}',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      counterController.increment();
-                    },
-                    child: Icon(Icons.add),
-                  ),
- 
-                ],
-              ),
-          ),
-          
-          GestureDetector(
-            onTap: (){
-              addToCartController.setProductId(productId: productId);
-                    addToCartController.addToCart();
-            },
-            child: Container(
-              height: 50,
-              width: Get.width/5,
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: mainButtonColor,
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: Colors.blue),
-              ),
-              child: Icon(Icons.shopping_cart,size: 25,color: Colors.grey[200],),
-            ),
-          )
-        ],
-      ),
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F9),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: floatingButton(),
         
         body: GetBuilder<ProductDetailsController>(
           // specify type as Controller

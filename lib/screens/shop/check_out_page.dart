@@ -167,6 +167,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               );
                             }),
                       ),
+                      checkOutButton
                     ],
                   ),
                 ),
@@ -193,8 +194,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: checkOutButton,
+        
         body: Obx(() => cartController.state == ViewState.Busy
             ? _buildLoadingWidget()
             : _successWidget()));
