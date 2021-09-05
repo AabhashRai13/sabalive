@@ -31,10 +31,11 @@ class LoginPageController extends BaseController {
   }
 
   void loginUser(Map map) async {
-    busy.value=true;
+    busy.value = true;
     token = await apiAuthProvider.loginUser(map);
-    print("access token ${token.access}");
+
     if (token == null) {
+      busy.value = false;
       Fluttertoast.showToast(
           msg: "Check your credentials",
           toastLength: Toast.LENGTH_SHORT,
@@ -42,8 +43,9 @@ class LoginPageController extends BaseController {
           backgroundColor: Colors.blue[300],
           textColor: Colors.white,
           fontSize: 16.0);
-busy.value=false;
     } else {
+      busy.value = false;
+      print("access token ${token.access}");
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyAccessToken, token.access);
       print("access token ${token.access}");
@@ -55,14 +57,14 @@ busy.value=false;
           SharedPreferencesManager.keyIsLogin, true);
 
       Get.offAll(() => MainPage());
-      busy.value=false;
     }
-    busy.value=false;
+    busy.value = false;
   }
 
   void mapInputsLogin() {
-    if(loginNameController.text.isEmpty||loginPasswordController.text.isEmpty){
-    }else{
+    if (loginNameController.text.isEmpty ||
+        loginPasswordController.text.isEmpty) {
+    } else {
       Map map = {
         "email": loginNameController.text.trim(),
         "password": loginPasswordController.text.trim()

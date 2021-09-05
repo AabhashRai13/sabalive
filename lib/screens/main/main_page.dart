@@ -38,14 +38,14 @@ class _MainPageState extends State<MainPage>
   SwiperController swiperController;
   TabController tabController;
   TabController bottomTabController;
-  
+
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
     bottomTabController = TabController(length: 4, vsync: this);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Widget tabBar = TabBar(
@@ -66,15 +66,17 @@ class _MainPageState extends State<MainPage>
       controller: tabController,
     );
     List<Widget> _screens = [
-      HomePage(tabBar: tabBar,
-      tabController: bottomTabController,),
+      HomePage(
+        tabBar: tabBar,
+        tabController: bottomTabController,
+      ),
       CategoryListPage(),
       CheckOutPage(),
       ProfilePage(),
     ];
-    
+
     return Scaffold(
-      drawer: drawer(),
+      drawer: drawer(context),
       bottomNavigationBar: BottomAppBarContainer(
         controller: bottomTabController,
       ),
