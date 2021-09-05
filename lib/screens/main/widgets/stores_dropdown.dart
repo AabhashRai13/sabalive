@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/constants/enum.dart';
-import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/controllers/store_controller_controller.dart';
 import 'package:sabalive/screens/dropdownfield.dart';
 import 'package:sabalive/screens/main/main_page.dart';
@@ -21,16 +20,16 @@ class StoresDropDown extends StatelessWidget {
                 color: Colors.grey[200],
                 border: Border.all(width: 1.0, color: Colors.grey),
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(Radius.circular(8.0),
-                )
-            ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                )),
             child: DropDownFormField(
               hintText: "Stores",
               titleText: null,
               required: true,
               onChanged: (value) {
-                GlobalVariables.storeId = value;
-                _storeController.setStoreName(storeId: GlobalVariables.storeId);
+                _storeController.assignStoreId(storeId: value);
+                _storeController.setStoreName(storeId: value);
                 Get.off(() => MainPage());
               },
               dataSource: _storeController.dataSource,
