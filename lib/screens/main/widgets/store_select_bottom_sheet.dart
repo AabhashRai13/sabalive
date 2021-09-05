@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/constants/global_variables.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/controllers/store_controller_controller.dart';
 import 'package:sabalive/injector/injector.dart';
