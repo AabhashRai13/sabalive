@@ -15,7 +15,7 @@ class WelcomeBackPage extends StatefulWidget {
 
 class _WelcomeBackPageState extends State<WelcomeBackPage> {
   final LoginPageController loginPageController =
-  Get.put(LoginPageController());
+      Get.put(LoginPageController());
   GlobalKey<FormState> _key = GlobalKey();
 
   @override
@@ -50,10 +50,12 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          if(_key.currentState.validate()){
-            _key.currentState.save();
+          if (!loginPageController.busy.value) {
+            if (_key.currentState.validate()) {
+              _key.currentState.save();
+            }
+            loginPageController.mapInputsLogin();
           }
-          loginPageController.mapInputsLogin();
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
@@ -101,11 +103,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person),
-                          hintText: "Username"
-                      ),
-                      validator: (String value){
-                        if(value.isEmpty){
+                          prefixIcon: Icon(Icons.person), hintText: "Username"),
+                      validator: (String value) {
+                        if (value.isEmpty) {
                           return 'Username is Required';
                         }
                         return null;
@@ -118,11 +118,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          hintText: "Password"
-                      ),
-                      validator: (String value){
-                        if(value.isEmpty){
+                          prefixIcon: Icon(Icons.lock), hintText: "Password"),
+                      validator: (String value) {
+                        if (value.isEmpty) {
                           return 'Password is Required';
                         }
                         return null;
@@ -202,7 +200,8 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     );
 
     return Scaffold(
-      body: Obx(()=>ModalProgressHUD(
+        body: Obx(
+      () => ModalProgressHUD(
         inAsyncCall: loginPageController.busy.value,
         color: Colors.grey,
         progressIndicator: SpinKitCircle(color: Colors.blue[400]),
@@ -234,7 +233,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             ],
           ),
         ),
-      ),)
-    );
+      ),
+    ));
   }
 }

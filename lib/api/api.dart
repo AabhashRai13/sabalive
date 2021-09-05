@@ -44,12 +44,12 @@ class ApiProvider {
 
       if (response.statusCode == 200) {
         return Token.fromJson(response.data);
-      }
+      } else
+        return null;
     } catch (error, stacktrace) {
       _printError(error, stacktrace);
       return null;
     }
-    return null;
   }
 
   Future<RegistrationResponse> registerUser(map) async {
