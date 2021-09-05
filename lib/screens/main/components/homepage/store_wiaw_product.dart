@@ -7,7 +7,6 @@ class StoreWiseProduct extends StatelessWidget {
   StoreWiseProduct({this.homeController});
 
   final HomeController homeController;
-
   @override
   Widget build(BuildContext context) {
     return Obx(

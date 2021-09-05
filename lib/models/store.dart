@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-Storess storeFromJson(String str) => Storess.fromJson(json.decode(str));
+StoreModel storeModelFromJson(String str) => StoreModel.fromJson(json.decode(str));
 
-String storeToJson(Storess data) => json.encode(data.toJson());
+String storeModelToJson(StoreModel data) => json.encode(data.toJson());
 
-class Storess {
-  Storess({
+class StoreModel {
+  StoreModel({
     this.status,
     this.data,
   });
@@ -13,7 +13,7 @@ class Storess {
   String status;
   List<Datum> data;
 
-  factory Storess.fromJson(Map<String, dynamic> json) => Storess(
+  factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
         status: json["status"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );

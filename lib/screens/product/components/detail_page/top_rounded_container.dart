@@ -1,73 +1,253 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/app_properties.dart';
+import 'package:sabalive/controllers/add_to_cart_controller.dart';
+import 'package:sabalive/controllers/counter_controller.dart';
 import 'package:sabalive/models/product_detail_model.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 class TopRoundedContainer extends StatelessWidget {
-  const TopRoundedContainer({
+  TopRoundedContainer({
     Key key,
     this.product,
   }) : super(key: key);
   final ProductDetails product;
+  final AddToCartController addToCartController =
+      Get.put(AddToCartController());
+  final CounterController counterController=Get.put(CounterController());
+
+  rating() {
+    return Get.bottomSheet(BottomSheet(
+        onClosing: () {},
+        builder: (context) => Container(
+            height: 100,
+            padding: EdgeInsets.all(20.0),
+            child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Text("Rate this"),
+                    RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {},
+                    ),
+                  ],
+                )))));
+  }
+
+  Widget addToCartWidget(){
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            height: 50,
+            width: Get.width/2,
+            padding: EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(color: Colors.blue),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    counterController.decrement();
+                  },
+                  child: Icon(Icons.remove),
+                ),
+                Obx(
+                      () => Text(
+                    '${counterController.count}',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    counterController.increment();
+                  },
+                  child: Icon(Icons.add),
+                ),
+            
+              ],
+            ),
+          ),
+        
+          GestureDetector(
+            onTap: (){
+              addToCartController.setProductId(productId: product.data.id);
+              addToCartController.addToCart();
+            },
+            child: Container(
+              height: 50,
+              width: Get.width/5,
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: mainButtonColor,
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(color: Colors.blue),
+              ),
+              child: Icon(Icons.shopping_cart,size: 25,color: Colors.grey[200],),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Text(
-                product.data.title,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                height: 40.0,
-                width: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.data.title.capitalize,
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5.0,),
+                      Text(
+                        product.data.store.storeName.capitalize,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5.0,),
+                      RichText(
+                          text: TextSpan(
+                              text: "Marked Price: ",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                              children: [
+                            TextSpan(
+                                text: "Rs ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black)),
+                            TextSpan(
+                                text: product.data.markedPrice,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black))
+                          ])),
+                      SizedBox(height: 5.0,),
+                      RichText(
+                          text: TextSpan(
+                              text: "Selling Price: ",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                              children: [
+                            TextSpan(
+                                text: "Rs ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black)),
+                            TextSpan(
+                                text: product.data.sellingPrice,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black))
+                          ])),
+                    ],
+                  )),
+  
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    rating();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14)),
+                    child: Row(
+                      children: [
+                        Text(
+                          "4.5",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        )
+                      ],
+                    ),
                   ),
-                  color: Colors.teal[200],
                 ),
-                child: Center(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )),
+              )
+            ],
+          ),
+  
+          addToCartWidget(),
+  
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Description",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Text(
+                    product.data.description,
+                    maxLines: 6,
+                  ),
+                ],
+              )
+          ),
+  
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Return Policy",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                Text(
+                  product.data.returnPolicy,
+                  maxLines: 6,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.06, right: width * 0.3),
-              child: Container(
-                height: 200,
-                child: ListView(shrinkWrap: true, children: [
-                  Html(
-                    data: product.data.description,
-                  )
-                ]),
-              ),
-            ),
-          ],
-        ),
+              ],
+            )
+          ),
+          
+        ],
       ),
     );
   }

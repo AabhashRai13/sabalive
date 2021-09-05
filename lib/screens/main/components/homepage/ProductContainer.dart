@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
-import 'package:sabalive/screens/product/product_detail_page.dart';
+import 'package:sabalive/screens/product/product_page.dart';
 
 class StoreWiseProductContainer extends StatelessWidget {
   final Product product;
 
-  const StoreWiseProductContainer({Key key, @required this.product})
+   StoreWiseProductContainer({Key key, @required this.product})
       : super(key: key);
 
   @override
@@ -14,8 +14,8 @@ class StoreWiseProductContainer extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(() => ProductPage(
-              productId: product.id,
-            ));
+          productId: product.id,
+        ));
       },
       child: Padding(
         padding: EdgeInsets.only(left: 8.0),
@@ -27,26 +27,28 @@ class StoreWiseProductContainer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 120,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(18.0),
-                          image: DecorationImage(
-                              image: AssetImage(product.displayImage))),
-                      // child: Image.asset('assets/images/deals_fries.png'),
-                    ),
-                  ],
+              Card(
+                child: Container(
+                  padding: EdgeInsets.only(left: 10,right: 10),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 120,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            image: DecorationImage(
+                                image: NetworkImage(product.displayImage),fit: BoxFit.fill)),
+                        // child: Image.asset('assets/images/deals_fries.png'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 5.0,
               ),
-              Text(product.title,
+              Text(product.title.capitalize,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,

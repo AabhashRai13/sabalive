@@ -4,23 +4,23 @@
 // import 'package:get/get.dart';
 // import 'package:sabalive/models/product.dart';
 // import 'package:sabalive/screens/product/product_page.dart';
-
+//
 // import '../../../app_properties.dart';
-
+//
 // class ProductList extends StatelessWidget {
 //   List<Product> products;
-
+//
 //   final SwiperController swiperController = SwiperController();
-
+//
 //   ProductList({Key key,
 //     @required this.products}) : super(key: key);
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     double cardHeight = MediaQuery.of(context).size.height / 4;
 //     double cardWidth = MediaQuery.of(context).size.width / 1.8;
 //     if (products == null) products = [];
-
+//
 //     return Padding(
 //       padding: const EdgeInsets.symmetric(vertical: 10.0),
 //       child: SizedBox(
@@ -46,7 +46,7 @@
 //               Color color = Colors.grey[300];
 //               double size = 10.0;
 //               double space = 5.0;
-
+//
 //               if (config.indicatorLayout != PageIndicatorLayout.NONE &&
 //                   config.layout == SwiperLayout.DEFAULT) {
 //                 return new PageIndicator(
@@ -59,12 +59,12 @@
 //                   space: space,
 //                 );
 //               }
-
+//
 //               List<Widget> dots = [];
-
+//
 //               int itemCount = config.itemCount;
 //               int activeIndex = config.activeIndex;
-
+//
 //               for (int i = 0; i < itemCount; ++i) {
 //                 bool active = i == activeIndex;
 //                 dots.add(Container(
@@ -82,7 +82,7 @@
 //                   ),
 //                 ));
 //               }
-
+//
 //               return Padding(
 //                 padding: const EdgeInsets.all(16.0),
 //                 child: Align(
@@ -100,15 +100,15 @@
 //     );
 //   }
 // }
-
+//
 // class ProductCard extends StatelessWidget {
 //   final Product product;
 //   final double height;
 //   final double width;
-
+//
 //   const ProductCard({Key key, this.product, this.height, this.width})
 //       : super(key: key);
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return InkWell(

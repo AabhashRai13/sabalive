@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/controllers/contact_us_controller.dart';
 import 'package:sabalive/screens/about_us/widgets/contact_us_textfield.dart';
 
 
 class ContactUs extends StatelessWidget {
-  const ContactUs({Key key}) : super(key: key);
-  
+  ContactUs({Key key}) : super(key: key);
+  final ContactUsController contactUsController= Get.put(ContactUsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,15 +30,16 @@ class ContactUs extends StatelessWidget {
               Text("Leave us a message, We will get contact with you as soon as possible.",
                 style: TextStyle(fontSize: 16),),
               SizedBox(height: 10,),
-              ContactUsTextField(hinttext: "Name",),
-              ContactUsTextField(hinttext: "Email",),
-              ContactUsTextField(hinttext: "Subject",),
+              ContactUsTextField(hinttext: "Name",controller: contactUsController.nameController,),
+              ContactUsTextField(hinttext: "Email",controller: contactUsController.emailController,),
+              ContactUsTextField(hinttext: "Subject",controller: contactUsController.subjectController,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
                     maxLines: null,
                     minLines: null,
+                    controller: contactUsController.contentController,
                     decoration: InputDecoration(
                         hintText: "Your Message",
                         border: OutlineInputBorder(
@@ -51,7 +53,7 @@ class ContactUs extends StatelessWidget {
               SizedBox(height: 10,),
               InkWell(
                 onTap: () {
-      
+                contactUsController.mapContactInputs();
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2,

@@ -4,7 +4,8 @@ import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage_appbar.dart';
 import 'package:sabalive/screens/main/components/homepage/hompage_invite_banner.dart';
-import 'package:sabalive/screens/main/components/homepage/store_wise_product.dart';
+import 'package:sabalive/screens/main/components/homepage/store_wiaw_product.dart';
+import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/main/widgets/store_select_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,6 +37,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      drawer: drawer(),
       body: CustomScrollView(
         slivers: [
           HomePageAppBar(),
@@ -47,8 +50,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child:
-                        StoreSelectBottomSheet(homeController: _homeController),
+                    child: StoreSelectBottomSheet(homeController: _homeController,),
                   ),
                   HomePageInviteBanner(),
                   // MeatCarousel(
