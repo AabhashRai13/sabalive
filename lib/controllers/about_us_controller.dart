@@ -11,7 +11,7 @@ class AboutUsController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchAboutUs();
+    aboutUS();
   }
 
   void customLaunch(command) async {
@@ -22,13 +22,14 @@ class AboutUsController extends BaseController {
     }
   }
   
-  Future<AboutUs> fetchAboutUs() async {
+  Future<AboutUs> aboutUS() async {
     setState(ViewState.Busy);
     print("Testing");
     aboutUs = await _apiProvider.fetchAboutUsPage();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
-    return aboutUs;
+    update();
+    return null;
   }
   
   Future<Productwisedetails> fetchProductwiseDetails() async{
@@ -37,6 +38,6 @@ class AboutUsController extends BaseController {
     productwisedetails = await _apiProvider.fetchProductwisedetail();
     print(aboutUs.data);
     setState(ViewState.Retrieved);
-    return productwisedetails;
+    return null;
   }
 }

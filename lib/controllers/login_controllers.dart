@@ -3,7 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
-import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/token.dart';
@@ -17,7 +16,7 @@ class LoginPageController extends BaseController {
   final TextEditingController passwordController = TextEditingController();
   TextEditingController loginNameController = TextEditingController();
   TextEditingController registerNameController = TextEditingController();
-  var busy = "".obs;
+  var busy = false.obs;
   final count = 0.obs;
   Token token;
   RegistrationResponse registrationResponse;
@@ -32,9 +31,9 @@ class LoginPageController extends BaseController {
   }
 
   void loginUser(Map map) async {
-    setState(ViewState.Busy);
+    busy.value=true;
     token = await apiAuthProvider.loginUser(map);
-    print("acces token ${token.access}");
+    print("access token ${token.access}");
     if (token == null) {
       Fluttertoast.showToast(
           msg: "Check your credentials",
@@ -43,7 +42,7 @@ class LoginPageController extends BaseController {
           backgroundColor: Colors.blue[300],
           textColor: Colors.white,
           fontSize: 16.0);
-      setState(ViewState.Retrieved);
+busy.value=false;
     } else {
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyAccessToken, token.access);
@@ -57,16 +56,20 @@ class LoginPageController extends BaseController {
 
       Get.offAll(() => MainPage());
 
-      setState(ViewState.Retrieved);
+      busy.value=false;
     }
+    busy.value=false;
   }
 
   void mapInputsLogin() {
-    Map map = {
-      "email": loginNameController.text.trim(),
-      "password": loginPasswordController.text.trim()
-    };
-    loginUser(map);
+    if(loginNameController.text.isEmpty||loginPasswordController.text.isEmpty){
+    }else{
+      Map map = {
+        "email": loginNameController.text.trim(),
+        "password": loginPasswordController.text.trim()
+      };
+      loginUser(map);
+    }
   }
 
   @override

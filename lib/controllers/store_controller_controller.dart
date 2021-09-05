@@ -8,19 +8,18 @@ import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart
 
 class StoreController extends BaseController {
   final SharedPreferencesManager sharedPreferencesManager =
-      locator<SharedPreferencesManager>();
+  locator<SharedPreferencesManager>();
   final List<String> storenames =
       ["Udaypur Masu Pasal", "Suman meat shop", "Dharan Pork shop"].obs;
 
   var storeName = "".obs;
   List dataSource = [].obs;
   ApiProvider _apiProvider = ApiProvider();
-  Storess store;
+  StoreModel store;
   List stores = [].obs;
   @override
   void onInit() {
     super.onInit();
-
     fetchStores();
   }
 
@@ -49,8 +48,7 @@ class StoreController extends BaseController {
     }
   }
 
-  void assignStoreId({int storeId}) async {
+  void assignStoreId({int storeId}) async{
     await sharedPreferencesManager.putInt(
-        SharedPreferencesManager.keyStoreId, storeId);
-  }
+        SharedPreferencesManager.keyStoreId, storeId);  }
 }

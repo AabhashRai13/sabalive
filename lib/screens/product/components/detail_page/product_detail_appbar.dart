@@ -1,59 +1,56 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:sabalive/controllers/wishlist_controller.dart';
+import 'package:sabalive/models/product_detail_model.dart';
 import '../../../../app_properties.dart';
+
 class ProductDetailAppbar extends StatelessWidget {
-  const ProductDetailAppbar({
-    Key key,
+  ProductDetailAppbar({
+    Key key, this.product,
   }) : super(key: key);
-  
+final WishlistController wishlistController=Get.put(WishlistController());
+  final ProductDetails product;
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       elevation: 0.0,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30)
+        child: GestureDetector(
+          onTap: (){
+            Get.back();
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[300], borderRadius: BorderRadius.circular(30)),
+            child: Icon(CupertinoIcons.back)
           ),
-          child: IconButton(
-              onPressed: (){
-                Get.back();
-              },
-              icon: Icon(CupertinoIcons.back)),
         ),
       ),
       iconTheme: IconThemeData(color: darkGrey),
       actions: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(14)
-            ),
-            child: Row(
-              children: [
-                Text("4.5",
-                  style: const TextStyle(
-                    fontSize: 14,
+      Obx(() => Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                  onTap: () {
+                    if (wishlistController.productList.contains(product)) {
+                      wishlistController.removeProduct(product);
+                    } else {
+                      wishlistController.addProduct(product);
+                    }
+                  },
+                  child: wishlistController.productList.contains(product)?Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                  ):Icon(
+                    Icons.favorite_border,
                     color: Colors.black,
-                    fontWeight: FontWeight.w600,
                   ),
-                ),
-                const SizedBox(width: 5,),
-                Icon(Icons.star,color: Colors.yellow,)
-              ],
-            ),
-          ),
-        )
-      ],
-    
+              ),
+            ))      ],
     );
   }
 }

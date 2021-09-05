@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/constants/enum.dart';
+import 'package:sabalive/controllers/cart_controller.dart';
 import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/address/add_address_page.dart';
 import 'package:sabalive/screens/payment/unpaid_page.dart';
 
 import '../../app_properties.dart';
-import 'components/credit_card.dart';
-import 'components/shop_item_list.dart';
 
 class CheckOutPage extends StatefulWidget {
   @override
@@ -14,8 +16,9 @@ class CheckOutPage extends StatefulWidget {
 }
 
 class _CheckOutPageState extends State<CheckOutPage> {
+  final CartController cartController = Get.put(CartController());
   SwiperController swiperController = SwiperController();
-  
+
   List<Product> products = [
     Product('assets/headphones.png',
         'Boat roackerz 400 On-Ear Bluetooth Headphones', 'description', 45.3),
@@ -24,17 +27,17 @@ class _CheckOutPageState extends State<CheckOutPage> {
     Product('assets/headphones_3.png',
         'Boat roackerz 300 On-Ear Bluetooth Headphones', 'description', 58.3)
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     Widget checkOutButton = InkWell(
       onTap: () => Navigator.of(context)
           .push(MaterialPageRoute(builder: (_) => AddAddressPage())),
       child: Container(
-        height: 80,
+        height: 60,
         width: MediaQuery.of(context).size.width / 1.5,
         decoration: BoxDecoration(
-                color: mainButtonColor,
+            color: mainButtonColor,
             boxShadow: [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.16),
@@ -53,145 +56,147 @@ class _CheckOutPageState extends State<CheckOutPage> {
         ),
       ),
     );
+
+    Widget _buildLoadingWidget() {
+      return SpinKitCircle(color: Colors.blue[400]);
+    }
     
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: IconThemeData(color: darkGrey),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.payment),
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
-          )
-        ],
-        title: Text(
-          'Checkout',
-          style: TextStyle(
-              color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (_, constraints) => SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  height: 48.0,
-                  color: lightgreen,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    Widget _successWidget() {
+      return cartController.cart.data == null
+          ? Center(
+              child: Text(
+                "No Data Found",
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+            )
+          : LayoutBuilder(
+              builder: (_, constraints) => SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        'Subtotal',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 32.0),
+                        height: 48.0,
+                        color: darkgreen,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Subtotal',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                            Text(
+                              cartController.cart.data.subtotal,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )
+                          ],
+                        ),
                       ),
-                      Text(
-                        products.length.toString() + ' items',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      )
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        height: Get.height-200,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount:
+                                cartController.cart.data.cartproducts.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final cartInfo = cartController.cart.data.cartproducts[index];
+                              return Container(
+                                child: Dismissible(
+                                  key: ObjectKey(cartInfo),
+                                  child: Card(
+                                      margin: EdgeInsets.all(10.0),
+                                      child: Container(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  cartInfo.product
+                                                      .toString(),
+                                                  style:
+                                                  TextStyle(color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "Rate: "+ "Rs "+
+                                                      cartInfo.rate
+                                                          .toString(),
+                                                  style:
+                                                  TextStyle(color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "Quantity: "+
+                                                      cartInfo.quantity
+                                                          .toString(),
+                                                  style:
+                                                  TextStyle(color: Colors.black),
+                                                ),
+  
+                                                Text(
+                                                  "Subtotal: "+
+                                                      cartInfo.subtotal
+                                                          .toString(),
+                                                  style:
+                                                  TextStyle(color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                            GestureDetector(
+                                              onTap: (){
+                                              },
+                                              child: Icon(Icons.delete_forever),
+                                            )
+                                          ],
+                                        )
+                                      )),
+                                ),
+                              );
+                            }),
+                      ),
+                      checkOutButton
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 300,
-                  child: Scrollbar(
-                    child: ListView.builder(
-                      itemBuilder: (_, index) => ShopItemList(
-                        products[index],
-                        onRemove: () {
-                          setState(() {
-                            products.remove(products[index]);
-                          });
-                        },
-                      ),
-                      itemCount: products.length,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Payment',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: darkGrey,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  height: 250,
-                  child: Swiper(
-                    itemCount: 2,
-                    itemBuilder: (_, index) {
-                      return CreditCard();
-                    },
-                    scale: 0.8,
-                    controller: swiperController,
-                    viewportFraction: 0.6,
-                    loop: false,
-                    fade: 0.7,
-                  ),
-                ),
-                SizedBox(height: 24),
-                Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).padding.bottom == 0
-                              ? 20
-                              : MediaQuery.of(context).padding.bottom),
-                      child: checkOutButton,
-                    ))
-              ],
-            ),
+              ),
+            );
+    }
+
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          iconTheme: IconThemeData(color: darkGrey),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.payment),
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
+            )
+          ],
+          title: Text(
+            'Checkout',
+            style: TextStyle(
+                color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Scroll extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    LinearGradient grT = LinearGradient(
-        colors: [Colors.transparent, Colors.black26],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter);
-    LinearGradient grB = LinearGradient(
-        colors: [Colors.transparent, Colors.black26],
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter);
-    
-    canvas.drawRect(
-        Rect.fromLTRB(0, 0, size.width, 30),
-        Paint()
-          ..shader = grT.createShader(Rect.fromLTRB(0, 0, size.width, 30)));
-    
-    canvas.drawRect(Rect.fromLTRB(0, 30, size.width, size.height - 40),
-        Paint()..color = Color.fromRGBO(50, 50, 50, 0.4));
-    
-    canvas.drawRect(
-        Rect.fromLTRB(0, size.height - 40, size.width, size.height),
-        Paint()
-          ..shader = grB.createShader(
-              Rect.fromLTRB(0, size.height - 40, size.width, size.height)));
-  }
-  
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+        
+        body: Obx(() => cartController.state == ViewState.Busy
+            ? _buildLoadingWidget()
+            : _successWidget()));
   }
 }
