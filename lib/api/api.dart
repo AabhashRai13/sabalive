@@ -19,17 +19,17 @@ class ApiProvider {
   final Dio _dio = new Dio();
   final String _baseUrl = 'https://dipesh779.pythonanywhere.com/api/';
   final SharedPreferencesManager _sharedPreferencesManager =
-  locator<SharedPreferencesManager>();
-  
+      locator<SharedPreferencesManager>();
+
   ApiProvider() {
     _dio.options.baseUrl = _baseUrl;
     _dio.interceptors.add(DioLoggingInterceptors());
   }
-  
+
   void _printError(error, StackTrace stacktrace) {
     debugPrint('error: $error & stacktrace: $stacktrace');
   }
-  
+
   Future<Token> loginUser(map) async {
     try {
       final response = await _dio.post(
@@ -41,7 +41,7 @@ class ApiProvider {
         ),
         data: map,
       );
-      
+
       if (response.statusCode == 200) {
         return Token.fromJson(response.data);
       }
@@ -51,7 +51,7 @@ class ApiProvider {
     }
     return null;
   }
-  
+
   Future<RegistrationResponse> registerUser(map) async {
     try {
       final response = await _dio.post(
@@ -63,14 +63,14 @@ class ApiProvider {
           },
         ),
       );
-      
+
       return RegistrationResponse.fromJson(response.data);
     } catch (error) {
       print("Registration error $error");
       return null;
     }
   }
-  
+
   Future<ForgetPassword> requestPasswordChange(map) async {
     try {
       final response = await _dio.post(
@@ -83,64 +83,60 @@ class ApiProvider {
           },
         ),
       );
-      
+
       return ForgetPassword.fromJson(response.data);
     } catch (error) {
       print("Forgetpassword error $error");
       return null;
     }
   }
-  
+
   Future<StoreModel> fetchStores() async {
     try {
       final response = await _dio.get(
         'customer/store/list/',
       );
-      
+
       return StoreModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
+
   Future<StoreWiseProducts> fetchStoreWiseProducts() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
         'customer/store/detail/$storeId/',
       );
-      
+
       return StoreWiseProducts.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
+
   Future<AboutUs> fetchAboutUsPage() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
-      final response = await _dio.get(
-          'store-$storeId/about-us/',
-          options: Options(
-              headers: {
-                'requirestoken': false,
-              }
-          )
-      );
+      final response = await _dio.get('store-$storeId/about-us/',
+          options: Options(headers: {
+            'requirestoken': false,
+          }));
       return AboutUs.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
+
   Future<Productwisedetails> fetchProductwisedetail() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
         'customer/store/detail/$storeId/',
@@ -159,23 +155,23 @@ class ApiProvider {
 
   Future<ProductDetails> fetchProductDetails({int productId}) async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
         'customer/store/$storeId/product/detail/$productId/',
       );
-    
+
       return ProductDetails.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
-  Future<AddToCart> addToCarts(int productId) async{
+
+  Future<AddToCart> addToCarts(int productId) async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
-    try{
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try {
       final response = await _dio.get(
         'customer/store-$storeId//product-$productId//add-to-cart/?quantity=2',
         options: Options(
@@ -185,16 +181,15 @@ class ApiProvider {
         ),
       );
       return AddToCart.fromJson(response.data);
-    }catch(error){
+    } catch (error) {
       print("store api error $error");
       return null;
     }
   }
-  
-  
+
   Future<ContactUs> contact(map) async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.post(
         'store-$storeId/contact/us/',
@@ -211,11 +206,11 @@ class ApiProvider {
       return null;
     }
   }
-  
-  Future<Cart> fetchCart() async{
-    try{
+
+  Future<Cart> fetchCart() async {
+    try {
       final response = await _dio.get(
-          "customer/cart-product/list/",
+        "customer/cart-product/list/",
         options: Options(
           headers: {
             'requirestoken': true,
@@ -223,13 +218,9 @@ class ApiProvider {
         ),
       );
       return Cart.fromJson(response.data);
-    }catch(error){
-      print("store api error $error");
+    } catch (error) {
+      print("cart api error $error");
       return null;
     }
   }
-  
 }
-
-
-
