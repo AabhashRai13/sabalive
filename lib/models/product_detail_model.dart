@@ -1,11 +1,10 @@
 // To parse this JSON data, do
 //
-//     final productDetails = productDetailsFromJson(jsonString);
+//     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
 
-ProductDetails productDetailsFromJson(String str) =>
-    ProductDetails.fromJson(json.decode(str));
+ProductDetails productDetailsFromJson(String str) => ProductDetails.fromJson(json.decode(str));
 
 String productDetailsToJson(ProductDetails data) => json.encode(data.toJson());
 
@@ -16,17 +15,16 @@ class ProductDetails {
   });
   
   Data data;
-  List<dynamic> relatedProducts;
+  List<RelatedProducts> relatedProducts;
   
   factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
     data: Data.fromJson(json["data"]),
-    relatedProducts:
-    List<dynamic>.from(json["related_products"].map((x) => x)),
+    relatedProducts: List<RelatedProducts>.from(json["related_products"].map((x) => RelatedProducts.fromJson(x))),
   );
   
   Map<String, dynamic> toJson() => {
     "data": data.toJson(),
-    "related_products": List<dynamic>.from(relatedProducts.map((x) => x)),
+    "related_products": List<dynamic>.from(relatedProducts.map((x) => x.toJson())),
   };
 }
 
@@ -46,6 +44,8 @@ class Data {
     this.sellingPrice,
     this.store,
     this.iconUrl,
+    this.productrequestoptions,
+    this.productimages,
   });
   
   int id;
@@ -62,6 +62,8 @@ class Data {
   String sellingPrice;
   Store store;
   String iconUrl;
+  List<dynamic> productrequestoptions;
+  List<dynamic> productimages;
   
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
@@ -78,6 +80,8 @@ class Data {
     sellingPrice: json["selling_price"],
     store: Store.fromJson(json["store"]),
     iconUrl: json["icon_url"],
+    productrequestoptions: List<dynamic>.from(json["productrequestoptions"].map((x) => x)),
+    productimages: List<dynamic>.from(json["productimages"].map((x) => x)),
   );
   
   Map<String, dynamic> toJson() => {
@@ -95,6 +99,8 @@ class Data {
     "selling_price": sellingPrice,
     "store": store.toJson(),
     "icon_url": iconUrl,
+    "productrequestoptions": List<dynamic>.from(productrequestoptions.map((x) => x)),
+    "productimages": List<dynamic>.from(productimages.map((x) => x)),
   };
 }
 
@@ -119,5 +125,41 @@ class Store {
     "id": id,
     "name": name,
     "store_name": storeName,
+  };
+}
+
+class RelatedProducts {
+  RelatedProducts({
+    this.id,
+    this.title,
+    this.displayImage,
+    this.markedPrice,
+    this.sellingPrice,
+    this.iconUrl,
+  });
+  
+  int id;
+  String title;
+  String displayImage;
+  String markedPrice;
+  String sellingPrice;
+  String iconUrl;
+  
+  factory RelatedProducts.fromJson(Map<String, dynamic> json) => RelatedProducts(
+    id: json["id"],
+    title: json["title"],
+    displayImage: json["display_image"],
+    markedPrice: json["marked_price"],
+    sellingPrice: json["selling_price"],
+    iconUrl: json["icon_url"],
+  );
+  
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "title": title,
+    "display_image": displayImage,
+    "marked_price": markedPrice,
+    "selling_price": sellingPrice,
+    "icon_url": iconUrl,
   };
 }
