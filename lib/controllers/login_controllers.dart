@@ -55,7 +55,6 @@ busy.value=false;
           SharedPreferencesManager.keyIsLogin, true);
 
       Get.offAll(() => MainPage());
-
       busy.value=false;
     }
     busy.value=false;
