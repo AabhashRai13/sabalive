@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/controllers/add_to_cart_controller.dart';
 import 'package:sabalive/controllers/counter_controller.dart';
+import 'package:sabalive/controllers/variant_button_controller.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/screens/product/components/detail_page/related_product_container.dart';
+import 'package:sabalive/screens/product/components/detail_page/variant_button.dart';
 
 class TopRoundedContainer extends StatelessWidget {
   TopRoundedContainer({
@@ -15,7 +17,9 @@ class TopRoundedContainer extends StatelessWidget {
   final ProductDetails product;
   final AddToCartController addToCartController =
       Get.put(AddToCartController());
-  final CounterController counterController=Get.put(CounterController());
+  final CounterController counterController = Get.put(CounterController());
+  final VariantButtonController variantButtonController =
+      Get.put(VariantButtonController());
 
   rating() {
     return Get.bottomSheet(BottomSheet(
@@ -45,7 +49,23 @@ class TopRoundedContainer extends StatelessWidget {
                 )))));
   }
 
-  Widget addToCartWidget(){
+  Row addRadioButton(int btnIndex, String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        GetBuilder<VariantButtonController>(
+          builder: (_) => VariantButton(
+              value: variantButtonController.variant[btnIndex],
+              groupValue: variantButtonController.select,
+              onChanged: (value) =>
+                  variantButtonController.onClickRadioButton(value),
+              
+              leading: title)
+        ),
+      ],
+    );
+  }
+  Widget addToCartWidget() {
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -53,7 +73,7 @@ class TopRoundedContainer extends StatelessWidget {
         children: [
           Container(
             height: 50,
-            width: Get.width/2,
+            width: Get.width / 2,
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
@@ -69,7 +89,7 @@ class TopRoundedContainer extends StatelessWidget {
                   child: Icon(Icons.remove),
                 ),
                 Obx(
-                      () => Text(
+                  () => Text(
                     '${counterController.count}',
                     style: TextStyle(
                       fontSize: 25,
@@ -83,26 +103,28 @@ class TopRoundedContainer extends StatelessWidget {
                   },
                   child: Icon(Icons.add),
                 ),
-            
               ],
             ),
           ),
-        
           GestureDetector(
-            onTap: (){
+            onTap: () {
               addToCartController.setProductId(productId: product.data.id);
               addToCartController.addToCart();
             },
             child: Container(
               height: 50,
-              width: Get.width/5,
+              width: Get.width / 5,
               padding: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 color: mainButtonColor,
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(color: Colors.blue),
               ),
-              child: Icon(Icons.shopping_cart,size: 25,color: Colors.grey[200],),
+              child: Icon(
+                Icons.shopping_cart,
+                size: 25,
+                color: Colors.grey[200],
+              ),
             ),
           )
         ],
@@ -133,14 +155,18 @@ class TopRoundedContainer extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5.0,),
+                      SizedBox(
+                        height: 5.0,
+                      ),
                       Text(
                         product.data.store.storeName.capitalize,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5.0,),
+                      SizedBox(
+                        height: 5.0,
+                      ),
                       RichText(
                           text: TextSpan(
                               text: "Marked Price: ",
@@ -159,7 +185,9 @@ class TopRoundedContainer extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black))
                           ])),
-                      SizedBox(height: 5.0,),
+                      SizedBox(
+                        height: 5.0,
+                      ),
                       RichText(
                           text: TextSpan(
                               text: "Selling Price: ",
@@ -180,7 +208,6 @@ class TopRoundedContainer extends StatelessWidget {
                           ])),
                     ],
                   )),
-  
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: GestureDetector(
@@ -188,8 +215,8 @@ class TopRoundedContainer extends StatelessWidget {
                     rating();
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14)),
@@ -217,56 +244,69 @@ class TopRoundedContainer extends StatelessWidget {
               )
             ],
           ),
-  
           addToCartWidget(),
-  
+       Container(
+         height: 50,
+         child: ListView(
+           scrollDirection: Axis.horizontal,
+           children: [
+           addRadioButton(0, "100 gm"),
+           addRadioButton(1, "200 gm"),
+           addRadioButton(2, "500 gm"),
+           addRadioButton(3, "1000 gm"),
+
+         ],),
+       ),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Description",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Text(
+                    "Description",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                   Text(
                     product.data.description,
                     maxLines: 6,
                   ),
                 ],
-              )
-          ),
-  
-          product.relatedProducts.length==0?Container():Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  child: Text("Related Product",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      )),
-                ),
-                Card(
-                  child: Container(
-                    height: 200.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: product.relatedProducts.length,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        RelatedProducts relatedproduct= product.relatedProducts[index];
-                        return RelatedProductContainer(
-                          product: relatedproduct,
-                        );
-                      },
-                    )
+              )),
+          product.relatedProducts.length == 0
+              ? Container()
+              : Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        child: Text("Related Product",
+                            style: TextStyle(
+                              fontSize: 19.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87,
+                            )),
+                      ),
+                      Card(
+                        child: Container(
+                            height: 200.0,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: product.relatedProducts.length,
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                RelatedProducts relatedproduct =
+                                    product.relatedProducts[index];
+                                return RelatedProductContainer(
+                                  product: relatedproduct,
+                                );
+                              },
+                            )),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          ),
-          
+                ),
         ],
       ),
     );
