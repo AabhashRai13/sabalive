@@ -5,6 +5,7 @@ import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/controllers/add_to_cart_controller.dart';
 import 'package:sabalive/controllers/counter_controller.dart';
 import 'package:sabalive/models/product_detail_model.dart';
+import 'package:sabalive/screens/product/components/detail_page/related_product_container.dart';
 
 class TopRoundedContainer extends StatelessWidget {
   TopRoundedContainer({
@@ -233,18 +234,37 @@ class TopRoundedContainer extends StatelessWidget {
               )
           ),
   
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+          product.relatedProducts.length==0?Container():Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Return Policy",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                Text(
-                  product.data.returnPolicy,
-                  maxLines: 6,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                  child: Text("Related Product",
+                      style: TextStyle(
+                        fontSize: 19.0,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      )),
                 ),
+                Card(
+                  child: Container(
+                    height: 200.0,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: product.relatedProducts.length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        RelatedProducts relatedproduct= product.relatedProducts[index];
+                        return RelatedProductContainer(
+                          product: relatedproduct,
+                        );
+                      },
+                    )
+                  ),
+                )
               ],
-            )
+            ),
           ),
           
         ],

@@ -62,7 +62,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     }
     
     Widget _successWidget() {
-      return cartController.cart.data == null
+      return cartController.cart == null
           ? Center(
               child: Text(
                 "No Data Found",
