@@ -100,7 +100,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     )),
                 onChanged: (value) {
                   if (value.isNotEmpty) {
-                    List<Category> tempList = List<Category>();
+                    List<Category> tempList = <Category>[];
                     categories.forEach((category) {
                       if (category.category.toLowerCase().contains(value)) {
                         tempList.add(category);
