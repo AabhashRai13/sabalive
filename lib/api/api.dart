@@ -188,6 +188,27 @@ class ApiProvider {
     }
   }
 
+  Future<bool> deleteCartItem(int id, int cartId) async {
+    try {
+      final response = await _dio.delete(
+        'customer/remove/cart-$cartId/product-$id/',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'requirestoken': true,
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        return true;
+      }
+    } catch (error) {
+      print("login error $error");
+      return false;
+    }
+    return null;
+  }
+
   Future<ContactUs> contact(map) async {
     int storeId =
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
