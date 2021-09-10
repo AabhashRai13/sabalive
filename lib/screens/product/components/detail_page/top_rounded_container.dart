@@ -54,17 +54,16 @@ class TopRoundedContainer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         GetBuilder<VariantButtonController>(
-          builder: (_) => VariantButton(
-              value: variantButtonController.variant[btnIndex],
-              groupValue: variantButtonController.select,
-              onChanged: (value) =>
-                  variantButtonController.onClickRadioButton(value),
-              
-              leading: title)
-        ),
+            builder: (_) => VariantButton(
+                value: variantButtonController.variant[btnIndex],
+                groupValue: variantButtonController.select,
+                onChanged: (value) =>
+                    variantButtonController.onClickRadioButton(value),
+                leading: title)),
       ],
     );
   }
+
   Widget addToCartWidget() {
     return Container(
       padding: const EdgeInsets.all(8.0),
@@ -108,8 +107,9 @@ class TopRoundedContainer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              addToCartController.setProductId(productId: product.data.id);
-              addToCartController.addToCart();
+              addToCartController.addToCart(
+                  productID: product.data.id,
+                  productQuantiity: counterController.count);
             },
             child: Container(
               height: 50,
@@ -245,18 +245,18 @@ class TopRoundedContainer extends StatelessWidget {
             ],
           ),
           addToCartWidget(),
-       Container(
-         height: 50,
-         child: ListView(
-           scrollDirection: Axis.horizontal,
-           children: [
-           addRadioButton(0, "100 gm"),
-           addRadioButton(1, "200 gm"),
-           addRadioButton(2, "500 gm"),
-           addRadioButton(3, "1000 gm"),
-
-         ],),
-       ),
+          Container(
+            height: 50,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                addRadioButton(0, "100 gm"),
+                addRadioButton(1, "200 gm"),
+                addRadioButton(2, "500 gm"),
+                addRadioButton(3, "1000 gm"),
+              ],
+            ),
+          ),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
