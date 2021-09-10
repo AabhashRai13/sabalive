@@ -4,6 +4,7 @@ import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
+import 'package:sabalive/models/blog_model.dart';
 import 'package:sabalive/models/cart_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
@@ -220,6 +221,20 @@ class ApiProvider {
       return Cart.fromJson(response.data);
     } catch (error) {
       print("cart api error $error");
+      return null;
+    }
+  }
+  
+  Future<BlogModel> fetchBlog() async{
+    int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try{
+      final response = await _dio.get(
+        "store-4/blogs",
+      );
+          return BlogModel.fromJson(response.data);
+    } catch(error){
+      print("Blog api error $error");
       return null;
     }
   }
