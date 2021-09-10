@@ -13,7 +13,7 @@ class Blogs extends StatelessWidget {
   }
 
   Widget _successWidget() {
-    return blogController.blogs == null
+    return blogController.blogs==null
         ? Center(
             child: Text(
               "No Data Found",
@@ -29,31 +29,23 @@ class Blogs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text("Ned Stark",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Text(
-                    "Hello Everyone, hope you are having a wonderful day.",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    "Your daily read",
+                    style: TextStyle(color: Colors.black),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text("Your daily read"),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  blogController.blogs == null
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : Container(
+                  SizedBox(height: 10.0,),
+                  Container(
                           height: Get.height,
                           child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: blogController.blogs.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
-                                    margin: EdgeInsets.all(8.0),
-                                    padding: EdgeInsets.all(8.0),
-                                    height: Get.height / 6,
+                                    height: Get.height/6,
                                     child: Row(
                                       children: [
                                         Expanded(
@@ -73,38 +65,50 @@ class Blogs extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  "${blogController.blogs[index].title}",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "${blogController.blogs[index].title}",
+                                                      style: TextStyle(
+                                                          color: Colors.grey[400]),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: (){
+                                                      },
+                                                      child: Icon(Icons.more_horiz,color: Colors.grey[400],),
+                                                    )
+                                                  ],
                                                 ),
                                                 SizedBox(
-                                                  height: 3,
+                                                  height: 5,
                                                 ),
                                                 Text(
                                                   "${blogController.blogs[index].content}",
-                                                  style:
-                                                      TextStyle(fontSize: 16),
-                                                  maxLines: 3,
+                                                  maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                 ),
-                                                Spacer(),
-                                                Center(
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                          "${blogController.blogs[index].views.toString()}"),
-                                                      SizedBox(
-                                                        width: 5.0,
-                                                      ),
-                                                      Icon(Icons.visibility)
-                                                    ],
-                                                  ),
+                                                SizedBox(height: 15.0,),
+                                                Text("Store Id: ${blogController.blogs[index].store}",style: TextStyle(color: Colors.black),),
+                                                SizedBox(height: 5.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text("April 24, 2020",style: TextStyle(color: Colors.grey[400]),),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                            "${blogController.blogs[index].views.toString()}"),
+                                                        SizedBox(
+                                                          width: 5.0,
+                                                        ),
+                                                        Icon(Icons.visibility)
+                                                      ],
+                                                    )
+                                                    
+                                                  ],
                                                 ),
-                                                Divider()
                                               ],
                                             ))
                                       ],

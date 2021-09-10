@@ -125,9 +125,7 @@ class ApiProvider {
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get('store-$storeId/about-us/',
-          options: Options(headers: {
-            'requirestoken': false,
-          }));
+         );
       return AboutUs.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
@@ -251,7 +249,7 @@ class ApiProvider {
     _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try{
       final response = await _dio.get(
-        "store-4/blogs",
+        "store-$storeId/blogs",
       );
           return BlogModel.fromJson(response.data);
     } catch(error){

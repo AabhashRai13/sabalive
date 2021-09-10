@@ -17,7 +17,9 @@ class BlogController extends BaseController {
   void fetchBlogs() async {
     setState(ViewState.Busy);
     blogModel = await _apiProvider.fetchBlog();
-    blogs.assignAll(blogModel.data);
+    if(blogModel!=null){
+      blogs.assignAll(blogModel.data);
+    }
     setState(ViewState.Retrieved);
   }
 }
