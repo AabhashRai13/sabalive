@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/models/product_detail_model.dart';
-import 'package:sabalive/screens/product/product_page.dart';
+import 'package:sabalive/screens/product/product_detail_page.dart';
 
 class RelatedProductContainer extends StatelessWidget {
   final RelatedProducts product;
-  
-  RelatedProductContainer({Key key, @required this.product})
-      : super(key: key);
-  
+
+  RelatedProductContainer({Key key, @required this.product}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Get.to(() => ProductPage(
-          productId: product.id,
-        ));
+              productId: product.id,
+            ));
       },
       child: Padding(
         padding: EdgeInsets.only(left: 8.0),
@@ -29,7 +28,7 @@ class RelatedProductContainer extends StatelessWidget {
             children: <Widget>[
               Card(
                 child: Container(
-                  padding: EdgeInsets.only(left: 10,right: 10),
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   child: Stack(
                     children: <Widget>[
                       Container(
@@ -38,7 +37,8 @@ class RelatedProductContainer extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.grey[200],
                             image: DecorationImage(
-                                image: NetworkImage(product.displayImage),fit: BoxFit.fill)),
+                                image: NetworkImage(product.displayImage),
+                                fit: BoxFit.fill)),
                         // child: Image.asset('assets/images/deals_fries.png'),
                       ),
                     ],
