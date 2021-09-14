@@ -8,9 +8,18 @@ class AddToCartController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   AddToCart addtoCart;
 
-  Future<AddToCart> addToCart({int productID, int productQuantiity}) async {
+
+void mapProduct({int productID, int productQuantiity, List productChoices}){
+ Map productMap = {
+    "quantity" : productQuantiity,
+    "choices" : productChoices
+};
+addToCart(productID: productID, productMap:productMap);
+}
+
+  Future<AddToCart> addToCart({int productID, Map productMap}) async {
     setState(ViewState.Busy);
-    addtoCart = await _apiProvider.addToCarts(productID, productQuantiity);
+    addtoCart = await _apiProvider.addToCarts(productID, productMap);
     setState(ViewState.Retrieved);
     print(addtoCart);
 

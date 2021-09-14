@@ -39,9 +39,11 @@ class TopRoundedContainer extends StatelessWidget {
           TextButton(
             child: const Text('Yes'),
             onPressed: () {
-                addToCartController.addToCart(
+                                 Navigator.of(context).pop();
+
+                addToCartController.mapProduct(
                   productID: product.data.id,
-                  productQuantiity: counterController.count);
+                  productQuantiity: counterController.count, productChoices: counterController.optionId);
             },
           ),
            TextButton(
@@ -185,9 +187,9 @@ class TopRoundedContainer extends StatelessWidget {
           GestureDetector(
             onTap: () {
               
-            counterController.firstTime!= 0?    addToCartController.addToCart(
+            counterController.firstTime!= 0?    addToCartController.mapProduct(
                   productID: product.data.id,
-                  productQuantiity: counterController.count): _chooseOptionAlert(context);
+                  productQuantiity: counterController.count, productChoices: counterController.optionId): _chooseOptionAlert(context);
             },
             child: Container(
               height: 50,

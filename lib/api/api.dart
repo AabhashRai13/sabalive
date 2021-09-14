@@ -167,12 +167,13 @@ class ApiProvider {
     }
   }
 
-  Future<AddToCart> addToCarts(int productId, int productQuantity) async {
+  Future<AddToCart> addToCarts(int productId, Map productMap) async {
     int storeId =
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
-      final response = await _dio.get(
-        'customer/store-$storeId//product-$productId//add-to-cart/?quantity=$productQuantity',
+      final response = await _dio.post(
+        'customer/store-$storeId//product-$productId//add-to-cart/',
+        data: productMap,
         options: Options(
           headers: {
             'requirestoken': true,
