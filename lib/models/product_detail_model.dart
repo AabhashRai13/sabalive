@@ -62,7 +62,7 @@ class Data {
   String sellingPrice;
   Store store;
   String iconUrl;
-  List<dynamic> productrequestoptions;
+  List<Productrequestoption> productrequestoptions;
   List<dynamic> productimages;
   
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -80,7 +80,7 @@ class Data {
     sellingPrice: json["selling_price"],
     store: Store.fromJson(json["store"]),
     iconUrl: json["icon_url"],
-    productrequestoptions: List<dynamic>.from(json["productrequestoptions"].map((x) => x)),
+    productrequestoptions: List<Productrequestoption>.from(json["productrequestoptions"].map((x) => Productrequestoption.fromJson(x))),
     productimages: List<dynamic>.from(json["productimages"].map((x) => x)),
   );
   
@@ -102,6 +102,57 @@ class Data {
     "productrequestoptions": List<dynamic>.from(productrequestoptions.map((x) => x)),
     "productimages": List<dynamic>.from(productimages.map((x) => x)),
   };
+}
+class Productrequestoption {
+    Productrequestoption({
+        this.id,
+        this.request,
+        this.productrequestoptionchoices,
+    });
+
+    int id;
+    String request;
+    List<Productrequestoptionchoice> productrequestoptionchoices;
+
+    factory Productrequestoption.fromJson(Map<String, dynamic> json) => Productrequestoption(
+        id: json["id"],
+        request: json["request"],
+        productrequestoptionchoices: List<Productrequestoptionchoice>.from(json["productrequestoptionchoices"].map((x) => Productrequestoptionchoice.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "request": request,
+        "productrequestoptionchoices": List<dynamic>.from(productrequestoptionchoices.map((x) => x.toJson())),
+    };
+}
+
+class Productrequestoptionchoice {
+    Productrequestoptionchoice({
+        this.id,
+        this.option,
+        this.incDcrRate,
+        this.rate,
+    });
+
+    int id;
+    String option;
+    bool incDcrRate;
+    int rate;
+
+    factory Productrequestoptionchoice.fromJson(Map<String, dynamic> json) => Productrequestoptionchoice(
+        id: json["id"],
+        option: json["option"],
+        incDcrRate: json["inc_dcr_rate"] == null ? null : json["inc_dcr_rate"],
+        rate: json["rate"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "option": option,
+        "inc_dcr_rate": incDcrRate == null ? null : incDcrRate,
+        "rate": rate,
+    };
 }
 
 class Store {

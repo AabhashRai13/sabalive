@@ -21,32 +21,86 @@ class TopRoundedContainer extends StatelessWidget {
   final VariantButtonController variantButtonController =
       Get.put(VariantButtonController());
 
-  rating() {
-    return Get.bottomSheet(BottomSheet(
-        onClosing: () {},
-        builder: (context) => Container(
-            height: 100,
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Text("Rate this"),
-                    RatingBar.builder(
-                      initialRating: 3,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {},
-                    ),
-                  ],
-                )))));
+  Widget requestOptionWidget() {
+    return GetBuilder<CounterController>(
+        init: counterController
+            .updateInitOptionId(product.data.productrequestoptions),
+        builder: (_) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ExpansionPanelList(
+                animationDuration: Duration(milliseconds: 500),
+                dividerColor: Colors.red,
+                elevation: 1,
+                children: [
+                  ExpansionPanel(
+                    body: Container(
+                        child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: product.data.productrequestoptions.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(product
+                                  .data.productrequestoptions[index].request),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: product
+                                    .data
+                                    .productrequestoptions[index]
+                                    .productrequestoptionchoices
+                                    .length,
+                                itemBuilder: (context, index2) {
+                                  return ListTile(
+                                    title: Text(product
+                                        .data
+                                        .productrequestoptions[index]
+                                        .productrequestoptionchoices[index2]
+                                        .option),
+                                    leading: Radio(
+                                      value: product
+                                          .data
+                                          .productrequestoptions[index]
+                                          .productrequestoptionchoices[index2]
+                                          .id,
+                                      groupValue: counterController.optionId[index],
+                                      onChanged: (value) {
+                                        counterController.updateOptionId(
+                                            index, value);
+                                           
+                                            
+                                      },
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    )),
+                    headerBuilder: (BuildContext context, bool isExpanded) {
+                      return Container(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "Request Options",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      );
+                    },
+                    isExpanded: counterController.isExpanded,
+                  )
+                ],
+                expansionCallback: (int item, bool status) {
+                  counterController.expandWidget();
+                },
+              ),
+            ));
   }
 
   Row addRadioButton(int btnIndex, String title) {
@@ -208,55 +262,10 @@ class TopRoundedContainer extends StatelessWidget {
                           ])),
                     ],
                   )),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GestureDetector(
-                  onTap: () {
-                    rating();
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Row(
-                      children: [
-                        Text(
-                          "4.5",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
           addToCartWidget(),
-          Container(
-            height: 50,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                addRadioButton(0, "100 gm"),
-                addRadioButton(1, "200 gm"),
-                addRadioButton(2, "500 gm"),
-                addRadioButton(3, "1000 gm"),
-              ],
-            ),
-          ),
+          requestOptionWidget(),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
