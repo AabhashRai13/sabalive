@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/controllers/add_to_cart_controller.dart';
@@ -21,50 +20,130 @@ class TopRoundedContainer extends StatelessWidget {
   final VariantButtonController variantButtonController =
       Get.put(VariantButtonController());
 
-  rating() {
-    return Get.bottomSheet(BottomSheet(
-        onClosing: () {},
-        builder: (context) => Container(
-            height: 100,
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Text("Rate this"),
-                    RatingBar.builder(
-                      initialRating: 3,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {},
-                    ),
-                  ],
-                )))));
+      Future<void> _chooseOptionAlert(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Choose choices from options'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('If you do not choose options form request option default option will be added.'),
+              Text('Press Yes to continue anyway.'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Yes'),
+            onPressed: () {
+                                 Navigator.of(context).pop();
+
+                addToCartController.mapProduct(
+                  productID: product.data.id,
+                  productQuantiity: counterController.count, productChoices: counterController.optionId);
+            },
+          ),
+           TextButton(
+            child: const Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+    },
+  );
+}
+
+  Widget requestOptionWidget() {
+    return GetBuilder<CounterController>(
+        init: counterController
+            .updateInitOptionId(product.data.productrequestoptions),
+        builder: (_) =>product.data.productrequestoptions.length<=0?SizedBox(): Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ExpansionPanelList(
+                animationDuration: Duration(milliseconds: 500),
+                dividerColor: Colors.red,
+                elevation: 1,
+                children: [
+                  ExpansionPanel(
+                    body: Container(
+                        child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: product.data.productrequestoptions.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(product
+                                  .data.productrequestoptions[index].request),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: product
+                                    .data
+                                    .productrequestoptions[index]
+                                    .productrequestoptionchoices
+                                    .length,
+                                itemBuilder: (context, index2) {
+                                  return ListTile(
+                                    title: Text(product
+                                        .data
+                                        .productrequestoptions[index]
+                                        .productrequestoptionchoices[index2]
+                                        .option),
+                                    leading: Radio(
+                                      value: product
+                                          .data
+                                          .productrequestoptions[index]
+                                          .productrequestoptionchoices[index2]
+                                          .id,
+                                      groupValue: counterController.optionId[index],
+                                      onChanged: (value) {
+                                        print(value);
+                                        counterController.updateOptionId(
+                                            index, value);
+                                           
+                                            
+                                      },
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    )),
+                    headerBuilder: (BuildContext context, bool isExpanded) {
+                      return Container(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "Request Options",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      );
+                    },
+                    isExpanded: counterController.isExpanded,
+                  )
+                ],
+                expansionCallback: (int item, bool status) {
+                  counterController.expandWidget();
+                },
+              ),
+            ));
   }
 
-  Row addRadioButton(int btnIndex, String title) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        GetBuilder<VariantButtonController>(
-            builder: (_) => VariantButton(
-                value: variantButtonController.variant[btnIndex],
-                groupValue: variantButtonController.select,
-                onChanged: (value) =>
-                    variantButtonController.onClickRadioButton(value),
-                leading: title)),
-      ],
-    );
-  }
 
-  Widget addToCartWidget() {
+
+  Widget addToCartWidget(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -107,9 +186,10 @@ class TopRoundedContainer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              addToCartController.addToCart(
+              
+            counterController.firstTime!= 0?    addToCartController.mapProduct(
                   productID: product.data.id,
-                  productQuantiity: counterController.count);
+                  productQuantiity: counterController.count, productChoices: counterController.optionId): _chooseOptionAlert(context);
             },
             child: Container(
               height: 50,
@@ -208,55 +288,10 @@ class TopRoundedContainer extends StatelessWidget {
                           ])),
                     ],
                   )),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GestureDetector(
-                  onTap: () {
-                    rating();
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Row(
-                      children: [
-                        Text(
-                          "4.5",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
-          addToCartWidget(),
-          Container(
-            height: 50,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                addRadioButton(0, "100 gm"),
-                addRadioButton(1, "200 gm"),
-                addRadioButton(2, "500 gm"),
-                addRadioButton(3, "1000 gm"),
-              ],
-            ),
-          ),
+          addToCartWidget(context),
+          requestOptionWidget(),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
