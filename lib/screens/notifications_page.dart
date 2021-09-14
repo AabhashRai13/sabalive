@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sabalive/screens/rating/rating_page.dart';
 
 import '../app_properties.dart';
 import 'tracking_page.dart';
@@ -263,27 +262,7 @@ class NotificationsPage extends StatelessWidget {
                               )
                             ]),
                           ),
-                          InkWell(
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (_) => RatingPage())),
-                            child: Container(
-                                padding: const EdgeInsets.all(14.0),
-                                decoration: BoxDecoration(
-                                    color: darkgreen,
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(5.0),
-                                        bottomLeft: Radius.circular(5.0))),
-                                child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      'Share your feedback',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10),
-                                    ))),
-                          )
+                        
                         ],
                       ),
                     ),

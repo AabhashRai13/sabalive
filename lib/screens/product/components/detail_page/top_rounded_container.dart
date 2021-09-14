@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/controllers/add_to_cart_controller.dart';
@@ -21,11 +20,47 @@ class TopRoundedContainer extends StatelessWidget {
   final VariantButtonController variantButtonController =
       Get.put(VariantButtonController());
 
+      Future<void> _chooseOptionAlert(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Choose choices from options'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('If you do not choose options form request option default option will be added.'),
+              Text('Press Yes to continue anyway.'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Yes'),
+            onPressed: () {
+                addToCartController.addToCart(
+                  productID: product.data.id,
+                  productQuantiity: counterController.count);
+            },
+          ),
+           TextButton(
+            child: const Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+    },
+  );
+}
+
   Widget requestOptionWidget() {
     return GetBuilder<CounterController>(
         init: counterController
             .updateInitOptionId(product.data.productrequestoptions),
-        builder: (_) => Padding(
+        builder: (_) =>product.data.productrequestoptions.length<=0?SizedBox(): Padding(
               padding: const EdgeInsets.all(8.0),
               child: ExpansionPanelList(
                 animationDuration: Duration(milliseconds: 500),
@@ -68,6 +103,7 @@ class TopRoundedContainer extends StatelessWidget {
                                           .id,
                                       groupValue: counterController.optionId[index],
                                       onChanged: (value) {
+                                        print(value);
                                         counterController.updateOptionId(
                                             index, value);
                                            
@@ -103,22 +139,9 @@ class TopRoundedContainer extends StatelessWidget {
             ));
   }
 
-  Row addRadioButton(int btnIndex, String title) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        GetBuilder<VariantButtonController>(
-            builder: (_) => VariantButton(
-                value: variantButtonController.variant[btnIndex],
-                groupValue: variantButtonController.select,
-                onChanged: (value) =>
-                    variantButtonController.onClickRadioButton(value),
-                leading: title)),
-      ],
-    );
-  }
 
-  Widget addToCartWidget() {
+
+  Widget addToCartWidget(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -161,9 +184,10 @@ class TopRoundedContainer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              addToCartController.addToCart(
+              
+            counterController.firstTime!= 0?    addToCartController.addToCart(
                   productID: product.data.id,
-                  productQuantiity: counterController.count);
+                  productQuantiity: counterController.count): _chooseOptionAlert(context);
             },
             child: Container(
               height: 50,
@@ -264,7 +288,7 @@ class TopRoundedContainer extends StatelessWidget {
                   )),
             ],
           ),
-          addToCartWidget(),
+          addToCartWidget(context),
           requestOptionWidget(),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),

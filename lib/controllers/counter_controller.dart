@@ -18,9 +18,11 @@ updateInitOptionId(List<Productrequestoption> productRequestoptions){
  
 
  void updateOptionId(int index, int id){
+     
    optionId[index] = id;
+     print("Option id $optionId");
       update();
-    print("Option id $optionId");
+
 
   }
 @override
