@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/screens/category/category_list_page.dart';
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_views/bottom_appbar_container.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
@@ -43,7 +42,7 @@ class _MainPageState extends State<MainPage>
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
-    bottomTabController = TabController(length: 4, vsync: this);
+    bottomTabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -70,7 +69,7 @@ class _MainPageState extends State<MainPage>
         tabBar: tabBar,
         tabController: bottomTabController,
       ),
-      CategoryListPage(),
+      // CategoryListPage(),
       CheckOutPage(),
       ProfilePage(),
     ];

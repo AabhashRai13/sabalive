@@ -6,10 +6,13 @@ import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
 import 'package:sabalive/models/blog_model.dart';
 import 'package:sabalive/models/cart_model.dart';
+import 'package:sabalive/models/category_detail_Model.dart';
+import 'package:sabalive/models/category_list_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
+import 'package:sabalive/models/profile_model.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/store.dart';
 import 'package:sabalive/models/token.dart';
@@ -258,4 +261,54 @@ class ApiProvider {
       return null;
     }
   }
+
+  Future<ProfileModel> fetchProfile() async{
+    try {
+      final response = await _dio.get(
+        'customer/profile/',
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+      return ProfileModel.fromJson(response.data);
+    } catch (error) {
+      print("store api error $error");
+      return null;
+    }
+  }
+
+  Future<CategoryList> fetchCategoryList() async {
+    int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try {
+      final response = await _dio.get(
+        'customer/store-$storeId/product/category/list/',
+      );
+    
+      return CategoryList.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
+  
+  Future<CategoryDetailModel> fetchCategoryDetail() async{
+    int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    int categoryId= _sharedPreferencesManager.getInt(SharedPreferencesManager.categoryId);
+    try {
+      final response = await _dio.get(
+        'customer/store-$storeId/product/category-$categoryId/detail/',
+      );
+    
+      return CategoryDetailModel.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
 }
+
+
