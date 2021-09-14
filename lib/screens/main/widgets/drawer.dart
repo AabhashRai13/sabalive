@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/controllers/drawer_controller.dart';
+import 'package:sabalive/controllers/profile_controller.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/screens/about_us/about_us.dart';
 import 'package:sabalive/screens/about_us/contact_us.dart';
 import 'package:sabalive/screens/auth/welcome_back_page.dart';
 import 'package:sabalive/screens/blogs/blogs.dart';
-import 'package:sabalive/screens/profile_page.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 final SharedPreferencesManager sharedPreferencesManager =
     locator<SharedPreferencesManager>();
+
 Widget drawer(BuildContext context) {
   return SafeArea(
       child: GetBuilder<DrawersController>(
@@ -21,15 +23,46 @@ Widget drawer(BuildContext context) {
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(ProfilePage());
-                      },
-                      child: const DrawerHeader(
-                          decoration: BoxDecoration(color: lightgreen),
-                          child: CircleAvatar(
-                            child: Text("Profile"),
-                          )),
+                    DrawerHeader(
+                      decoration: BoxDecoration(color: lightgreen),
+                      child: sharedPreferencesManager.getString("accessToken")==null
+                          ?Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            minRadius: 50.0,
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text("User not Login"),
+                        ],
+                      ):GetBuilder<ProfileController>(
+                        init: ProfileController(),
+                          builder: (value) => value.profileModel == null
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      minRadius: 50.0,
+                                    ),
+                                  ],
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      minRadius: 50.0,
+                                      backgroundImage: NetworkImage(
+                                          value.profileModel.message.image),
+                                    ),
+                                    SizedBox(
+                                      height: 5.0,
+                                    ),
+                                    Text(
+                                        value.profileModel.message.name.capitalize)
+                                  ],
+                                )),
                     ),
                     sharedPreferencesManager.getBool("isLogin") == null
                         ? ListTile(

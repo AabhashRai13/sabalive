@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/models/product.dart';
+import 'package:sabalive/screens/main/components/homepage/category_carousel.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage_appbar.dart';
 import 'package:sabalive/screens/main/components/homepage/hompage_invite_banner.dart';
 import 'package:sabalive/screens/main/components/homepage/store_wise_product.dart';
@@ -34,6 +35,7 @@ class HomePage extends StatelessWidget {
 
   final Widget tabBar;
   final TabController tabController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +60,11 @@ class HomePage extends StatelessWidget {
                   //     title: "Meat",
                   //     subtitle: "Red and White meats",
                   //     productList: products),
+                  CategoryCarousel(homeController: _homeController),
+
                   StoreWiseProduct(
                     homeController: _homeController,
-                  )
+                  ),
                 ],
               ),
             ),
