@@ -4,18 +4,33 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/cart_controller.dart';
-import 'package:sabalive/screens/payment/unpaid_page.dart';
+import 'package:sabalive/screens/checkout_view.dart';
 
 import '../../app_properties.dart';
 
-class CheckOutPage extends StatefulWidget {
+class CartPageView extends StatefulWidget {
   @override
-  _CheckOutPageState createState() => _CheckOutPageState();
+  _CartPageViewState createState() => _CartPageViewState();
 }
 
-class _CheckOutPageState extends State<CheckOutPage> {
+class _CartPageViewState extends State<CartPageView> {
   final CartController cartController = Get.put(CartController());
   SwiperController swiperController = SwiperController();
+
+@override
+  void initState() {
+    
+    super.initState();
+  cartController.fetchCart();
+  }
+
+  @override
+  void dispose() {
+ cartController.priceTotal.value = 0;
+ cartController. count.clear();
+cartController.  priceTotalList.clear();
+  cartController. quantityTotalList.clear();    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +38,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
       padding: const EdgeInsets.only(bottom: 10.0, top: 10),
       child: MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(()=>CheckoutView(), arguments: {"total":cartController.priceTotal, "cartId": cartController.cart.data.id });
+        },
         child: Text(
           "Proceed To Checkout",
           style: TextStyle(color: darkgreen, fontSize: 16),
@@ -236,14 +253,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
           elevation: 0.0,
           iconTheme: IconThemeData(color: darkGrey),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.payment),
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
-            )
+          
           ],
           title: Text(
-            'Checkout',
+            'Cart',
             style: TextStyle(
                 color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
           ),

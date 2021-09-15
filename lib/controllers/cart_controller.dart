@@ -55,33 +55,12 @@ class CartController extends BaseController {
     priceTotal = priceTotal - priceTotalList[index];
   }
 
-  // Future placeOrder(Map shippingAddressPk) async {
-  //   setState(ViewState.Busy);
-  //   isOrderPlaced = await apiAuthProvider.placeOrder(shippingAddressPk);
-  //   if (isOrderPlaced) {
-  //     print(isOrderPlaced);
-  //     Get.back();
-  //     Get.snackbar(
-  //         "Order placed successfully", "Check order page to see your orders");
-  //   }
-  //   setState(ViewState.Retrieved);
-  // }
-
-  @override
-  void onClose() {}
-
   void increment(int index) {
     count[index] = count[index] + 1;
     print("adding count ${count[index]}");
   }
 
   void decrement(int index) => count[index] = count[index] - 1;
-
-  @override
-  void onInit() {
-    super.onInit();
-    fetchCart();
-  }
 
   fetchCart() async {
     setState(ViewState.Busy);

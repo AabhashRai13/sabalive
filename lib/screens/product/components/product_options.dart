@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/screens/shop/check_out_page.dart';
+import 'package:sabalive/screens/shop/cart_page_view.dart';
 
 import '../../../app_properties.dart';
 import 'shop_bottomSheet.dart';
@@ -46,7 +46,7 @@ class ProductOption extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => CheckOutPage()));
+                          MaterialPageRoute(builder: (_) => CartPageView()));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,

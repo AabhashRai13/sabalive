@@ -10,6 +10,7 @@ import 'package:sabalive/screens/about_us/about_us.dart';
 import 'package:sabalive/screens/about_us/contact_us.dart';
 import 'package:sabalive/screens/auth/welcome_back_page.dart';
 import 'package:sabalive/screens/blogs/blogs.dart';
+import 'package:sabalive/screens/order_page_view.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 final SharedPreferencesManager sharedPreferencesManager =
@@ -70,6 +71,17 @@ Widget drawer(BuildContext context) {
                             title: const Text("Login"),
                             onTap: () {
                               Get.to(() => WelcomeBackPage());
+                            },
+                          )
+                        : Container(),
+                        sharedPreferencesManager.getBool("isLogin") != null
+                        ? ListTile(
+                            leading: new Icon(Icons.login),
+                            title: const Text("Order History"),
+                            onTap: () {
+                              Get.back();
+                              Get.to(() => OrderPageView());
+
                             },
                           )
                         : Container(),
