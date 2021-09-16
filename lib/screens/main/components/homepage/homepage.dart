@@ -65,6 +65,8 @@ class HomePage extends StatelessWidget {
                   StoreWiseProduct(
                     homeController: _homeController,
                   ),
+                  
+                  
                 ],
               ),
             ),

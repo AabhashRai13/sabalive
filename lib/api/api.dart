@@ -14,6 +14,7 @@ import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/profile_model.dart';
 import 'package:sabalive/models/registration_model.dart';
+import 'package:sabalive/models/slidet_product_model.dart';
 import 'package:sabalive/models/store.dart';
 import 'package:sabalive/models/token.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
@@ -304,6 +305,21 @@ class ApiProvider {
       );
     
       return CategoryDetailModel.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
+
+  Future<SliderProductModel> fetchSliderProductList() async {
+    int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try {
+      final response = await _dio.get(
+        'customer/homepage/store-$storeId/slider/list/',
+      );
+    
+      return SliderProductModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
