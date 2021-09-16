@@ -13,6 +13,10 @@ class SharedPreferencesManager {
   static const String choosestore = 'choosestore';
   static const String keyStoreId = 'storeId';
   static const String categoryId = 'categoryId';
+  static const String mobile = 'mobile';
+  static const String email = 'email';
+  static const String streetAddress = 'streetAddress';
+  static const String postalCode = 'postalCode';
   
   static Future<SharedPreferencesManager> getInstance() async {
     if (_instance == null) {

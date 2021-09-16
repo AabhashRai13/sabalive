@@ -10,6 +10,7 @@ import 'package:sabalive/models/category_detail_Model.dart';
 import 'package:sabalive/models/category_list_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
+import 'package:sabalive/models/order_models.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/profile_model.dart';
@@ -325,6 +326,50 @@ class ApiProvider {
       return null;
     }
   }
+
+  Future<List<OrderList>> getOrderList() async {
+    try {
+      print('get order');
+      final response = await _dio.get(
+        'orders/',
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print('Data recieved');
+        return OrderList.mapArray(response.data);
+      } else {
+        print('${response.statusCode} : ${response.data.toString()}');
+        throw response.statusCode;
+      }
+    } catch (error) {
+      print('Order API Error');
+      print(error);
+    }
+    return null;
+  }
+    checkoutProducts(map) async {
+    try {
+      final response = await _dio.post('order/',
+          data: map,
+          options: Options(
+            headers: {'requirestoken': true},
+          ));
+      print("response status ${response.statusCode}");
+      if (response.statusCode == 201) {
+        return true;
+      }
+    } catch (error) {
+      print(error);
+      return false;
+    }
+    return null;
+  }
+
 }
 
 

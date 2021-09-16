@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/models/product.dart';
-import 'package:sabalive/screens/shop/check_out_page.dart';
+import 'package:sabalive/screens/shop/cart_page_view.dart';
 
 import 'shop_product.dart';
 
@@ -26,7 +26,7 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
       onTap: () async {
         Navigator.of(context).pop();
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => CheckOutPage()));
+            .push(MaterialPageRoute(builder: (_) => CartPageView()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width / 1.5,

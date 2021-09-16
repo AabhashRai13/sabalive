@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sabalive/controllers/profile_controller.dart';
 import 'package:sabalive/injector/injector.dart';
-import 'package:sabalive/screens/payment/payment_page.dart';
 import 'package:sabalive/screens/settings/settings_page.dart';
 import 'package:sabalive/screens/tracking_page.dart';
 import 'package:sabalive/screens/wallet/wallet_page.dart';
@@ -120,21 +119,7 @@ class ProfilePage extends StatelessWidget {
                             )
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.payment),
-                              onPressed: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => PaymentPage())),
-                            ),
-                            Text(
-                              'Payment',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                    
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
