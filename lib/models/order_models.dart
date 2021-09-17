@@ -4,85 +4,126 @@
 
 import 'dart:convert';
 
-List<OrderList> orderListFromJson(String str) => List<OrderList>.from(json.decode(str).map((x) => OrderList.fromJson(x)));
+OrderList orderListFromJson(String str) => OrderList.fromJson(json.decode(str));
 
-String orderListToJson(List<OrderList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String orderListToJson(OrderList data) => json.encode(data.toJson());
 
 class OrderList {
     OrderList({
-        this.products,
-        this.total,
-        this.totalItems,
-        this.shipping,
-        this.orderId,
-        this.remark,
-        this.isShipped,
-        this.isDelivered,
+        this.status,
+        this.data,
     });
 
-    List<Product> products;
-    double total;
-    int totalItems;
-    int shipping;
-    String orderId;
-    String remark;
-    bool isShipped;
-    bool isDelivered;
+    String status;
+    List<Datum> data;
 
     factory OrderList.fromJson(Map<String, dynamic> json) => OrderList(
-        products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
-        total: json["total"],
-        totalItems: json["total_items"],
-        shipping: json["shipping"],
-        orderId: json["order_id"],
-        remark: json["remark"],
-        isShipped: json["is_shipped"],
-        isDelivered: json["is_delivered"],
+        status: json["status"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
-        "total": total,
-        "total_items": totalItems,
-        "shipping": shipping,
-        "order_id": orderId,
-        "remark": remark,
-        "is_shipped": isShipped,
-        "is_delivered": isDelivered,
+        "status": status,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
     };
-
-  static List<OrderList> mapArray(List<dynamic> data) {
-        return data
-            .map<OrderList>((json) => OrderList.fromJson(json))
-            .toList();
-    }
-
 }
 
-class Product {
-    Product({
-        this.product,
-        this.price,
-        this.quantity,
-        this.total,
+class Datum {
+    Datum({
+        this.id,
+        this.cart,
+        this.subtotal,
+        this.discount,
+        this.shippingCharge,
+        this.shippingChargeDiscount,
+        this.nettotal,
+        this.paymentMethod,
+        this.customerPaymentStatus,
     });
 
-    String product;
-    double price;
-    int quantity;
-    double total;
+    int id;
+    Carts cart;
+    String subtotal;
+    String discount;
+    int shippingCharge;
+    int shippingChargeDiscount;
+    String nettotal;
+    dynamic paymentMethod;
+    bool customerPaymentStatus;
 
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        id: json["id"],
+        cart: Carts.fromJson(json["cart"]),
+        subtotal: json["subtotal"],
+        discount: json["discount"],
+        shippingCharge: json["shipping_charge"],
+        shippingChargeDiscount: json["shipping_charge_discount"],
+        nettotal: json["nettotal"],
+        paymentMethod: json["payment_method"],
+        customerPaymentStatus: json["customer_payment_status"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "cart": cart.toJson(),
+        "subtotal": subtotal,
+        "discount": discount,
+        "shipping_charge": shippingCharge,
+        "shipping_charge_discount": shippingChargeDiscount,
+        "nettotal": nettotal,
+        "payment_method": paymentMethod,
+        "customer_payment_status": customerPaymentStatus,
+    };
+}
+
+class Carts {
+    Carts({
+        this.cartproducts,
+    });
+
+    List<Cartproduct> cartproducts;
+
+    factory Carts.fromJson(Map<String, dynamic> json) => Carts(
+        cartproducts: List<Cartproduct>.from(json["cartproducts"].map((x) => Cartproduct.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "cartproducts": List<dynamic>.from(cartproducts.map((x) => x.toJson())),
+    };
+}
+
+class Cartproduct {
+    Cartproduct({
+        this.product,
+        this.quantity,
+        this.rate,
+        this.shippingCharge,
+        this.subtotal,
+        this.orderStatus,
+    });
+
+    int product;
+    int quantity;
+    String rate;
+    int shippingCharge;
+    String subtotal;
+    String orderStatus;
+
+    factory Cartproduct.fromJson(Map<String, dynamic> json) => Cartproduct(
         product: json["product"],
-        price: json["price"],
         quantity: json["quantity"],
-        total: json["total"],
+        rate: json["rate"],
+        shippingCharge: json["shipping_charge"],
+        subtotal: json["subtotal"],
+        orderStatus: json["order_status"],
     );
 
     Map<String, dynamic> toJson() => {
         "product": product,
-        "price": price,
         "quantity": quantity,
-        "total": total,
+        "rate": rate,
+        "shipping_charge": shippingCharge,
+        "subtotal": subtotal,
+        "order_status": orderStatus,
     };
 }

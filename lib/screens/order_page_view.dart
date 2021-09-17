@@ -55,7 +55,7 @@ class OrderPageView extends GetView<OrderPageController> {
                 Expanded(
                   child: ListView(
                     children: List.generate(
-                        orderPageController.orderList.length, (index) {
+                        orderPageController.orderList.data.length, (index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 0.0),
@@ -87,7 +87,7 @@ class OrderPageView extends GetView<OrderPageController> {
                                   gap(0, 10),
                                   Text(
                                     orderPageController
-                                        .orderList[index].products.length
+                                        .orderList.data[index].cart.cartproducts.length
                                         .toString(),
                                     style: TextStyle(
                                         fontSize: 14,
@@ -103,8 +103,8 @@ class OrderPageView extends GetView<OrderPageController> {
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 children: List.generate(
-                                    orderPageController.orderList[index]
-                                        .products.length, (index2) {
+                                    orderPageController.orderList.data[index].cart
+                                        .cartproducts.length, (index2) {
                                   return Card(
                                     color: Colors.white,
                                     child: Padding(
@@ -137,28 +137,24 @@ class OrderPageView extends GetView<OrderPageController> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 productInfoTextSubHeaddings(
-                                                    orderPageController
-                                                        .orderList[index]
-                                                        .products[index2]
+                                                   orderPageController.orderList.data[index].cart
+                                        .cartproducts[index2]
                                                         .product
                                                         .toString()),
                                                 productInfoTextSubHeaddings(
-                                                    orderPageController
-                                                        .orderList[index]
-                                                        .products[index2]
-                                                        .price
+                                                    orderPageController.orderList.data[index].cart
+                                        .cartproducts[index2]
+                                                        .rate
                                                         .toString()),
                                                 productInfoTextSubHeaddings(
-                                                    orderPageController
-                                                        .orderList[index]
-                                                        .products[index2]
+                                                     orderPageController.orderList.data[index].cart
+                                        .cartproducts[index2]
                                                         .quantity
                                                         .toString()),
                                                 productInfoTextSubHeaddings(
-                                                    orderPageController
-                                                        .orderList[index]
-                                                        .products[index2]
-                                                        .total
+                                                  orderPageController.orderList.data[index].cart
+                                        .cartproducts[index2]
+                                                        .subtotal
                                                         .toString()),
                                               ],
                                             ),

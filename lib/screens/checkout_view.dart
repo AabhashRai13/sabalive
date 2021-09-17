@@ -163,7 +163,7 @@ class CheckoutView extends GetView<CheckoutController> {
                               Icon(Icons.person,
                                   color: Colors.blue, size: 18),
                               "Username",
-                              checkoutController.emailController
+                              checkoutController.nameController
                                 ..text = sharedPreferencesManager.getString("username"),
                               false,
                               TextInputType.text,
@@ -269,7 +269,7 @@ class CheckoutView extends GetView<CheckoutController> {
                               Icon(Icons.place_outlined,
                                   color: Colors.blue, size: 18),
                               "Postal code",
-                              checkoutController.emailController
+                              checkoutController.postalCode
                                 ..text = sharedPreferencesManager.getString("postalCode"),
                               false,
                               TextInputType.text,

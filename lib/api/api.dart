@@ -5,7 +5,7 @@ import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
 import 'package:sabalive/models/blog_model.dart';
-import 'package:sabalive/models/cart_model.dart';
+import 'package:sabalive/models/cart_model.dart' ;
 import 'package:sabalive/models/category_detail_Model.dart';
 import 'package:sabalive/models/category_list_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
@@ -312,11 +312,13 @@ class ApiProvider {
   }
 
 
-  Future<List<OrderList>> getOrderList() async {
+  Future<OrderList> getOrderList() async {
+         int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       print('get order');
       final response = await _dio.get(
-        'orders/',
+        'customer/store-$storeId/order/list/',
         options: Options(
           headers: {
             'requirestoken': true,
@@ -326,7 +328,7 @@ class ApiProvider {
 
       if (response.statusCode == 200) {
         print('Data recieved');
-        return OrderList.mapArray(response.data);
+        return OrderList.fromJson(response.data);
       } else {
         print('${response.statusCode} : ${response.data.toString()}');
         throw response.statusCode;
@@ -337,15 +339,17 @@ class ApiProvider {
     }
     return null;
   }
-    checkoutProducts(map) async {
+    checkoutProducts(map, cartId) async {
+        int storeId =
+    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
-      final response = await _dio.post('order/',
+      final response = await _dio.post('customer/store-$storeId/order/create/$cartId/',
           data: map,
           options: Options(
             headers: {'requirestoken': true},
           ));
       print("response status ${response.statusCode}");
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return true;
       }
     } catch (error) {

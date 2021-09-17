@@ -45,14 +45,22 @@ class LoginPageController extends BaseController {
           fontSize: 16.0);
     } else {
       busy.value = false;
-      print("access token ${token.access}");
+     
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyAccessToken, token.access);
       print("access token ${token.access}");
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyRefreshToken, token.refresh);
       print("refresh token ${token.refresh}");
+      await sharedPreferencesManager.putString(
+          SharedPreferencesManager.mobile, token.mobile);
 
+await sharedPreferencesManager.putString(
+          SharedPreferencesManager.keyUsername, token.name);
+      await sharedPreferencesManager.putString(
+          SharedPreferencesManager.email, token.email);
+    await sharedPreferencesManager.putString(
+          SharedPreferencesManager.streetAddress, token.streetAddress??"");
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
 

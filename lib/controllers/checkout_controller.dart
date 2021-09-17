@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
 import 'package:sabalive/constants/enum.dart';
+import 'package:dio/dio.dart'as dio;
 
 class CheckoutController extends BaseController {
  
@@ -38,16 +39,26 @@ class CheckoutController extends BaseController {
   void checkoutMapping() {
     if (addressTitle.value == "Pay via Khalti") {
     } else {
-      checkoutMap = {
+
+print({
         "name": nameController.text.trim(),
         "mobile": numberController.text.trim(),
         "email": emailController.text.trim(),
         "street_address": streeAtddressController.text.trim(),
         "postal_code": postalCode.text.trim(),
         
-      };
-      print(checkoutMap);
-      checkOutOrder(checkoutMap);
+     });
+
+     var formData = dio.FormData.fromMap( {
+        "name": nameController.text.trim(),
+        "mobile": numberController.text.trim(),
+        "email": emailController.text.trim(),
+        "street_address": streeAtddressController.text.trim(),
+        "postal_code": postalCode.text.trim(),
+        
+     });
+      print(formData.length);
+      checkOutOrder(formData);
     }
   }
 
@@ -59,13 +70,14 @@ class CheckoutController extends BaseController {
 
   checkOutOrder(map) async {
     setState(ViewState.Busy);
-    isOrdered = await apiProvider.checkoutProducts(map);
+    isOrdered = await apiProvider.checkoutProducts(map, cartID);
     if (isOrdered) {
       print("order bhayo hai");
       deleteAllProducts();
       //  cartController.getCart();
       setState(ViewState.Retrieved);
 
+      Get.back();
       Get.back();
       Fluttertoast.showToast(
           msg: 'Order placed successfully!',
