@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -44,16 +46,16 @@ class CategoryDetailPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 2.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              height: 90,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              height: 130,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 image: DecorationImage(
@@ -63,14 +65,21 @@ class CategoryDetailPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text(
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(14.0,0,0,0),
+                            child: Text(
                               categoryDetailController.categoryDetail[index].title,
                               overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                             ),
-                            Row(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(14.0,0,0,0),
+                            child: Row(
                               children: <Widget>[
                                 Icon(
                                   Icons.price_change,
@@ -86,8 +95,11 @@ class CategoryDetailPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 2.5),
-                            Row(
+                          ),
+                          SizedBox(height: 2.5),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(14.0,0,0,0),
+                            child: Row(
                               children: <Widget>[
                                 Icon(
                                   Icons.price_change,
@@ -101,9 +113,9 @@ class CategoryDetailPage extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
               
-                          ],
-                        ),
+                        ],
                       ),
                     )
                   ],
