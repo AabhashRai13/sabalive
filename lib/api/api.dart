@@ -194,7 +194,7 @@ class ApiProvider {
   Future<bool> deleteCartItem(int id, int cartId) async {
     try {
       final response = await _dio.delete(
-        'customer/remove/cart-$cartId/product-$id/',
+        'customer/remove/cart-product-$id/',
         options: Options(
           headers: {
             'Content-Type': 'application/json',

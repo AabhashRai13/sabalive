@@ -102,7 +102,7 @@ class Cartproduct {
         this.orderStatus,
     });
 
-    int product;
+    String product;
     int quantity;
     String rate;
     int shippingCharge;

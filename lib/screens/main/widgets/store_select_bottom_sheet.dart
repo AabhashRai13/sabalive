@@ -73,6 +73,7 @@ class StoreSelectBottomSheet extends StatelessWidget {
                 await _sharedPreferencesManager.putInt(
                     SharedPreferencesManager.keyStoreId, stores.id);
                 homeController.fetchStoreWiseProducts();
+                homeController.fetchCategoryList();
               }),
           Divider(
             height: 2,
