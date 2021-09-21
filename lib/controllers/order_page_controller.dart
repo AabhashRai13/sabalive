@@ -5,7 +5,7 @@ import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/models/order_models.dart';
 
 class OrderPageController extends BaseController {
-  List<OrderList> orderList = [];
+  OrderList orderList;
 
 ApiProvider _apiService = ApiProvider();
 

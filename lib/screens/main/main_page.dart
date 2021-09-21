@@ -63,13 +63,10 @@ class _MainPageState extends State<MainPage>
       bottomNavigationBar: BottomAppBarContainer(
         controller: bottomTabController,
       ),
-      body: CustomPaint(
-        painter: MainBackground(),
-        child: TabBarView(
-            controller: bottomTabController,
-            physics: NeverScrollableScrollPhysics(),
-            children: _screens),
-      ),
+      body: TabBarView(
+          controller: bottomTabController,
+          physics: NeverScrollableScrollPhysics(),
+          children: _screens),
     );
   }
 }
