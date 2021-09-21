@@ -7,9 +7,10 @@ class HomePageAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
+      backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: Colors.black),
       titleSpacing: 0.0,
-      title: Text("HomePage"),
+      title: Text("HomePage",style: TextStyle(color: Colors.black),),
       centerTitle: true,
       actions: [
         IconButton(

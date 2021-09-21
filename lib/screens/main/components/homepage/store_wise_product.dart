@@ -17,7 +17,7 @@ class StoreWiseProduct extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             child: homeController.storeWiseProducts == null
                 ? Text("loading...")
-                : Text(homeController.storeWiseProducts.data.storeName,
+                : Text(homeController.storeWiseProducts.data.storeName.capitalize,
                     style: TextStyle(
                       fontSize: 19.0,
                       fontWeight: FontWeight.w600,

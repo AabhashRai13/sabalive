@@ -45,8 +45,8 @@ class _SendPageState extends State<SendPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        brightness: Brightness.light,
         title: Text(
           'Send Amount',
           style: TextStyle(color: darkGrey),
