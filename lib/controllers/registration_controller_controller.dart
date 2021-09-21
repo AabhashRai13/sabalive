@@ -5,7 +5,7 @@ import 'package:sabalive/base%20model/base_model.dart';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:image_picker/image_picker.dart';
@@ -83,26 +83,26 @@ class RegistrationControllerController extends BaseController {
     print("Target Path $targetPath");
     return targetPath;
   }
-
-  Future<File> testCompressAndGetFile(File file, String targetPath) async {
-    var result = await FlutterImageCompress.compressAndGetFile(
-      file.absolute.path,
-      targetPath,
-      quality: 60,
-    );
-
-    return result;
-  }
+  //
+  // Future<File> testCompressAndGetFile(File file, String targetPath) async {
+  //   var result = await FlutterImageCompress.compressAndGetFile(
+  //     file.absolute.path,
+  //     targetPath,
+  //     quality: 60,
+  //   );
+  //
+  //   return result;
+  // }
 
   void mapRegisterInfo() async {
     if (image != null) {
-      File compressedImage =
-          await testCompressAndGetFile(image, await targetPath());
+      // File compressedImage =
+      //     await testCompressAndGetFile(image, await targetPath());
       var formData = dio.FormData.fromMap({
         "username": usernameController.text.trim(),
         "password": passwordController.text.trim(),
         "name": nameController.text.trim(),
-        "image": await dio.MultipartFile.fromFile(compressedImage.path),
+        // "image": await dio.MultipartFile.fromFile(compressedImage.path),
         "mobile": mobileController.text.trim(),
         "city": cityController.text.trim(),
         "street_address": streetAddressController.text.trim()
@@ -149,7 +149,6 @@ class RegistrationControllerController extends BaseController {
     usernameController.clear();
     passwordController.clear();
     nameController.clear();
-
     mobileController.clear();
     cityController.clear();
     streetAddressController.clear();

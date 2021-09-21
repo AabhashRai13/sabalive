@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,6 +9,7 @@ import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
+import '../app_properties.dart';
 import '../controllers/checkout_controller.dart';
 
 class CheckoutView extends GetView<CheckoutController> {
@@ -27,6 +29,26 @@ class CheckoutView extends GetView<CheckoutController> {
           }
         },
         child: Scaffold(
+            appBar: AppBar(
+              title:
+              Text(
+                'Checkout Page',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              backgroundColor: Colors.white,
+              elevation: 0.0,
+              leading: GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    CupertinoIcons.back,
+                    color: Colors.black,
+                  )),
+            ),
             body: Obx(() => checkoutController.state == ViewState.Busy
                 ? _buildLoadingWidget()
                 : _buildSuccessWidget(context))),
@@ -39,21 +61,6 @@ class CheckoutView extends GetView<CheckoutController> {
       key: _formKey,
       child: ListView(
         children: [
-          Row(
-            children: [
-              IconButton(
-                  iconSize: 18,
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => Navigator.of(context).pop()),
-              Text(
-                'Checkout Page',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                ),
-              ),
-            ],
-          ),
           Container(
             padding: EdgeInsets.all(16),
             margin: EdgeInsets.all(16),
@@ -104,7 +111,7 @@ class CheckoutView extends GetView<CheckoutController> {
                       backgroundColor: Colors.transparent,
                       leading: Icon(
                         Icons.monetization_on_outlined,
-                        color: Colors.blue,
+                        color: darkgreen,
                       ),
                       title: Text(checkoutController.addressTitle.value),
                       children: List.generate(
@@ -161,7 +168,7 @@ class CheckoutView extends GetView<CheckoutController> {
                          
                            input(
                               Icon(Icons.person,
-                                  color: Colors.blue, size: 18),
+                                  color: darkgreen, size: 18),
                               "Username",
                               checkoutController.nameController
                                 ..text = sharedPreferencesManager.getString("username"),
@@ -179,7 +186,7 @@ class CheckoutView extends GetView<CheckoutController> {
                           inputEmailCheckout(
                               Icon(
                                 Icons.email_outlined,
-                                color: Colors.blue,
+                                color: darkgreen,
                                 size: 18,
                               ),
                               'Email',
@@ -233,7 +240,7 @@ class CheckoutView extends GetView<CheckoutController> {
                                   ),
                                 ),
                                 suffixIcon: Icon(Icons.phone_android_outlined,
-                                    color: Colors.blue, size: 18),
+                                    color: darkgreen, size: 18),
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.never,
                                 contentPadding: EdgeInsets.all(20),
@@ -253,7 +260,7 @@ class CheckoutView extends GetView<CheckoutController> {
                           ),
                           input(
                               Icon(Icons.place_outlined,
-                                  color: Colors.blue, size: 18),
+                                  color: darkgreen, size: 18),
                               "Address",
                               checkoutController.streeAtddressController
                                 ..text = sharedPreferencesManager.getString("streetAddress"),
@@ -267,7 +274,7 @@ class CheckoutView extends GetView<CheckoutController> {
                           ),
                           input(
                               Icon(Icons.place_outlined,
-                                  color: Colors.blue, size: 18),
+                                  color: darkgreen, size: 18),
                               "Postal code",
                               checkoutController.postalCode
                                 ..text = sharedPreferencesManager.getString("postalCode"),
@@ -291,7 +298,7 @@ class CheckoutView extends GetView<CheckoutController> {
             height: 100,
             width: Get.width,
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: darkgreen,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(40),
                 topLeft: Radius.circular(40),
@@ -326,7 +333,7 @@ class CheckoutView extends GetView<CheckoutController> {
                           } else
                             Fluttertoast.showToast(
                                 msg: 'Please select payment option!',
-                                backgroundColor: Colors.blue[400],
+                                backgroundColor: darkgreen,
                                 textColor: Colors.white,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.TOP);

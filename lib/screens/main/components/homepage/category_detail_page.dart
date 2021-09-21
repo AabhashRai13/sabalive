@@ -130,8 +130,9 @@ class CategoryDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
+        backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0.0,
         title: Text(title.capitalize,style: TextStyle(color: Colors.black),),
       ),
       body: Obx(()=>categoryDetailController.state == ViewState.Busy

@@ -33,7 +33,7 @@ class MyBottomNavigationBarItem extends GetView<BottomNavBarController> {
           children: [
             Icon(
               icon,
-              size: 26.0,
+              size: 30.0,
               color: controller.currentIndex == currentScreenIndex ? Colors.teal[800]: Colors.grey,
             ),
             SizedBox(

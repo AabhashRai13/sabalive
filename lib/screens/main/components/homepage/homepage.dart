@@ -5,6 +5,7 @@ import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/main/components/homepage/category_carousel.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage_appbar.dart';
 import 'package:sabalive/screens/main/components/homepage/hompage_invite_banner.dart';
+import 'package:sabalive/screens/main/components/homepage/image_slider.dart';
 import 'package:sabalive/screens/main/components/homepage/store_wise_product.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/main/widgets/store_select_bottom_sheet.dart';
@@ -49,6 +50,7 @@ class HomePage extends StatelessWidget {
                   StoreWiseProduct(
                     homeController: _homeController,
                   ),
+                  ImageSlider(homeController: _homeController,)
                 ],
               ),
             ),

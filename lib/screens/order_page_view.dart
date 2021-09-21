@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:get/get.dart';
 import 'package:sabalive/constants/enum.dart';
 
+import '../app_properties.dart';
 import '../controllers/order_page_controller.dart';
 
 class OrderPageView extends GetView<OrderPageController> {
@@ -37,136 +39,136 @@ class OrderPageView extends GetView<OrderPageController> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 16.0, right: 16.0, top: 28.0, bottom: 16),
+                      top: 28.0, bottom: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Your OrderList',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.w700,
-                            color: Colors.red[600]),
+                            color: darkgreen),
                       ),
                     ],
                   ),
                 ),
-                gap(12, 0),
+                gap(8, 0),
                 Expanded(
                   child: ListView(
                     children: List.generate(
                         orderPageController.orderList.data.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 0.0),
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.4),
-                                  offset: Offset(0, 0),
-                                  blurRadius: 7,
-                                  spreadRadius: 1)
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Number of Product:',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 14),
-                                  ),
-                                  gap(0, 10),
-                                  Text(
-                                    orderPageController
-                                        .orderList.data[index].cart.cartproducts.length
-                                        .toString(),
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                              gap(10, 0),
-                              ListView(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                children: List.generate(
-                                    orderPageController.orderList.data[index].cart
-                                        .cartproducts.length, (index2) {
-                                  return Card(
-                                    color: Colors.white,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(18.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.4),
+                                offset: Offset(0, 0),
+                                blurRadius: 7,
+                                spreadRadius: 1)
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Number of Product:',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 18),
+                                ),
+                                gap(0, 10),
+                                Text(
+                                  orderPageController
+                                      .orderList.data[index].cart.cartproducts.length
+                                      .toString(),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                            ListView(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: List.generate(
+                                  orderPageController.orderList.data[index].cart
+                                      .cartproducts.length, (index2) {
+                                return Card(
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        productInfoTextSubHeaddings(
+                                            orderPageController.orderList.data[index].cart
+                                                .cartproducts[index2]
+                                                .product
+                                                .toString().capitalize),
+                                        gap(5, 0),
+  
+                                        Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                productInfoTextHeadings(
-                                                    'Product Name:'),
-                                                productInfoTextHeadings(
-                                                    'Price'),
-                                                productInfoTextHeadings(
-                                                    'Quantity:'),
-                                                productInfoTextHeadings(
-                                                    'Total:'),
-                                              ],
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                productInfoTextSubHeaddings(
-                                                   orderPageController.orderList.data[index].cart
-                                        .cartproducts[index2]
-                                                        .product
-                                                        .toString()),
-                                                productInfoTextSubHeaddings(
-                                                    orderPageController.orderList.data[index].cart
-                                        .cartproducts[index2]
-                                                        .rate
-                                                        .toString()),
-                                                productInfoTextSubHeaddings(
-                                                     orderPageController.orderList.data[index].cart
-                                        .cartproducts[index2]
-                                                        .quantity
-                                                        .toString()),
-                                                productInfoTextSubHeaddings(
-                                                  orderPageController.orderList.data[index].cart
-                                        .cartproducts[index2]
-                                                        .subtotal
-                                                        .toString()),
-                                              ],
-                                            ),
-                                          ),
+                                          productInfoTextHeadings(
+                                                        'Price:'),
+                                                    productInfoTextHeadings(
+                                                        'Quantity:'),
+                                                    productInfoTextHeadings(
+                                                        'Total:'),
                                         ],
                                       ),
+                                      gap(5, 0),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          productInfoTextSubHeaddings(
+                                                        orderPageController.orderList.data[index].cart
+                                            .cartproducts[index2]
+                                                            .rate
+                                                            .toString()),
+                                                    productInfoTextSubHeaddings(
+                                                         orderPageController.orderList.data[index].cart
+                                            .cartproducts[index2]
+                                                            .quantity
+                                                            .toString()),
+                                                    productInfoTextSubHeaddings(
+                                                      orderPageController.orderList.data[index].cart
+                                            .cartproducts[index2]
+                                                            .subtotal
+                                                            .toString()),
+                                        ],
+                                      ),
+                                        gap(5, 0),
+                                        Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          productInfoTextSubHeaddings(
+                                              'Order Status:'),
+                                          productInfoTextHeadings(
+                                              orderPageController.orderList.data[index].cart
+                                                  .cartproducts[index2]
+                                                  .orderStatus
+                                                  .toString()),
+                                        ],
+                                      )
+                                      ],
                                     ),
-                                  );
-                                }),
-                              ),
-                            ],
-                          ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ],
                         ),
                       );
                     }),
@@ -182,8 +184,9 @@ Widget productInfoTextHeadings(String val) {
   return Text(
     val,
     style: TextStyle(
-      fontSize: 16,
-      color: Colors.red,
+      fontSize: 18,
+      color: darkgreen,
+      fontWeight: FontWeight.bold
     ),
     maxLines: 1,
     overflow: TextOverflow.ellipsis,
@@ -194,7 +197,7 @@ Widget productInfoTextSubHeaddings(String val) {
   return Text(
     val,
     style: TextStyle(
-      fontSize: 16,
+      fontSize: 18,
       color: Colors.black,
       // fontWeight: FontWeight.w300,
     ),

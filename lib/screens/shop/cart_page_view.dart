@@ -36,20 +36,28 @@ cartController.  priceTotalList.clear();
   Widget build(BuildContext context) {
     Widget checkOutButton = Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10),
-      child: MaterialButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        onPressed: () {
+      child: GestureDetector(
+        onTap: () {
           Get.to(()=>CheckoutView(), arguments: {"total":cartController.priceTotal, "cartId": cartController.cart.data.id });
         },
-        child: Text(
-          "Proceed To Checkout",
-          style: TextStyle(color: darkgreen, fontSize: 16),
+        child: Container(
+          height: 50,
+            padding: EdgeInsets.only(left: 50, right: 50,),
+        decoration: BoxDecoration(
+          color: Colors.white,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Center(
+            child: Text("Proceed To Checkout",
+                  style: TextStyle(color: darkgreen, fontSize: 16,),
+            ),
+          ),
         ),
-        color: Colors.white,
-        padding: EdgeInsets.only(left: 60, right: 60, top: 10, bottom: 10),
-      ),
+      )
     );
 
+    
+    
     Widget _quantityChanger(int index) {
       return Row(
         children: [
@@ -163,79 +171,70 @@ cartController.  priceTotalList.clear();
                             itemCount: cartController.cartList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                child: Dismissible(
-                                  onDismissed: (direction) {
-                                    cartController.deleteCartList(
-                                        cartController.cartList[index].id,
-                                        index);
-                                  },
-                                  key: ObjectKey(cartController
-                                      .cart.data.cartproducts[index]),
-                                  child: Card(
-                                      margin: EdgeInsets.all(10.0),
-                                      child: Container(
-                                          padding: EdgeInsets.all(10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    cartController
-                                                        .cartList[index]
-                                                        .product
-                                                        .title
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ),
-                                                  Text(
-                                                    "Rate: " +
-                                                        "Rs " +
-                                                        cartController
-                                                            .cartList[index]
-                                                            .product
-                                                            .sellingPrice
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ),
-                                                  Text(
-                                                    "Quantity: " +
-                                                        cartController
-                                                            .cartList[index]
-                                                            .quantity
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ),
-                                                  Text(
-                                                    "Subtotal: " +
-                                                        (double.parse(cartController
-                                                                    .cartList[
-                                                                        index]
-                                                                    .rate) *
-                                                                cartController
-                                                                    .cartList[
-                                                                        index]
-                                                                    .quantity)
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ),
-                                                ],
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {},
-                                                child:
-                                                    Icon(Icons.delete_forever),
-                                              )
-                                            ],
-                                          ))),
-                                ),
+                                child: Card(
+                                    margin: EdgeInsets.all(10.0),
+                                    child: Container(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  cartController
+                                                      .cartList[index]
+                                                      .product
+                                                      .title
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "Rate: " +
+                                                      "Rs " +
+                                                      cartController
+                                                          .cartList[index]
+                                                          .product
+                                                          .sellingPrice
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "Quantity: " +
+                                                      cartController
+                                                          .cartList[index]
+                                                          .quantity
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "Subtotal: " +
+                                                      (double.parse(cartController
+                                                                  .cartList[
+                                                                      index]
+                                                                  .rate) *
+                                                              cartController
+                                                                  .cartList[
+                                                                      index]
+                                                                  .quantity)
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {},
+                                              child:
+                                                  Icon(Icons.delete_forever),
+                                            )
+                                          ],
+                                        ))),
                               );
                             }),
                       ),

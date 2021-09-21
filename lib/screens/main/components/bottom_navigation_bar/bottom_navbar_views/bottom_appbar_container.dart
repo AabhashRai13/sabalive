@@ -14,7 +14,7 @@ final TabController controller;
     
     return BottomAppBar(
       child: Container(
-        height: 42,
+        height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
