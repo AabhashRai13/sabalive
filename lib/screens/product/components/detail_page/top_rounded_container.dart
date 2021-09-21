@@ -82,7 +82,7 @@ class TopRoundedContainer extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(product
-                                  .data.productrequestoptions[index].request),
+                                  .data.productrequestoptions[index].request.capitalizeFirst),
                               ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: product
@@ -108,8 +108,7 @@ class TopRoundedContainer extends StatelessWidget {
                                         print(value);
                                         counterController.updateOptionId(
                                             index, value);
-                                           
-                                            
+                                        
                                       },
                                     ),
                                   );
