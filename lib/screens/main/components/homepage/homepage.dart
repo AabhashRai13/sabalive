@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
-import 'package:sabalive/models/product.dart';
 import 'package:sabalive/screens/main/components/homepage/category_carousel.dart';
 import 'package:sabalive/screens/main/components/homepage/homepage_appbar.dart';
 import 'package:sabalive/screens/main/components/homepage/hompage_invite_banner.dart';

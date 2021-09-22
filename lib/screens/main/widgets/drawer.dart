@@ -13,6 +13,8 @@ import 'package:sabalive/screens/blogs/blogs.dart';
 import 'package:sabalive/screens/order_page_view.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
+import '../../profile_update/profile_update.dart';
+
 final SharedPreferencesManager sharedPreferencesManager =
     locator<SharedPreferencesManager>();
 
@@ -73,6 +75,20 @@ Widget drawer(BuildContext context) {
                               Get.to(() => WelcomeBackPage());
                             },
                           )
+                        : Container(),
+                    sharedPreferencesManager.getBool("isLogin") != null
+                        ? Column(
+                      children: [
+                        ListTile(
+                          leading: new Icon(Icons.person),
+                          title: const Text("Update Profile"),
+                          onTap: () {
+                            Get.to(()=>ProfileUpdate());
+                          },
+                        ),
+                        Divider()
+                      ],
+                    )
                         : Container(),
                         sharedPreferencesManager.getBool("isLogin") != null
                         ? ListTile(
