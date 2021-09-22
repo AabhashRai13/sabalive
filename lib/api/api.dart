@@ -77,23 +77,38 @@ class ApiProvider {
     }
   }
 
-  Future<ForgetPassword> requestPasswordChange(map) async {
+  Future<ForgetPassword> requestPasswordforget(map) async {
     try {
       final response = await _dio.post(
         'customer/request-reset-email/',
         data: map,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'requirestoken': true,
-          },
-        ),
+        
       );
 
       return ForgetPassword.fromJson(response.data);
     } catch (error) {
       print("Forgetpassword error $error");
       return null;
+    }
+  }
+
+  
+  Future requestPasswordChange(map) async {
+    try {
+      final response = await _dio.patch(
+        'customer/change/password/',
+        data: map,
+      options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+if(response.statusCode == 200)
+      return true;
+    } catch (error) {
+      print("Forgetpassword error $error");
+      return false;
     }
   }
 

@@ -41,7 +41,7 @@ cartController.  priceTotalList.clear();
           Get.to(()=>CheckoutView(), arguments: {"total":cartController.priceTotal, "cartId": cartController.cart.data.id });
         },
         child: Container(
-          height: 50,
+          height: 49,
             padding: EdgeInsets.only(left: 50, right: 50,),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -136,7 +136,7 @@ cartController.  priceTotalList.clear();
                       Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 32.0, vertical: 15),
-                        height: 120.0,
+                        height: 125.0,
                         color: darkgreen,
                         child: Column(
                           children: [
