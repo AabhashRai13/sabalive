@@ -9,8 +9,9 @@ class ForgotPasswordController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController oldPasswordController = TextEditingController();
-final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmNewPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
+      TextEditingController();
 
   final GlobalKey prefixKey = GlobalKey();
   final double prefixWidth = 0;
@@ -31,25 +32,24 @@ final TextEditingController newPasswordController = TextEditingController();
     setState(ViewState.Busy);
   }
 
-void mapNewPassword(){
+  void mapNewPassword() {
+    Map map = {
+      "old_password": oldPasswordController.text.trim(),
+      "new_password": newPasswordController.text.trim(),
+      "confirm_new_password": confirmNewPasswordController.text.trim()
+    };
+    changePassword(map: map);
+  }
 
-
-  
-  Map map = {"old_password": oldPasswordController.text.trim(),
-  "new_password": newPasswordController.text.trim(),
-  "confirm_new_password": confirmNewPasswordController.text.trim()
-  };
-  changePassword(map: map);
-}
-
-    void changePassword({Map map}) async {
+  void changePassword({Map map}) async {
     setState(ViewState.Busy);
-  bool success   = await _apiProvider.requestPasswordChange(map);
+    bool success = await _apiProvider.requestPasswordChange(map);
     if (success) {
       Fluttertoast.showToast(
-          msg: "Your password is successfully changed", textColor: Colors.white);
-    }else{
-       Fluttertoast.showToast(
+          msg: "Your password is successfully changed",
+          textColor: Colors.white);
+    } else {
+      Fluttertoast.showToast(
           msg: "Your password couldn't be changed", textColor: Colors.white);
     }
     setState(ViewState.Busy);
@@ -58,6 +58,9 @@ void mapNewPassword(){
   @override
   void onClose() {
     emailController.clear();
+    newPasswordController.clear();
+    oldPasswordController.clear();
+    confirmNewPasswordController.clear();
     super.onClose();
   }
 }
