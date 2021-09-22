@@ -1,21 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sabalive/controllers/forgot_password_controller.dart';
 
 import '../../app_properties.dart';
 
-class ChangePasswordPage extends StatefulWidget {
-  @override
-  _ChangePasswordPageState createState() => _ChangePasswordPageState();
-}
+class ChangePasswordPage extends StatelessWidget {
+   
+   final ForgotPasswordController forgotPasswordController = Get.put(ForgotPasswordController());
 
-class _ChangePasswordPageState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     Widget changePasswordButton = InkWell(
-      onTap: () {},
+      onTap: () {
+      forgotPasswordController.mapNewPassword();
+      },
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -46,7 +48,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
@@ -94,6 +95,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
+                                controller: forgotPasswordController.oldPasswordController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'Existing Password',
@@ -115,6 +117,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
+                                controller: forgotPasswordController.newPasswordController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'New Password',
@@ -136,6 +139,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
+                                controller: forgotPasswordController.confirmNewPasswordController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'Retype Password',

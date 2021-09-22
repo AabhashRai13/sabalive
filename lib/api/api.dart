@@ -5,12 +5,13 @@ import 'package:sabalive/models/Store_wise_product_details.dart';
 import 'package:sabalive/models/about_us_model.dart';
 import 'package:sabalive/models/add_to_cart_model.dart';
 import 'package:sabalive/models/blog_model.dart';
-import 'package:sabalive/models/cart_model.dart' ;
+import 'package:sabalive/models/cart_model.dart';
 import 'package:sabalive/models/category_detail_Model.dart';
 import 'package:sabalive/models/category_list_model.dart';
 import 'package:sabalive/models/contact_us_model.dart';
 import 'package:sabalive/models/forget_password_response.dart';
 import 'package:sabalive/models/order_models.dart';
+import 'package:sabalive/models/payment_list_model.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/models/product_wise_details.dart';
 import 'package:sabalive/models/profile_model.dart';
@@ -78,23 +79,35 @@ class ApiProvider {
     }
   }
 
-  Future<ForgetPassword> requestPasswordChange(map) async {
+  Future<ForgetPassword> requestPasswordforget(map) async {
     try {
       final response = await _dio.post(
         'customer/request-reset-email/',
         data: map,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'requirestoken': true,
-          },
-        ),
       );
 
       return ForgetPassword.fromJson(response.data);
     } catch (error) {
       print("Forgetpassword error $error");
       return null;
+    }
+  }
+
+  Future requestPasswordChange(map) async {
+    try {
+      final response = await _dio.patch(
+        'customer/change/password/',
+        data: map,
+        options: Options(
+          headers: {
+            'requirestoken': true,
+          },
+        ),
+      );
+      if (response.statusCode == 200) return true;
+    } catch (error) {
+      print("Forgetpassword error $error");
+      return false;
     }
   }
 
@@ -136,8 +149,9 @@ class ApiProvider {
     int storeId =
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
-      final response = await _dio.get('store-$storeId/about-us/',
-         );
+      final response = await _dio.get(
+        'store-$storeId/about-us/',
+      );
       return AboutUs.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
@@ -256,22 +270,22 @@ class ApiProvider {
       return null;
     }
   }
-  
-  Future<BlogModel> fetchBlog() async{
+
+  Future<BlogModel> fetchBlog() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
-    try{
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    try {
       final response = await _dio.get(
         "store-$storeId/blogs",
       );
-          return BlogModel.fromJson(response.data);
-    } catch(error){
+      return BlogModel.fromJson(response.data);
+    } catch (error) {
       print("Blog api error $error");
       return null;
     }
   }
 
-  Future<ProfileModel> fetchProfile() async{
+  Future<ProfileModel> fetchProfile() async {
     try {
       final response = await _dio.get(
         'customer/profile/',
@@ -290,7 +304,7 @@ class ApiProvider {
 
   Future<CategoryList> fetchCategoryList() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
         'customer/store-$storeId/product/category/list/',
@@ -301,23 +315,24 @@ class ApiProvider {
             },
           )
       );
-    
+
       return CategoryList.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
-  Future<CategoryDetailModel> fetchCategoryDetail() async{
+
+  Future<CategoryDetailModel> fetchCategoryDetail() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
-    int categoryId= _sharedPreferencesManager.getInt(SharedPreferencesManager.categoryId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    int categoryId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.categoryId);
     try {
       final response = await _dio.get(
         'customer/store-$storeId/product/category-$categoryId/detail/',
       );
-    
+
       return CategoryDetailModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
@@ -327,7 +342,7 @@ class ApiProvider {
 
   Future<SliderProductModel> fetchSliderProductList() async {
     int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       final response = await _dio.get(
         'customer/homepage/store-$storeId/slider/list/',
@@ -346,8 +361,8 @@ class ApiProvider {
   }
 
   Future<OrderList> getOrderList() async {
-         int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+    int storeId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
       print('get order');
       final response = await _dio.get(
@@ -372,15 +387,17 @@ class ApiProvider {
     }
     return null;
   }
-    checkoutProducts(map, cartId) async {
-        int storeId =
-    _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+
+  checkoutProducts(map, cartId) async {
+    int storeId =
+        _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
     try {
-      final response = await _dio.post('customer/store-$storeId/order/create/$cartId/',
-          data: map,
-          options: Options(
-            headers: {'requirestoken': true},
-          ));
+      final response =
+          await _dio.post('customer/store-$storeId/order/create/$cartId/',
+              data: map,
+              options: Options(
+                headers: {'requirestoken': true},
+              ));
       print("response status ${response.statusCode}");
       if (response.statusCode == 200) {
         return true;
@@ -410,7 +427,22 @@ class ApiProvider {
       return null;
     }
   }
+  Future<PaymentListModel> fetchPaymentList() async {
+    try {
+      final response = await _dio.get(
+          'payment-method/list/',
+          options: Options(
+              headers: {
+                'requiresToken' : true,
+              }
+          )
+      );
+    
+      return PaymentListModel.fromJson(response.data);
+    } catch (error) {
+      print("Store api error $error");
+      return null;
+    }
+  }
   
 }
-
-

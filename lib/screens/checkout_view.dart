@@ -6,7 +6,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:sabalive/constants/enum.dart';
+import 'package:sabalive/controllers/payment_list_controller.dart';
 import 'package:sabalive/injector/injector.dart';
+
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 import '../app_properties.dart';
@@ -16,6 +18,7 @@ class CheckoutView extends GetView<CheckoutController> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final SharedPreferencesManager sharedPreferencesManager =
     locator<SharedPreferencesManager>();
+    final PaymentListController _paymentListController = Get.put(PaymentListController());
   final _formKey = GlobalKey<FormState>();
 
   @override
