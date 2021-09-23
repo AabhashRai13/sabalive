@@ -74,6 +74,7 @@ class StoreSelectBottomSheet extends StatelessWidget {
                     SharedPreferencesManager.keyStoreId, stores.id);
                 homeController.fetchStoreWiseProducts();
                 homeController.fetchCategoryList();
+                homeController.fetchSliderProductList();
               }),
           Divider(
             height: 2,

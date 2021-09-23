@@ -13,7 +13,7 @@ class CheckoutController extends BaseController {
 
   //CartController cartController = CartController();
   ApiProvider apiProvider= ApiProvider();
-  List<String> paymentOptions = ['Cash on Delivery', 'Pay via Khalti'];
+  List<String> paymentOptions = ['Cash on Delivery', 'Pay via Stripe'];
   var category = "".obs;
   var totalPrice = Get.arguments['total'];
 
