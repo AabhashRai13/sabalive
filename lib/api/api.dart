@@ -19,6 +19,7 @@ import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/slidet_product_model.dart';
 import 'package:sabalive/models/store.dart';
 import 'package:sabalive/models/token.dart';
+import 'package:sabalive/models/update_profile_response.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 import 'package:sabalive/utils/interceptor.dart';
 
@@ -129,6 +130,12 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/detail/$storeId/',
+          options: Options(
+            headers: {
+              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null
+                  ?false:true,
+            },
+          ),
       );
 
       return StoreWiseProducts.fromJson(response.data);
@@ -301,6 +308,12 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store-$storeId/product/category/list/',
+          options: Options(
+            headers: {
+              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null
+                  ?false:true,
+            },
+          )
       );
 
       return CategoryList.fromJson(response.data);
@@ -333,8 +346,13 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/homepage/store-$storeId/slider/list/',
+          options: Options(
+            headers: {
+              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null ?false
+                  :true,
+            }
+          )
       );
-
       return SliderProductModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
@@ -391,22 +409,40 @@ class ApiProvider {
     return null;
   }
 
-Future<PaymentListModel> fetchPaymentList() async {
+  Future<UpdateProfileResponse> updateUserProfile(map) async {
     try {
-      final response = await _dio.get(
-        'payment-method/list/',
+      final response = await _dio.patch(
+        'customer/update/',
+        data: map,
         options: Options(
           headers: {
-            'requiresToken' : true,
-          }
-        )
+            'Content-Type': 'application/json',
+            'requirestoken': true,
+          },
+        ),
       );
-
+      return UpdateProfileResponse.fromJson(response.data);
+    } catch (error) {
+      print("Registration error $error");
+      return null;
+    }
+  }
+  Future<PaymentListModel> fetchPaymentList() async {
+    try {
+      final response = await _dio.get(
+          'payment-method/list/',
+          options: Options(
+              headers: {
+                'requiresToken' : true,
+              }
+          )
+      );
+    
       return PaymentListModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-
+  
 }
