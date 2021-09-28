@@ -1,9 +1,12 @@
+// To parse this JSON data, do
+//
+//     final aboutUs = aboutUsFromJson(jsonString);
 
 import 'dart:convert';
 
-AboutUs aboutusFromJson(String str) => AboutUs.fromJson(json.decode(str));
+AboutUs aboutUsFromJson(String str) => AboutUs.fromJson(json.decode(str));
 
-String aboutusToJson(AboutUs data) => json.encode(data.toJson());
+String aboutUsToJson(AboutUs data) => json.encode(data.toJson());
 
 class AboutUs {
   AboutUs({
@@ -38,13 +41,12 @@ class Data {
     this.email,
     this.iconUrl,
   });
-
-
+  
   int id;
   String storeName;
   String image;
-  dynamic state;
-  int city;
+  String state;
+  String city;
   String streetAddress;
   String contact;
   dynamic altContact;
@@ -75,5 +77,5 @@ class Data {
     "alt_contact": altContact,
     "email": email,
     "icon_url": iconUrl,
-};
+  };
 }

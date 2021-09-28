@@ -45,7 +45,6 @@ class HomePage extends StatelessWidget {
                   //     subtitle: "Red and White meats",
                   //     productList: products),
                   CategoryCarousel(homeController: _homeController),
-
                   StoreWiseProduct(
                     homeController: _homeController,
                   ),
