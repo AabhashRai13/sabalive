@@ -14,6 +14,7 @@ class BlogDetailPage extends StatelessWidget {
       backgroundColor: lightgreen.withOpacity(1),
       body: SafeArea(
           child: Container(
+            height: Get.height,
             margin: EdgeInsets.all(8.0),
             padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(

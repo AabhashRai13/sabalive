@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/profile_controller.dart';
-import 'package:sabalive/controllers/registration_controller_controller.dart';
 import 'package:sabalive/controllers/update_profile_controller.dart';
 import 'package:sabalive/screens/profile_update/profile_update_textfield.dart';
 
@@ -11,48 +10,14 @@ import '../../../app_properties.dart';
 
 class ProfileUpdate extends StatelessWidget {
   ProfileUpdate({Key key}) : super(key: key);
- 
+  
   final ProfileController profileController= Get.put(ProfileController());
   final UpdateProfileController updateProfileController= Get.put(UpdateProfileController());
-  GlobalKey<FormState> _key = GlobalKey();
-
+  final GlobalKey<FormState> _key = GlobalKey();
+  
   @override
   Widget build(BuildContext context) {
-  
-    Widget registerButton = Positioned(
-      left: MediaQuery.of(context).size.width / 4,
-      bottom: 40,
-      child: InkWell(
-        onTap: () {
-          if (_key.currentState.validate()) {
-            _key.currentState.save();
-          }
-          updateProfileController.mapRegisterInfo();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width / 2,
-          height: 80,
-          child: Center(
-              child: new Text("Update",
-                  style: const TextStyle(
-                      color: const Color(0xfffefefe),
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 20.0))),
-          decoration: BoxDecoration(
-              color: Colors.teal[600],
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.16),
-                  offset: Offset(0, 5),
-                  blurRadius: 10.0,
-                )
-              ],
-              borderRadius: BorderRadius.circular(9.0)),
-        ),
-      ),
-    );
-  
+    
     Widget registerForm = Container(
       child: Form(
         key: _key,
@@ -68,7 +33,7 @@ class ProfileUpdate extends StatelessWidget {
                       bottomLeft: Radius.circular(10))),
               child: Column(
                 children: <Widget>[
-  
+                  
                   ProfileUpdateTextField(
                     
                     controller:
@@ -83,9 +48,9 @@ class ProfileUpdate extends StatelessWidget {
                     },
                     obscureText: false,
                   ),
-  
+                  
                   ProfileUpdateTextField(
-  
+                    
                     controller:
                     updateProfileController.mobileController,
                     icon: Icon(Icons.phone_android),
@@ -99,7 +64,7 @@ class ProfileUpdate extends StatelessWidget {
                     obscureText: false,
                   ),
                   ProfileUpdateTextField(
-  
+                    
                     controller:
                     updateProfileController.cityController,
                     icon: Icon(Icons.location_city),
@@ -121,7 +86,35 @@ class ProfileUpdate extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  registerButton,
+                  GestureDetector(
+                    onTap: (){
+                      if (_key.currentState.validate()) {
+                        _key.currentState.save();
+                      }
+                      updateProfileController.mapRegisterInfo();
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: 80,
+                      child: Center(
+                          child: new Text("Update",
+                              style: const TextStyle(
+                                  color: const Color(0xfffefefe),
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 20.0))),
+                      decoration: BoxDecoration(
+                          color: Colors.teal[600],
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.16),
+                              offset: Offset(0, 5),
+                              blurRadius: 10.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(9.0)),
+                    ),
+                  ),
                   SizedBox(
                     height: 10,
                   )
@@ -157,7 +150,7 @@ class ProfileUpdate extends StatelessWidget {
         ),
       );
     }
-  
+    
     Widget imageHolder = Center(
       child: InkWell(
         onTap: () {
@@ -170,14 +163,14 @@ class ProfileUpdate extends StatelessWidget {
               padding: EdgeInsets.all(15),
               child: Stack(
                 children: [
-                 GetBuilder<ProfileController>(builder: (profileController)=> CircleAvatar(
-                   radius: 50,
-                   backgroundColor: Colors.white,
-                   backgroundImage: updateProfileController.image ==
-                       null
-                       ? profileController.profileModel==null?AssetImage("assets/SabaLive.png"):NetworkImage(profileController.profileModel.message.image)
-                       : FileImage(updateProfileController.image),
-                 ),),
+                  GetBuilder<ProfileController>(builder: (profileController)=> CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white,
+                    backgroundImage: updateProfileController.image ==
+                        null
+                        ? profileController.profileModel==null?AssetImage("assets/SabaLive.png"):NetworkImage(profileController.profileModel.message.image)
+                        : FileImage(updateProfileController.image),
+                  ),),
                   Positioned(
                       bottom: 0,
                       right: 0,
@@ -187,34 +180,34 @@ class ProfileUpdate extends StatelessWidget {
         ),
       ),
     );
-  
+    
     return Scaffold(
       appBar: AppBar(
         
         backgroundColor: lightgreen,
-      elevation: 0.0,
-      leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            CupertinoIcons.back,
-            color: Colors.white,
-          )),
-      title: Text(
-        'Update Profile',
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
-            shadows: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.15),
-                offset: Offset(0, 5),
-                blurRadius: 10.0,
-              )
-            ]),
-      ),),
+        elevation: 0.0,
+        leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              CupertinoIcons.back,
+              color: Colors.white,
+            )),
+        title: Text(
+          'Update Profile',
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 25.0,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.15),
+                  offset: Offset(0, 5),
+                  blurRadius: 10.0,
+                )
+              ]),
+        ),),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
@@ -232,16 +225,15 @@ class ProfileUpdate extends StatelessWidget {
                   children: <Widget>[
                     imageHolder,
                     registerForm,
-                   
+                  
                   ],
                 ),
               ),
             ),
-           
+          
           ],
         ),
       ),
     );
   }
 }
-

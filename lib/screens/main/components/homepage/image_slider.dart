@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/screens/product/product_detail_page.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({Key key, this.homeController}) : super(key: key);
@@ -15,16 +17,34 @@ class ImageSlider extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                child: homeController.sliderProductModel == null
-                    ? Text("Loading...")
-                    : Text("Popular Product",
+                child:  homeController.sliderProductModel == null
+                    ? Shimmer.fromColors(
+                    child: Container(
+                      height: 40,
+                      width: 250,
+                      decoration: ShapeDecoration(
+                        color: Colors.grey[300],
+                        shape: RoundedRectangleBorder(),
+                      ),
+                    ),
+                    baseColor: Colors.grey[400],
+                    highlightColor: Colors.grey[300])
+                    :  Text("Popular Product",
                         style: TextStyle(
                           fontSize: 19.0,
                           fontWeight: FontWeight.w600,
                           color: Colors.black87,
                         )),
               ),
-              Container(
+              homeController.state==ViewState.Busy?Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Shimmer.fromColors(child: Container(height: 180,decoration: ShapeDecoration(
+                  color: Colors.grey[400],
+                  shape: RoundedRectangleBorder(),
+    
+                ),),
+                    baseColor: Colors.grey[400], highlightColor: Colors.grey[300]),
+              ):Container(
                 child: homeController.sliderLists.length != null
                     ? Container(height: 150,
                 child: PageView.builder(

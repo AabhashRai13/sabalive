@@ -12,6 +12,7 @@ class ContactUs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {
               Get.back();
@@ -57,7 +58,7 @@ class ContactUs extends StatelessWidget {
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2,
-                  height: 50,
+                  height: 80,
                   child: Center(
                       child: new Text("Send",
                           style: const TextStyle(
