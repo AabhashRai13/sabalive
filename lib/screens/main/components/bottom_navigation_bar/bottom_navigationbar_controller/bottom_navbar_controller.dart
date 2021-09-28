@@ -3,12 +3,18 @@ import 'package:get/get.dart';
 
 class BottomNavBarController extends GetxController{
   PageController pageController;
-  var _currentIndex = 0.obs;
+  var currentIndex = 0.obs;
 
-  get currentIndex => _currentIndex.value;
-
-  set currentIndex(index) => _currentIndex.value =index;
   GlobalKey bottomNavigationKey = GlobalKey();
+  
+var homeIcon = Icon(Icons.search_outlined).obs;
+   setBottomBarIndex(index,Icon icon) {
+    print(index);
+    currentIndex.value = index;
+    
+    homeIcon.value = icon;
+    update();
+  }
   @override
   void onInit() {
     super.onInit();

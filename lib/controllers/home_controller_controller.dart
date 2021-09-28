@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
@@ -12,13 +13,15 @@ class HomeController extends BaseController {
   ApiProvider _apiProvider = ApiProvider();
   StoreWiseProducts storeWiseProducts;
   List products = [].obs;
-  
+
   CategoryList categoryList;
   List categoryLists=[].obs;
   
+  
   SliderProductModel sliderProductModel;
   List sliderLists=[].obs;
-  
+   
+
   final SharedPreferencesManager sharedPreferencesManager =
   locator<SharedPreferencesManager>();
   @override
