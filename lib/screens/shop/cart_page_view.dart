@@ -38,6 +38,8 @@ cartController.  priceTotalList.clear();
       padding: const EdgeInsets.only(bottom: 10.0, top: 10),
       child: GestureDetector(
         onTap: () {
+
+          cartController.priceTotal.value==0?cartController.nothing():
           Get.to(()=>CheckoutView(), arguments: {"total":cartController.priceTotal, "cartId": cartController.cart.data.id });
         },
         child: Container(

@@ -14,11 +14,16 @@ class PaymentListController extends BaseController {
     fetPaymentList();
   }
 
-  void fetPaymentList() async {
+  Future<PaymentListModel> fetPaymentList() async {
     setState(ViewState.Busy);
     paymentListModel = await _apiService.fetchPaymentList();
-    print(paymentListModel);
-    setState(ViewState.Retrieved);
+    if (paymentListModel != null) {
+      print(paymentListModel);
+      setState(ViewState.Retrieved);
+      return paymentListModel;
+    } else {
+      return null;
+    }
   }
 
   @override

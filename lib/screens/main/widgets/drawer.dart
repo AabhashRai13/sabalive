@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
+import 'package:sabalive/bindings/bindings.dart';
 import 'package:sabalive/controllers/drawer_controller.dart';
 import 'package:sabalive/controllers/profile_controller.dart';
 import 'package:sabalive/injector/injector.dart';
@@ -106,23 +107,16 @@ Widget drawer(BuildContext context) {
                       leading: new Icon(Icons.chat),
                       title: const Text("Blogs"),
                       onTap: () {
-                        Get.to(Blogs());
+                        Get.to(()=>Blogs(), binding: BlogBindings());
                       },
                     ),
                     Divider(),
-                    ListTile(
-                      leading: new Icon(Icons.local_offer),
-                      title: const Text("Special Offers"),
-                      onTap: () {
-                        Get.to(Blogs());
-                      },
-                    ),
-                    Divider(),
+                
                     ListTile(
                       leading: new Icon(Icons.call),
                       title: const Text("Contact Us"),
                       onTap: () {
-                        Get.to(ContactUs());
+                        Get.to(()=>ContactUs());
                       },
                     ),
                     Divider(),
@@ -130,7 +124,8 @@ Widget drawer(BuildContext context) {
                       leading: new Icon(Icons.group),
                       title: const Text("About Us"),
                       onTap: () {
-                        Get.to(AboutUs());
+                        Get.back();
+                        Get.to(()=>AboutUs(), binding: AboutUsBindings());
                       },
                     ),
                     Divider(),

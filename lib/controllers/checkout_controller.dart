@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,14 +5,16 @@ import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
 import 'package:sabalive/constants/enum.dart';
-import 'package:dio/dio.dart'as dio;
+import 'package:dio/dio.dart' as dio;
+import 'package:sabalive/controllers/payment_list_controller.dart';
+import 'package:sabalive/models/payment_list_model.dart';
 
 class CheckoutController extends BaseController {
- 
-
-  //CartController cartController = CartController();
-  ApiProvider apiProvider= ApiProvider();
-  List<String> paymentOptions = ['Cash on Delivery', 'Pay via Stripe'];
+  final PaymentListController _paymentListController =
+      Get.put(PaymentListController());
+  ApiProvider apiProvider = ApiProvider();
+  PaymentListModel paymentListModel;
+  List<String> paymentOptions = [];
   var category = "".obs;
   var totalPrice = Get.arguments['total'];
 
@@ -22,9 +23,6 @@ class CheckoutController extends BaseController {
   final TextEditingController numberController = TextEditingController();
   final TextEditingController postalCode = TextEditingController();
   final TextEditingController streeAtddressController = TextEditingController();
-  
-
- 
 
   final count = 0.obs;
   var conditionStatusRadioValue = 0.obs;
@@ -39,34 +37,27 @@ class CheckoutController extends BaseController {
   void checkoutMapping() {
     if (addressTitle.value == "Pay via Khalti") {
     } else {
-
-print({
+      print({
         "name": nameController.text.trim(),
         "mobile": numberController.text.trim(),
         "email": emailController.text.trim(),
         "street_address": streeAtddressController.text.trim(),
         "postal_code": postalCode.text.trim(),
-        
-     });
+      });
 
-     var formData = dio.FormData.fromMap( {
+      var formData = dio.FormData.fromMap({
         "name": nameController.text.trim(),
         "mobile": numberController.text.trim(),
         "email": emailController.text.trim(),
         "street_address": streeAtddressController.text.trim(),
         "postal_code": postalCode.text.trim(),
-        
-     });
+      });
       print(formData.length);
       checkOutOrder(formData);
     }
   }
 
-
-
-  deleteAllProducts() async {
-  
-  }
+  deleteAllProducts() async {}
 
   checkOutOrder(map) async {
     setState(ViewState.Busy);
@@ -119,10 +110,20 @@ print({
     }
   }
 
+  void fetchPaymentList() async {
+    paymentListModel = await _paymentListController.fetPaymentList();
+    if (paymentListModel != null) {
+      for (int i = 0; i < paymentListModel.data.length; i++) {
+        paymentOptions.add(paymentListModel.data[i].title);
+      }
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
     print('arguments: ${Get.arguments}');
+    fetchPaymentList();
   }
 
   @override

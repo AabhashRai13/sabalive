@@ -96,7 +96,7 @@ class TopRoundedContainer extends StatelessWidget {
                                         .data
                                         .productrequestoptions[index]
                                         .productrequestoptionchoices[index2]
-                                        .option),
+                                        .option.capitalize),
                                     leading: Radio(
                                       value: product
                                           .data

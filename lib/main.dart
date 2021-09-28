@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -10,7 +11,9 @@ void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await setupLocator();
-    
+    await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp],
+    );
     runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,

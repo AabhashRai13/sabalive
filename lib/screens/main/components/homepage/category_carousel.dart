@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/screens/main/components/homepage/category_detail_page.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoryCarousel extends StatelessWidget {
   CategoryCarousel({Key key,
@@ -17,16 +19,26 @@ class CategoryCarousel extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             child: homeController.categoryLists == null
-                ? Text("loading...")
-                : Text("Category",
+                ? Shimmer.fromColors(
+                child: Container(
+                  height: 40,
+                  width: 250,
+                  decoration: ShapeDecoration(
+                    color: Colors.grey[300],
+                    shape: RoundedRectangleBorder(),
+                  ),
+                ),
+                baseColor: Colors.grey[400],
+                highlightColor: Colors.grey[300])
+        : Text("Category",
                 style: TextStyle(
                   fontSize: 19.0,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 )),
           ),
-          Container(
-            height: 100,
+         Container(
+            height: 110,
             child: homeController.categoryLists.length != null
                 ? ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -40,12 +52,11 @@ class CategoryCarousel extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap:(){
-                            
                             homeController.assignCategoryId(categoryId: homeController.categoryLists[index].id);
                             Get.to(()=>CategoryDetailPage(title: homeController.categoryLists[index].title,categoryId: homeController.categoryLists[index].id));
                           },
                           child: CircleAvatar(
-                            radius: 35,
+                            radius: 40,
                             backgroundImage: NetworkImage(homeController.categoryLists[index].image,),
                           ),
                         ),

@@ -142,12 +142,13 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/detail/$storeId/',
-         options:_sharedPreferencesManager.getBool("accessToken") == null? Options(): Options(
-            headers: {
-              'requirestoken': 
-                  true,
-            },
-          )
+        options: _sharedPreferencesManager.getBool("isLogin") == null
+            ? Options()
+            : Options(
+                headers: {
+                  'requirestoken': true,
+                },
+              ),
       );
 
       return StoreWiseProducts.fromJson(response.data);
@@ -286,6 +287,7 @@ class ApiProvider {
   Future<BlogModel> fetchBlog() async {
     int storeId =
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        print("Store id $storeId");
     try {
       final response = await _dio.get(
         "store-$storeId/blogs",
@@ -320,12 +322,13 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store-$storeId/product/category/list/',
-          options: Options(
-            headers: {
-              'requirestoken': 
-                  _sharedPreferencesManager.getBool("accessToken") == null? false:true,
-            },
-          )
+        options: _sharedPreferencesManager.getBool("isLogin") == null
+            ? Options()
+            : Options(
+                headers: {
+                  'requirestoken': true,
+                },
+              ),
       );
 
       return CategoryList.fromJson(response.data);
@@ -358,7 +361,13 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/homepage/store-$storeId/slider/list/',
-          options:  checkLogin()
+        options: _sharedPreferencesManager.getBool("isLogin") == null
+            ? Options()
+            : Options(
+                headers: {
+                  'requirestoken': true,
+                },
+              ),
       );
       return SliderProductModel.fromJson(response.data);
     } catch (error) {
@@ -434,22 +443,18 @@ class ApiProvider {
       return null;
     }
   }
+
   Future<PaymentListModel> fetchPaymentList() async {
     try {
-      final response = await _dio.get(
-          'payment-method/list/',
-          options: Options(
-              headers: {
-                'requiresToken' : true,
-              }
-          )
-      );
-    
+      final response = await _dio.get('payment-method/list/',
+          options: Options(headers: {
+            'requiresToken': true,
+          }));
+
       return PaymentListModel.fromJson(response.data);
     } catch (error) {
       print("Store api error $error");
       return null;
     }
   }
-  
 }

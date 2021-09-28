@@ -16,7 +16,9 @@ class CartController extends BaseController {
   bool isOrderPlaced = false;
   bool isDeleted = false;
   var a = 2.obs;
-
+nothing(){
+  print("nothing happens");
+}
   populatePriceTotalList() {
     for (var i = 0; i < cartList.length; i++) {
       priceTotalList
