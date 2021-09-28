@@ -38,6 +38,18 @@ class ApiProvider {
     debugPrint('error: $error & stacktrace: $stacktrace');
   }
 
+  checkLogin(){
+     if(_sharedPreferencesManager.getBool("accessToken") != null){
+       return Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        );
+     }else{Options(
+          
+        );}
+  }
+
   Future<Token> loginUser(map) async {
     try {
       final response = await _dio.post(
@@ -141,7 +153,7 @@ class ApiProvider {
 
       return StoreWiseProducts.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("Store wise product api error $error");
       return null;
     }
   }
@@ -275,6 +287,7 @@ class ApiProvider {
   Future<BlogModel> fetchBlog() async {
     int storeId =
         _sharedPreferencesManager.getInt(SharedPreferencesManager.keyStoreId);
+        print("Store id $storeId");
     try {
       final response = await _dio.get(
         "store-$storeId/blogs",
@@ -320,7 +333,7 @@ class ApiProvider {
 
       return CategoryList.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("category api error $error");
       return null;
     }
   }
@@ -358,7 +371,7 @@ class ApiProvider {
       );
       return SliderProductModel.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("slider api error $error");
       return null;
     }
   }

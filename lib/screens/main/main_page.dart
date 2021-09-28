@@ -5,7 +5,6 @@ import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_na
 import 'package:sabalive/screens/main/components/homepage/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/profile_page.dart';
-import 'package:sabalive/screens/shop/cart_page_view.dart';
 import '../../app_properties.dart';
 import 'components/bottom_navigation_bar/bottom_navigationbar_controller/bottom_navbar_controller.dart';
 

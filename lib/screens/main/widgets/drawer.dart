@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/app_properties.dart';
+import 'package:sabalive/bindings/bindings.dart';
 import 'package:sabalive/controllers/drawer_controller.dart';
 import 'package:sabalive/controllers/profile_controller.dart';
 import 'package:sabalive/injector/injector.dart';
@@ -28,76 +29,83 @@ Widget drawer(BuildContext context) {
                   children: [
                     DrawerHeader(
                       decoration: BoxDecoration(color: lightgreen),
-                      child: sharedPreferencesManager.getString("accessToken")==null
-                          ?Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            minRadius: 50.0,
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text("User not Login"),
-                        ],
-                      ):GetBuilder<ProfileController>(
-                        init: ProfileController(),
-                          builder: (value) => value.profileModel == null
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircleAvatar(
-                                      minRadius: 50.0,
-                                    ),
-                                  ],
-                                )
-                              : Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircleAvatar(
-                                      minRadius: 50.0,
-                                      backgroundImage: NetworkImage(
-                                          value.profileModel.message.image),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                        value.profileModel.message.name.capitalize)
-                                  ],
-                                )),
+                      child: sharedPreferencesManager
+                                  .getString("accessToken") ==
+                              null
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  minRadius: 50.0,
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text("User not Login"),
+                              ],
+                            )
+                          : GetBuilder<ProfileController>(
+                              init: ProfileController(),
+                              builder: (value) => value.profileModel == null
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                          minRadius: 50.0,
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                          minRadius: 50.0,
+                                          backgroundImage: NetworkImage(
+                                              value.profileModel.message.image),
+                                        ),
+                                        SizedBox(
+                                          height: 5.0,
+                                        ),
+                                        Text(value.profileModel.message.name
+                                            .capitalize)
+                                      ],
+                                    )),
                     ),
                     sharedPreferencesManager.getBool("isLogin") == null
                         ? ListTile(
                             leading: new Icon(Icons.login),
                             title: const Text("Login"),
                             onTap: () {
+                              Get.back();
                               Get.to(() => WelcomeBackPage());
                             },
                           )
                         : Container(),
                     sharedPreferencesManager.getBool("isLogin") != null
                         ? Column(
-                      children: [
-                        ListTile(
-                          leading: new Icon(Icons.person),
-                          title: const Text("Update Profile"),
-                          onTap: () {
-                            Get.to(()=>ProfileUpdate());
-                          },
-                        ),
-                        Divider()
-                      ],
-                    )
+                            children: [
+                              ListTile(
+                                leading: new Icon(Icons.person),
+                                title: const Text("Update Profile"),
+                                onTap: () {
+                                  Get.back();
+
+                                  Get.to(() => ProfileUpdate());
+                                },
+                              ),
+                              Divider()
+                            ],
+                          )
                         : Container(),
-                        sharedPreferencesManager.getBool("isLogin") != null
+                    sharedPreferencesManager.getBool("isLogin") != null
                         ? ListTile(
                             leading: new Icon(Icons.login),
                             title: const Text("Order History"),
                             onTap: () {
                               Get.back();
                               Get.to(() => OrderPageView());
-
                             },
                           )
                         : Container(),
@@ -106,23 +114,19 @@ Widget drawer(BuildContext context) {
                       leading: new Icon(Icons.chat),
                       title: const Text("Blogs"),
                       onTap: () {
-                        Get.to(Blogs());
+                        Get.back();
+
+                        Get.to(() => Blogs(), binding: BlogBindings());
                       },
                     ),
                     Divider(),
-                    // ListTile(
-                    //   leading: new Icon(Icons.local_offer),
-                    //   title: const Text("Special Offers"),
-                    //   onTap: () {
-                    //     Get.to(Blogs());
-                    //   },
-                    // ),
-                    // Divider(),
                     ListTile(
                       leading: new Icon(Icons.call),
                       title: const Text("Contact Us"),
                       onTap: () {
-                        Get.to(ContactUs());
+                        Get.back();
+
+                        Get.to(() => ContactUs());
                       },
                     ),
                     Divider(),
@@ -130,7 +134,8 @@ Widget drawer(BuildContext context) {
                       leading: new Icon(Icons.group),
                       title: const Text("About Us"),
                       onTap: () {
-                        Get.to(AboutUs());
+                        Get.back();
+                        Get.to(() => AboutUs(), binding: AboutUsBindings());
                       },
                     ),
                     Divider(),

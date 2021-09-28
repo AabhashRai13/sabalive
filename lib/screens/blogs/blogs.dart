@@ -8,7 +8,7 @@ import 'package:sabalive/screens/blogs/blog_detailpage.dart';
 
 class Blogs extends StatelessWidget {
   Blogs({Key key}) : super(key: key);
-
+ final BlogController blogController = Get.put(BlogController());
   Widget _buildLoadingWidget() {
     return SpinKitCircle(color: Colors.blue[400]);
   }
@@ -128,7 +128,7 @@ class Blogs extends StatelessWidget {
           );
   }
 
-  BlogController blogController = Get.put(BlogController());
+ 
 
   @override
   Widget build(BuildContext context) {

@@ -120,9 +120,10 @@ class ProfileUpdate extends StatelessWidget {
                   )
                 ],
               ),
-            ),
-          ],
-        ),
+           
+          
+          ),
+           ] ),
       ),
     );
     

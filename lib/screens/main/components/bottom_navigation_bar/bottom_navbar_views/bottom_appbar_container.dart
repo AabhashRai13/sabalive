@@ -6,8 +6,8 @@ import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_na
 import 'package:sabalive/screens/shop/cart_page_view.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarController());
-  
+final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarController());
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -31,7 +31,7 @@ class BottomNavBar extends StatelessWidget {
                 }),
           ),
           Obx(
-                () => Container(
+            () => Container(
               width: size.width,
               height: 80,
               child: Row(
@@ -48,7 +48,6 @@ class BottomNavBar extends StatelessWidget {
                     onPressed: () {
                       bottomNavBarController.setBottomBarIndex(
                           0,  Icon(Icons.search_outlined));
-                      
                       print(bottomNavBarController.currentIndex.value);
                     },
                     splashColor: Colors.white,
@@ -65,7 +64,6 @@ class BottomNavBar extends StatelessWidget {
                         bottomNavBarController.setBottomBarIndex(
                             1,  Icon(Icons.search_outlined));
                       }),
-                
                 ],
               ),
             ),
@@ -82,7 +80,6 @@ class BNBCustomPainter extends CustomPainter {
     Paint paint = new Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
-    
     Path path = Path();
     path.moveTo(0, 0); // Start
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
@@ -97,7 +94,6 @@ class BNBCustomPainter extends CustomPainter {
     canvas.drawShadow(path, Colors.black, 5, true);
     canvas.drawPath(path, paint);
   }
-  
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;

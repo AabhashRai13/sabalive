@@ -6,24 +6,27 @@ import 'package:sabalive/models/payment_list_model.dart';
 class PaymentListController extends BaseController {
   PaymentListModel paymentListModel;
 
-ApiProvider _apiService = ApiProvider();
-
-
+  ApiProvider _apiService = ApiProvider();
 
   @override
   void onInit() {
     super.onInit();
-    //fetPaymentList();
+    fetPaymentList();
   }
 
-  void fetPaymentList() async {
+  Future<PaymentListModel> fetPaymentList() async {
     setState(ViewState.Busy);
     paymentListModel = await _apiService.fetchPaymentList();
-    print(paymentListModel);
-    setState(ViewState.Retrieved);
+    if (paymentListModel != null) {
+      print(paymentListModel);
+      setState(ViewState.Retrieved);
+      return paymentListModel;
+    } else {
+      return null;
+    }
   }
 
-@override
+  @override
   void onReady() {
     super.onReady();
     fetPaymentList();
@@ -31,6 +34,4 @@ ApiProvider _apiService = ApiProvider();
 
   @override
   void onClose() {}
-
- 
 }
