@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/controllers/profile_controller.dart';
-import 'package:sabalive/controllers/registration_controller_controller.dart';
 import 'package:sabalive/controllers/update_profile_controller.dart';
 import 'package:sabalive/screens/profile_update/profile_update_textfield.dart';
 
@@ -14,7 +13,7 @@ class ProfileUpdate extends StatelessWidget {
  
   final ProfileController profileController= Get.put(ProfileController());
   final UpdateProfileController updateProfileController= Get.put(UpdateProfileController());
-  GlobalKey<FormState> _key = GlobalKey();
+ final  GlobalKey<FormState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -56,79 +55,73 @@ class ProfileUpdate extends StatelessWidget {
     Widget registerForm = Container(
       child: Form(
         key: _key,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(left: 28.0, right: 12.0),
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(255, 255, 255, 0.8),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10))),
-              child: Column(
-                children: <Widget>[
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.only(left: 28.0, right: 12.0),
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(255, 255, 255, 0.8),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10))),
+          child: Column(
+            children: <Widget>[
   
-                  ProfileUpdateTextField(
-                    
-                    controller:
-                    updateProfileController.nameController,
-                    icon: Icon(Icons.person),
-                    hintText: "Name",
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Name is Required';
-                      }
-                      return null;
-                    },
-                    obscureText: false,
-                  ),
-  
-                  ProfileUpdateTextField(
-  
-                    controller:
-                    updateProfileController.mobileController,
-                    icon: Icon(Icons.phone_android),
-                    hintText: "Mobile Number",
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Mobile is Required';
-                      }
-                      return null;
-                    },
-                    obscureText: false,
-                  ),
-                  ProfileUpdateTextField(
-  
-                    controller:
-                    updateProfileController.cityController,
-                    icon: Icon(Icons.location_city),
-                    hintText: "City",
-                    validator: (String value) {
-                    
-                    },
-                    obscureText: false,
-                  ),
-                  ProfileUpdateTextField(
-                    controller: updateProfileController
-                        .streetAddressController,
-                    icon: Icon(Icons.location_on),
-                    hintText: "Street Address",
-                    validator: (String value) {
-                    },
-                    obscureText: false,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  registerButton,
-                  SizedBox(
-                    height: 10,
-                  )
-                ],
+              ProfileUpdateTextField(
+                
+                controller:
+                updateProfileController.nameController,
+                icon: Icon(Icons.person),
+                hintText: "Name",
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Name is Required';
+                  }
+                  return null;
+                },
+                obscureText: false,
               ),
-            ),
-          ],
+  
+              ProfileUpdateTextField(
+  
+                controller:
+                updateProfileController.mobileController,
+                icon: Icon(Icons.phone_android),
+                hintText: "Mobile Number",
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Mobile is Required';
+                  }
+                  return null;
+                },
+                obscureText: false,
+              ),
+              ProfileUpdateTextField(
+  
+                controller:
+                updateProfileController.cityController,
+                icon: Icon(Icons.location_city),
+                hintText: "City",
+                validator: (String value) {
+                
+                },
+                obscureText: false,
+              ),
+              ProfileUpdateTextField(
+                controller: updateProfileController
+                    .streetAddressController,
+                icon: Icon(Icons.location_on),
+                hintText: "Street Address",
+                validator: (String value) {
+                },
+                obscureText: false,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              registerButton,
+           
+            ],
+          ),
         ),
       ),
     );

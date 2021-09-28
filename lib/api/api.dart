@@ -38,6 +38,18 @@ class ApiProvider {
     debugPrint('error: $error & stacktrace: $stacktrace');
   }
 
+  checkLogin(){
+     if(_sharedPreferencesManager.getBool("accessToken") != null){
+       return Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        );
+     }else{Options(
+          
+        );}
+  }
+
   Future<Token> loginUser(map) async {
     try {
       final response = await _dio.post(
@@ -130,17 +142,17 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/store/detail/$storeId/',
-          options: Options(
+         options:_sharedPreferencesManager.getBool("accessToken") == null? Options(): Options(
             headers: {
-              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null
-                  ?false:true,
+              'requirestoken': 
+                  true,
             },
-          ),
+          )
       );
 
       return StoreWiseProducts.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("Store wise product api error $error");
       return null;
     }
   }
@@ -310,15 +322,15 @@ class ApiProvider {
         'customer/store-$storeId/product/category/list/',
           options: Options(
             headers: {
-              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null
-                  ?false:true,
+              'requirestoken': 
+                  _sharedPreferencesManager.getBool("accessToken") == null? false:true,
             },
           )
       );
 
       return CategoryList.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("category api error $error");
       return null;
     }
   }
@@ -346,16 +358,11 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'customer/homepage/store-$storeId/slider/list/',
-          options: Options(
-            headers: {
-              'requirestoken': _sharedPreferencesManager.getBool("isLogin") == null ?false
-                  :true,
-            }
-          )
+          options:  checkLogin()
       );
       return SliderProductModel.fromJson(response.data);
     } catch (error) {
-      print("Store api error $error");
+      print("slider api error $error");
       return null;
     }
   }
