@@ -23,14 +23,30 @@ ProductPage({Key key, this.productId}) : super(key: key);
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F9),
         
-        body: GetBuilder<ProductDetailsController>(
-          // specify type as Controller
-            init: _productDetailsController.setProductId(
-                productId: productId), // intialize with the Controller
-            builder: (value) =>
-            _productDetailsController.state == ViewState.Busy
-                ? _buildLoadingWidget()
-                : _buildSuccessWidget()));
+        body: LayoutBuilder(
+    builder: (context, constraints){
+      return Container(
+        child: TweenAnimationBuilder(
+          tween: Tween(begin: 0.0, end: 1.0),
+          duration: Duration(milliseconds: 1500),
+          builder: (context, value, child){
+            return ShaderMask(shaderCallback: (rect){
+              return RadialGradient(
+                  radius: value * 5, colors: [Colors.white, Colors.white, Colors.transparent, Colors.transparent], stops: [0.0, 0.55, 0.6, 1.0], center: FractionalOffset(0.95, 0.95))
+                  .createShader(rect);
+            },child: GetBuilder<ProductDetailsController>(
+              // specify type as Controller
+                init: _productDetailsController.setProductId(
+                    productId: productId), // intialize with the Controller
+                builder: (value) =>
+                _productDetailsController.state == ViewState.Busy
+                    ? _buildLoadingWidget()
+                    : _buildSuccessWidget()));
+          },
+        ),
+      );
+    },
+    ));
   }
 
 Widget _buildLoadingWidget() {

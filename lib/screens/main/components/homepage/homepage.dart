@@ -10,15 +10,10 @@ import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/main/widgets/store_select_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key, @required this.tabBar, @required this.tabController})
+  HomePage({Key key,})
       : super(key: key);
 
   final HomeController _homeController = Get.put(HomeController());
-
- 
-
-  final Widget tabBar;
-  final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
