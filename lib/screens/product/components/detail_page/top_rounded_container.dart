@@ -35,14 +35,14 @@ class TopRoundedContainer extends StatelessWidget {
                 title: const Text('Login to add to your cart!'),
                 actions: <Widget>[
                   TextButton(
-                    child: const Text('Yes'),
+                    child: const Text('Login'),
                     onPressed: () {
                       Navigator.of(context).pop();
                       Get.to(() => WelcomeBackPage());
                     },
                   ),
                   TextButton(
-                    child: const Text('No'),
+                    child: const Text('Cancel'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
