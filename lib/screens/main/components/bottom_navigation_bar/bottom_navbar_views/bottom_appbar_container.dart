@@ -55,7 +55,7 @@ final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarContro
                   IconButton(
                       splashRadius: 3,
                       icon: Icon(
-                        Icons.favorite,
+                        Icons.person,
                         color: bottomNavBarController.currentIndex.value == 1
                             ? darkgreen
                             : Colors.grey.shade400,

@@ -16,6 +16,8 @@ void main() async {
     );
     runApp(
       GetMaterialApp(
+        defaultTransition: Transition.leftToRightWithFade,
+        transitionDuration: Duration(seconds: 1),
         debugShowCheckedModeBanner: false,
         title: "Application",
         theme: ThemeData.light().copyWith(
