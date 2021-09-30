@@ -9,7 +9,8 @@ class SharedPreferencesManager {
   
   static const String keyIsLogin = 'isLogin';
   static const String keyUsername = 'username';
-  
+    static const String storename = 'storename';
+
   static const String choosestore = 'choosestore';
   static const String keyStoreId = 'storeId';
   static const String categoryId = 'categoryId';
