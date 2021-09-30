@@ -29,26 +29,7 @@ class TopRoundedContainer extends StatelessWidget {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return sharedPreferencesManager.getString("accessToken") == null
-            ? AlertDialog(
-                title: const Text('Login to add to your cart!'),
-                actions: <Widget>[
-                  TextButton(
-                    child: const Text('Yes'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Get.to(() => WelcomeBackPage());
-                    },
-                  ),
-                  TextButton(
-                    child: const Text('No'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              )
-            : AlertDialog(
+        return AlertDialog(
                 title: const Text('Choose choices from options'),
                 content: SingleChildScrollView(
                   child: ListBody(
@@ -82,6 +63,35 @@ class TopRoundedContainer extends StatelessWidget {
       },
     );
   }
+
+ Future<void> _loginToAddToCartAlert(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return  AlertDialog(
+                title: const Text('Login to add to your cart!'),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Yes'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Get.to(() => WelcomeBackPage(), arguments: {"cartController": null, "from": "productDetail"});
+                    },
+                  ),
+                  TextButton(
+                    child: const Text('No'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+
+      },
+    );
+  }
+
 
   Widget requestOptionWidget() {
     return GetBuilder<CounterController>(
@@ -216,7 +226,8 @@ class TopRoundedContainer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              counterController.firstTime != 0
+          sharedPreferencesManager.getString("accessToken") == null
+            ? _loginToAddToCartAlert(context):    counterController.firstTime != 0
                   ? addToCartController.mapProduct(
                       productID: product.data.id,
                       productQuantiity: counterController.count,
