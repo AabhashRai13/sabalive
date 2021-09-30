@@ -1,10 +1,14 @@
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/constants/enum.dart';
+import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/cart_model.dart';
 import 'package:sabalive/base model/base_model.dart';
 import 'package:get/get.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class CartController extends BaseController {
+  final SharedPreferencesManager sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
   ApiProvider _apiProvider = ApiProvider();
   Cart cart;
   List cartList = <Cartproduct>[].obs;
@@ -16,9 +20,10 @@ class CartController extends BaseController {
   bool isOrderPlaced = false;
   bool isDeleted = false;
   var a = 2.obs;
-nothing(){
-  print("nothing happens");
-}
+  nothing() {
+    print("nothing happens");
+  }
+
   populatePriceTotalList() {
     for (var i = 0; i < cartList.length; i++) {
       priceTotalList
@@ -65,14 +70,17 @@ nothing(){
   void decrement(int index) => count[index] = count[index] - 1;
 
   fetchCart() async {
-    setState(ViewState.Busy);
-    cart = await _apiProvider.fetchCart();
-    if (cart != null) {
-      cartList.assignAll(cart.data.cartproducts);
-      populatePriceTotalList();
-      populateQuantityTotalList();
-      priceCharge();
+    if (sharedPreferencesManager.getString("accessToken") == null) {
+    } else {
+      setState(ViewState.Busy);
+      cart = await _apiProvider.fetchCart();
+      if (cart != null) {
+        cartList.assignAll(cart.data.cartproducts);
+        populatePriceTotalList();
+        populateQuantityTotalList();
+        priceCharge();
+      }
+      setState(ViewState.Retrieved);
     }
-    setState(ViewState.Retrieved);
   }
 }
