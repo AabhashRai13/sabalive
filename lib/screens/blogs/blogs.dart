@@ -4,7 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/blog_controller.dart';
+import 'package:sabalive/controllers/profile_controller.dart';
+import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/screens/blogs/blog_detailpage.dart';
+import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class Blogs extends StatelessWidget {
   Blogs({Key key}) : super(key: key);
@@ -30,7 +33,16 @@ class Blogs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Ned Stark",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  sharedPreferencesManager
+                      .getString("accessToken") ==
+                      null
+                      ? Container()
+                      : GetBuilder<ProfileController>(
+                      init: ProfileController(),
+                      builder: (value) => value.profileModel == null
+                          ? Container()
+                          :  Text(value.profileModel.message.name.capitalize,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),),
+                 
                   SizedBox(
                     height: 30,
                   ),
@@ -128,8 +140,9 @@ class Blogs extends StatelessWidget {
           );
   }
 
- 
 
+  final SharedPreferencesManager sharedPreferencesManager =
+  locator<SharedPreferencesManager>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

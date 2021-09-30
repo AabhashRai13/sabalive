@@ -5,7 +5,6 @@ import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_na
 import 'package:sabalive/screens/main/components/homepage/homepage.dart';
 import 'package:sabalive/screens/main/widgets/drawer.dart';
 import 'package:sabalive/screens/profile_page.dart';
-import 'package:sabalive/screens/shop/cart_page_view.dart';
 import '../../app_properties.dart';
 import 'components/bottom_navigation_bar/bottom_navigationbar_controller/bottom_navbar_controller.dart';
 
@@ -17,19 +16,19 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>
     with TickerProviderStateMixin<MainPage> {
   final BottomNavBarController bottomNavBarController =
-      Get.put(BottomNavBarController());
-
+  Get.put(BottomNavBarController());
+  
   SwiperController swiperController;
   TabController tabController;
   TabController bottomTabController;
-
+  
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
     bottomTabController = TabController(length: 3, vsync: this);
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget tabBar = TabBar(
@@ -49,7 +48,7 @@ class _MainPageState extends State<MainPage>
       isScrollable: true,
       controller: tabController,
     );
-
+    
     return Scaffold(
         drawer: drawer(context),
         bottomNavigationBar: BottomNavBar(),

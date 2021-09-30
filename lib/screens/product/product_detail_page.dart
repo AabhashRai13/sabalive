@@ -14,7 +14,7 @@ class ProductPage extends StatelessWidget {
 final int productId;
 final ProductDetailsController _productDetailsController =
 Get.put(ProductDetailsController());
-ProductPage({Key key, this.productId}) : super(key: key);
+ProductPage({Key key, @required this.productId}) : super(key: key);
   final AddToCartController addToCartController =
       Get.put(AddToCartController());
   
@@ -28,9 +28,11 @@ ProductPage({Key key, this.productId}) : super(key: key);
             init: _productDetailsController.setProductId(
                 productId: productId), // intialize with the Controller
             builder: (value) =>
+    
             _productDetailsController.state == ViewState.Busy
                 ? _buildLoadingWidget()
-                : _buildSuccessWidget()));
+                : _buildSuccessWidget()
+        ));
   }
 
 Widget _buildLoadingWidget() {

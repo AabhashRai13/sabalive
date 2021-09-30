@@ -13,6 +13,8 @@ abstract class Routes {
   static const PRODUCTPAGE= _Paths.PRODUCTPAGE;
   static const INTROPAGE= _Paths.INTROPAGE;
   static const PROFILEUPDATE = _Paths.PROFILEUPDATE;
+  static const CategoryDetailPage = _Paths.CATEGORYDETAILPAGE;
+  
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
  static const PRODUCTPAGE = "/productpage";
  static const INTROPAGE = "/intropage";
  static const PROFILEUPDATE = "/profileupdate";
+ static const CATEGORYDETAILPAGE = "/categorydetailpage";
+ 
 }

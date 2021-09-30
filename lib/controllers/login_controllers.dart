@@ -64,7 +64,7 @@ await sharedPreferencesManager.putString(
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
 
-      Get.offAll(() => MainPage());
+      Get.back();
     }
     busy.value = false;
   }

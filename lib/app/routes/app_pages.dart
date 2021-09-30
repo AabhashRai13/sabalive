@@ -3,6 +3,7 @@ import 'package:sabalive/screens/about_us/about_us.dart';
 import 'package:sabalive/screens/intro_page.dart';
 
 import 'package:sabalive/screens/main/components/bottom_navigation_bar/bottom_navbar_binding/bottom_navbar_binding.dart';
+import 'package:sabalive/screens/main/components/homepage/category_detail_page.dart';
 import 'package:sabalive/screens/main/main_page.dart';
 import 'package:sabalive/screens/product/product_detail_page.dart';
 import 'package:sabalive/screens/profile_update/profile_update.dart';
@@ -35,8 +36,10 @@ class AppPages {
       name: _Paths.ABOUTUS,
       page: () => AboutUs(),
     ),
-    GetPage(name: _Paths.SPECIALOFFERS, page: () => SpecialOffers()),
-    GetPage(name: _Paths.PRODUCTPAGE, page: () => ProductPage()),
+    GetPage(
+        name: _Paths.SPECIALOFFERS,
+        page: () => SpecialOffers(),
+        ),
     GetPage(
       name: _Paths.INTROPAGE,
       page: () => IntroPage(),
@@ -44,6 +47,14 @@ class AppPages {
     GetPage(
       name: _Paths.PROFILEUPDATE,
       page: () => ProfileUpdate(),
+    ),
+    
+    GetPage(name: _Paths.CATEGORYDETAILPAGE,
+        page: ()=>CategoryDetailPage(categoryId: Get.arguments, title: Get.arguments),
+      
+    ),
+    GetPage(name: _Paths.PRODUCTPAGE,
+      page: ()=>ProductPage(productId: Get.arguments,),
     ),
   ];
 }

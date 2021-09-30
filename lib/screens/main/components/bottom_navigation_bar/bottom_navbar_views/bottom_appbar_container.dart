@@ -48,7 +48,6 @@ final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarContro
                     onPressed: () {
                       bottomNavBarController.setBottomBarIndex(
                           0,  Icon(Icons.search_outlined));
-
                       print(bottomNavBarController.currentIndex.value);
                     },
                     splashColor: Colors.white,
@@ -56,7 +55,7 @@ final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarContro
                   IconButton(
                       splashRadius: 3,
                       icon: Icon(
-                        Icons.favorite,
+                        Icons.person,
                         color: bottomNavBarController.currentIndex.value == 1
                             ? darkgreen
                             : Colors.grey.shade400,
@@ -65,7 +64,6 @@ final BottomNavBarController bottomNavBarController = Get.put(BottomNavBarContro
                         bottomNavBarController.setBottomBarIndex(
                             1,  Icon(Icons.search_outlined));
                       }),
-
                 ],
               ),
             ),
@@ -82,7 +80,6 @@ class BNBCustomPainter extends CustomPainter {
     Paint paint = new Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
-
     Path path = Path();
     path.moveTo(0, 0); // Start
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
@@ -97,7 +94,6 @@ class BNBCustomPainter extends CustomPainter {
     canvas.drawShadow(path, Colors.black, 5, true);
     canvas.drawPath(path, paint);
   }
-
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
