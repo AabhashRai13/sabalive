@@ -74,59 +74,7 @@ class _CartPageViewState extends State<CartPageView> {
           ),
         ));
 
-    Widget _quantityChanger(int index) {
-      return Row(
-        children: [
-          MaterialButton(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4)),
-              elevation: 0,
-              minWidth: 0,
-              height: 0,
-              color: Colors.grey[100],
-              child: Text(
-                '-',
-                style: TextStyle(fontSize: 22),
-              ),
-              onPressed: () {
-                if (cartController.count[index] <= 0) {
-                } else {
-                  cartController.decrement(index);
-                }
-              }),
-          Container(
-            height: 24,
-            width: 35,
-            decoration: BoxDecoration(
-                color: Colors.red[400],
-                borderRadius: BorderRadius.all(Radius.circular(4))),
-            child: Center(
-                child: Text(
-              '${cartController.count[index]}',
-              style: TextStyle(fontSize: 14, color: Colors.white),
-            )),
-          ),
-          MaterialButton(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4)),
-              elevation: 0,
-              minWidth: 0,
-              height: 0,
-              color: Colors.grey[100],
-              child: Text(
-                '+',
-                style: TextStyle(fontSize: 22),
-              ),
-              onPressed: () {
-                cartController.increment(index);
-                print(cartController.count[index]);
-              }),
-        ],
-      );
-    }
-
+  
     Widget _buildLoadingWidget() {
       return SpinKitCircle(color: Colors.blue[400]);
     }
@@ -163,7 +111,7 @@ class _CartPageViewState extends State<CartPageView> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.to(()=>WelcomeBackPage());
+                        Get.to(()=>WelcomeBackPage(), arguments: {"cartController": cartController, "from": "cart"});
                       },
                       child: Container(
                         height: SizeConfig.safeBlockVertical * 8,

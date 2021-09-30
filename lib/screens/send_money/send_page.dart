@@ -46,7 +46,6 @@ class _SendPageState extends State<SendPage> {
           color: Colors.black,
         ),
         backgroundColor: Colors.transparent,
-        brightness: Brightness.light,
         title: Text(
           'Send Amount',
           style: TextStyle(color: darkGrey),

@@ -3,10 +3,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sabalive/api/api.dart';
 import 'package:sabalive/base%20model/base_model.dart';
+import 'package:sabalive/controllers/cart_controller.dart';
 import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/registration_model.dart';
 import 'package:sabalive/models/token.dart';
-import 'package:sabalive/screens/main/main_page.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class LoginPageController extends BaseController {
@@ -25,9 +25,16 @@ class LoginPageController extends BaseController {
       locator<SharedPreferencesManager>();
   final formKey = GlobalKey<FormState>();
   bool autovalidate = false;
-
+  final CartController _cartController = Get.arguments["cartController"];
+  String _from = Get.arguments["from"];
   void updateState() {
     autovalidate = true;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    print("from $_from");
   }
 
   void loginUser(Map map) async {
@@ -45,7 +52,7 @@ class LoginPageController extends BaseController {
           fontSize: 16.0);
     } else {
       busy.value = false;
-     
+
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyAccessToken, token.access);
       print("access token ${token.access}");
@@ -55,14 +62,16 @@ class LoginPageController extends BaseController {
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.mobile, token.mobile);
 
-await sharedPreferencesManager.putString(
+      await sharedPreferencesManager.putString(
           SharedPreferencesManager.keyUsername, token.name);
       await sharedPreferencesManager.putString(
           SharedPreferencesManager.email, token.email);
-    await sharedPreferencesManager.putString(
-          SharedPreferencesManager.streetAddress, token.streetAddress??"");
+      await sharedPreferencesManager.putString(
+          SharedPreferencesManager.streetAddress, token.streetAddress ?? "");
       await sharedPreferencesManager.putBool(
           SharedPreferencesManager.keyIsLogin, true);
+
+      _from == "cart" ? _cartController.fetchCart() : print("not from cart");
 
       Get.back();
     }

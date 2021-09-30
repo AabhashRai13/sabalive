@@ -43,7 +43,6 @@ class _TrackingPageState extends State<TrackingPage> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0.0,
-              brightness: Brightness.light,
               iconTheme: IconThemeData(color: Colors.grey),
               title: Text(
                 'Shipped',

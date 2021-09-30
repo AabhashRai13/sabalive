@@ -8,7 +8,6 @@ import 'package:sabalive/injector/injector.dart';
 import 'package:sabalive/models/product_detail_model.dart';
 import 'package:sabalive/screens/auth/welcome_back_page.dart';
 import 'package:sabalive/screens/product/components/detail_page/related_product_container.dart';
-import 'package:sabalive/screens/product/components/detail_page/variant_button.dart';
 import 'package:sabalive/storage/sharedprefences/shared_preferences_manager.dart';
 
 class TopRoundedContainer extends StatelessWidget {

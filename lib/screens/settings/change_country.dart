@@ -31,7 +31,6 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',

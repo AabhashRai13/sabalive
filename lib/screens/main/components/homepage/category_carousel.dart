@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/home_controller_controller.dart';
 import 'package:sabalive/screens/main/components/homepage/category_detail_page.dart';
 import 'package:shimmer/shimmer.dart';
