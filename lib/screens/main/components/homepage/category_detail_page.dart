@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:sabalive/app_properties.dart';
 import 'package:sabalive/constants/enum.dart';
 import 'package:sabalive/controllers/category_detail_controller.dart';
 import 'package:sabalive/screens/product/product_detail_page.dart';

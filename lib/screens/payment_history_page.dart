@@ -42,7 +42,6 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage> {
             'Payment History',
             style: TextStyle(color: Colors.black),
           ),
-          brightness: Brightness.light,
         ),
         body: SafeArea(
           child: LayoutBuilder(

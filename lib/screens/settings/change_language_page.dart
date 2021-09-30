@@ -28,7 +28,6 @@ class _ChangeCountryPageState extends State<ChangeLanguagePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        brightness: Brightness.light,
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),

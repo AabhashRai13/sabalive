@@ -11,8 +11,8 @@ ApiProvider _apiService = ApiProvider();
 
   //bool added = false;
   final count = 0.obs;
-  var added = List<int>().obs;
-
+  var added = <int>[].obs;
+  
   @override
   void onInit() {
     super.onInit();
