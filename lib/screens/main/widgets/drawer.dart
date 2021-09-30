@@ -79,7 +79,7 @@ Widget drawer(BuildContext context) {
                             title: const Text("Login"),
                             onTap: () {
                               Get.back();
-                              Get.to(() => WelcomeBackPage());
+                              Get.to(() => WelcomeBackPage() , arguments: {"cartController": null, "from": "drawer"});
                             },
                           )
                         : Container(),
